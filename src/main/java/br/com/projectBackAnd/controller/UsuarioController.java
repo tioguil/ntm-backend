@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import br.com.projectBackAnd.models.Usuario;
@@ -40,6 +37,16 @@ public class UsuarioController {
 		response.setResponse(list);
 
 		//Usuario usuario = new Usuario();
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@ApiOperation(value="Consultar")
+	@GetMapping("/consultar/{id}")
+	public ResponseEntity<ResponseMessage> consultar(@PathVariable("id") long id){
+		ResponseMessage response = responseMessage;
+		response.setMessage("Tudo ok");
+		response.setStatusCode("200");
+		response.setResponse(id);
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 }
