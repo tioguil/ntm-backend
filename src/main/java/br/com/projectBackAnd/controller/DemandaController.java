@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 public class DemandaController {
 
 	@ApiOperation(value="Inserir uma Demanda")
-	@PostMapping("/inserir")
+	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> inserir(){
 		
 		Usuario usuario = new Usuario();
