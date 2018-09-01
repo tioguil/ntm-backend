@@ -1,4 +1,4 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +13,7 @@ public class Demanda {
     private Long id;
     private String nome;
     private String descricao;
+    private Projeto projeto;
     private Integer complexidade;
     private Date dataCriacao;
     private String cep;
@@ -21,9 +22,9 @@ public class Demanda {
     private String complemento;
     private String cidade;
     private String uf;
-    private Projeto projeto;
     private List<HistoricoAlocacao> historicoAlocacao;
     private List<Horario> horario;
     private List<Anexo> anexos;
     private List<Comentario> comentarios;
+    private List<DemandaHasHabilidade> DescricaoHabilidade;
 }

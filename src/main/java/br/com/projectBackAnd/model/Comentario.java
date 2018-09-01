@@ -1,4 +1,4 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,12 +7,11 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class HistoricoAlocacao {
+public class Comentario {
 
     private Long id;
-    private String status;
-    private Date dataAlteracao;
+    private String comentario;
+    private Date dataComentario;
     private Usuario usuario;
     private Demanda demanda;
-
 }

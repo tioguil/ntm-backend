@@ -1,4 +1,4 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,4 @@ public class Habilidade {
 
     private Long id;
     private String nome;
-    private String nivel;
-    private String descricao;
-    private Usuario usuario;
 }

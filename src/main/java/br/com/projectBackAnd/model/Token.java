@@ -1,4 +1,4 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +14,7 @@ public class Token {
     private Long token;
     private String numero;
     private Date dataGeracao;
+    private Usuario usuario;
 
     /**
      Recebe formato e retorna data no formato String já formadata

@@ -1,8 +1,7 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import sun.rmi.runtime.Log;
 
 import java.util.Date;
 

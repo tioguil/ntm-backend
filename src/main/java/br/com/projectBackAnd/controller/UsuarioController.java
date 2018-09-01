@@ -1,15 +1,13 @@
 package br.com.projectBackAnd.controller;
 
-import br.com.projectBackAnd.models.ResponseMessage;
-import lombok.EqualsAndHashCode;
+import br.com.projectBackAnd.model.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-import br.com.projectBackAnd.models.Usuario;
+import br.com.projectBackAnd.model.Usuario;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 

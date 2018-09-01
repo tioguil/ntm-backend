@@ -1,4 +1,4 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,10 +20,12 @@ public class Usuario {
 	private String nome;
 	private String sobreNome;
 	private String cpfCnpj;
-	private String sexo;
+	private Integer perfilAcesso;
 	private Date nascimento;
 	private String cep;
 	private String endereco;
+	private Integer numero;
+	private String complemento;
 	private String cidade;
 	private String uf;
 	private Token token;

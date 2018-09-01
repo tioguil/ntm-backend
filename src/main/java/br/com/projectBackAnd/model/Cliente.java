@@ -1,9 +1,9 @@
-package br.com.projectBackAnd.models;
+package br.com.projectBackAnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,5 +13,5 @@ public class Cliente {
     private String nome;
     private String cpfCnpj;
     private String seguimento;
-    private Dados dados;
+    private List<Dados> dados;
 }
