@@ -22,6 +22,26 @@ public class UsuarioController {
 	@Autowired
 	private ResponseMessage responseMessage;
 
+
+	/*
+		{
+   "cep":"06140-120",
+   "cidade":"Osasco",
+   "complemento":"",
+   "cpfCnpj":"43105125685",
+   "email":"guil_stay@hotmail.com",
+   "endereco":"Rua Raimundo dos Santos",
+   "nascimento":"1995-03-23",
+   "nome":"Guilherme",
+   "numero":0,
+   "perfilAcesso":0,
+   "senha":"123456",
+   "sobreNome":"dos Santos",
+   "uf":"SP"
+}
+	 */
+
+
 	@ApiOperation(value="Inserir Usuario")
 	@PostMapping("/inserir")
 	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario){
