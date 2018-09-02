@@ -32,7 +32,7 @@ public class TokenService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public boolean tokenInvalido(String tk) throws SQLException, IOException, ClassNotFoundException {
+    public Token tokenInvalido(String tk) throws SQLException, IOException, ClassNotFoundException {
         final Long  tempo = 86400000L; //Intervalo de Tempo 1 dia 86400000L
         Token token = new Token();
         token.setNumero(tk);
@@ -45,7 +45,8 @@ public class TokenService {
 
         //caso nao encontre no bando a data esta null
         if(token.getDataGeracao() == null){
-            return true;
+            token.getUsuario().setId(-1L);
+            return token;
         }
         //verificando intervalo
         Date dataTual = new Date();
@@ -53,9 +54,10 @@ public class TokenService {
         Long intervalo =  dataTual.getTime() - dataToken.getTime() ;
 
         if(intervalo < tempo ){
-            return false;
+            return token;
         }else {
-            return true;
+            token.getUsuario().setId(-1L);
+            return token;
         }
 
     }

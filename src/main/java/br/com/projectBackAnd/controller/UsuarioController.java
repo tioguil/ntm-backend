@@ -37,7 +37,8 @@ public class UsuarioController {
 	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario, @RequestHeader(value="authentication") String token) throws SQLException, IOException, ClassNotFoundException {
 		ResponseMessage response = responseMessage;
 
-		if(tokenService.tokenInvalido(token)) {
+		Long idUser = tokenService.tokenInvalido(token).getUsuario().getId();
+		if(idUser == -1) {
 			response.setStatusCode("401");
 			response.setMessage("Token invalido ou expirado");
 			response.setResponse(null);

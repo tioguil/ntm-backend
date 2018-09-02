@@ -55,4 +55,5 @@ public class UsuarioDAO extends GenericDAO{
 
         return usuario;
     }
+
 }
