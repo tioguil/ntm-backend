@@ -18,7 +18,7 @@ public class ConexaoMysql {
     	super();
     	prop = new Properties();
     	Class<? extends ConexaoMysql> cls = this.getClass();
-        InputStream is = cls.getResourceAsStream("db.properties");
+        InputStream is = cls.getResourceAsStream("/db.properties");
         try {
         	prop.load(is);        	
 		} catch (IOException e) {

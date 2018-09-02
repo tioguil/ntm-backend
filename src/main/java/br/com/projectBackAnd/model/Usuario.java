@@ -38,7 +38,12 @@ public class Usuario {
 	private List<Comentario> comentarios;
 	private List<Demanda> demanda;
 
+	public Usuario(){
 
+	}
+	public Usuario(Long id){
+		this.id = id;
+	}
 	/**
 		Recebe formato e retorna data no formato String já formadata
 	 */

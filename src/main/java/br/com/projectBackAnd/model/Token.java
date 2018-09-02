@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 public class Token {
 
-    private Long token;
+    private Long id;
     private String numero;
     private Date dataGeracao;
     private Usuario usuario;

@@ -1,6 +1,10 @@
 package br.com.projectBackAnd.controller;
 
 import br.com.projectBackAnd.model.ResponseMessage;
+import br.com.projectBackAnd.service.TokenService;
+import br.com.projectBackAnd.service.UsuarioService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +15,8 @@ import br.com.projectBackAnd.model.Usuario;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,50 +27,48 @@ public class UsuarioController {
 
 	@Autowired
 	private ResponseMessage responseMessage;
-
-
-	/*
-		{
-   "cep":"06140-120",
-   "cidade":"Osasco",
-   "complemento":"",
-   "cpfCnpj":"43105125685",
-   "email":"guil_stay@hotmail.com",
-   "endereco":"Rua Raimundo dos Santos",
-   "nascimento":"1995-03-23",
-   "nome":"Guilherme",
-   "numero":0,
-   "perfilAcesso":0,
-   "senha":"123456",
-   "sobreNome":"dos Santos",
-   "uf":"SP"
-}
-	 */
-
+	@Autowired
+	private UsuarioService usuarioService;
+	@Autowired
+	private TokenService tokenService;
 
 	@ApiOperation(value="Inserir Usuario")
-	@PostMapping("/inserir")
-	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario){
+	@PostMapping("/cadastrar")
+	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario, @RequestHeader(value="authentication") String token) throws SQLException, IOException, ClassNotFoundException {
 		ResponseMessage response = responseMessage;
-		response.setMessage("Tudo ok");
-		response.setStatusCode("200");
 
-		List<Usuario> list = new ArrayList<>();
-		list.add(usuario);
-		list.add(usuario);
-		response.setResponse(list);
+		if(tokenService.tokenInvalido(token)) {
+			response.setStatusCode("401");
+			response.setMessage("Token invalido ou expirado");
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.UNAUTHORIZED);
+		}
 
-		//Usuario usuario = new Usuario();
+		try {
+			response = usuarioService.cadastrar(usuario);
+		} catch (Exception e) {
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 
-	@ApiOperation(value="Consultar")
-	@GetMapping("/consultar/{id}")
-	public ResponseEntity<ResponseMessage> consultar(@PathVariable("id") long id){
+
+
+	@ApiOperation(value="Autenticação")
+	@PostMapping("/autenticar")
+	public ResponseEntity<ResponseMessage> autenticar(@RequestBody Usuario usuarioRequest){
 		ResponseMessage response = responseMessage;
-		response.setMessage("Tudo ok");
-		response.setStatusCode("200");
-		response.setResponse(id);
+
+		try {
+			response = usuarioService.autenticar(usuarioRequest);
+		} catch (Exception e) {
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 }
