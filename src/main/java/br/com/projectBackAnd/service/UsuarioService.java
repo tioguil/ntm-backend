@@ -33,9 +33,18 @@ public class UsuarioService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public ResponseMessage cadastrar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
-
+    public ResponseMessage cadastrar(Usuario usuario, Long idUser) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
+        Integer nivel = usuarioDAO.consultaNivel(idUser);
+
+        if(nivel == 0){
+            response.setMessage("Você não tem autorização para realizar essa ação");
+            response.setStatusCode("400");
+            response.setResponse(null);
+            return response;
+        }
+
+
         usuario.setId(usuarioDAO.cadastrar(usuario));
         usuario.setSenha("");
 

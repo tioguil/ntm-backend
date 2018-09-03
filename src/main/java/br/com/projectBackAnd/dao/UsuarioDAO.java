@@ -56,4 +56,15 @@ public class UsuarioDAO extends GenericDAO{
         return usuario;
     }
 
+    public Integer consultaNivel(Long idUser) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select perfil_acesso from usuario where id = ?";
+
+        ResultSet rs = super.executeResutSet(sql, idUser);
+
+        if(rs.next()){
+            return rs.getInt("perfil_acesso");
+        }else {
+            return -1;
+        }
+    }
 }

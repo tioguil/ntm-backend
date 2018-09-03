@@ -46,7 +46,7 @@ public class UsuarioController {
 		}
 
 		try {
-			response = usuarioService.cadastrar(usuario);
+			response = usuarioService.cadastrar(usuario, idUser);
 		} catch (Exception e) {
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
