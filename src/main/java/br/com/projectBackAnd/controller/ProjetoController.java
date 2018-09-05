@@ -6,6 +6,7 @@ import br.com.projectBackAnd.model.ResponseMessage;
 import br.com.projectBackAnd.model.Usuario;
 import br.com.projectBackAnd.service.ProjetoService;
 import br.com.projectBackAnd.service.TokenService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ public class ProjetoController {
     @Autowired
     private ResponseMessage responseMessage;
 
+
+    @ApiOperation("Cadastra um projeto")
     @PostMapping("/cadastrar")
     public ResponseEntity<ResponseMessage> cadastrar(@RequestBody Projeto projeto,
                                                      @RequestHeader(value = "authentication") String token) throws SQLException, IOException, ClassNotFoundException {
