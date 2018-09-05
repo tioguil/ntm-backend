@@ -18,7 +18,7 @@ public class Demanda {
     private Date dataCriacao;
     private String cep;
     private String endereco;
-    private String enderecoNumero;
+    private Integer enderecoNumero;
     private String complemento;
     private String cidade;
     private String uf;
