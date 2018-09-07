@@ -1,5 +1,6 @@
 package br.com.projectBackAnd.service;
 
+import br.com.projectBackAnd.Utili.EnviarEmail;
 import br.com.projectBackAnd.Utili.TokenGenerator;
 import br.com.projectBackAnd.dao.TokenDao;
 import br.com.projectBackAnd.dao.UsuarioDAO;
@@ -8,16 +9,17 @@ import br.com.projectBackAnd.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.UUID;
 
 @Service
 public class UsuarioService {
 
     @Autowired
     private ResponseMessage responseMessage;
-
     @Autowired
     private UsuarioDAO usuarioDAO;
     @Autowired
@@ -33,7 +35,7 @@ public class UsuarioService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public ResponseMessage cadastrar(Usuario usuario, Long idUser) throws SQLException, IOException, ClassNotFoundException {
+    public ResponseMessage cadastrar(Usuario usuario, Long idUser) throws SQLException, IOException, ClassNotFoundException, MessagingException {
         ResponseMessage response = responseMessage;
         Integer nivel = usuarioDAO.consultaNivel(idUser);
 
@@ -44,9 +46,17 @@ public class UsuarioService {
             return response;
         }
 
+        UUID uuid = UUID.randomUUID();
+        String senha = (uuid.toString().substring(0,8));
+        System.out.println(senha);
+        usuario.setSenha(senha);
 
         usuario.setId(usuarioDAO.cadastrar(usuario));
         usuario.setSenha("");
+
+        EnviarEmail email = new EnviarEmail();
+
+        email.sendHtmlEmail(usuario.getEmail(), "Activict Controll", "<h2>Bem Vindo</h2>  <br/> sua senha de acesso: " + senha);
 
         response.setMessage("Usuario criado com sucesso!");
         response.setStatusCode("201");

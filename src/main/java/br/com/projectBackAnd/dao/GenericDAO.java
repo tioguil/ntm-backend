@@ -43,12 +43,4 @@ public class GenericDAO {
         
         return retorno;
     }
-    
-    public void setLog(String numeroPedido, String modulo, String transportadora, String mensagemEStackTrace) throws IOException {
-        String sql = "INSERT INTO Log_TCK (Pedido, Transportadora, CLasse_Metodo, Data_Hora, Erro)"
-                    + "VALUES (?,?,?,NOW(),?)";
-        try {
-            executeQuery(sql, numeroPedido, transportadora, modulo, mensagemEStackTrace);
-        } catch (SQLException | ClassNotFoundException ex) { }
-    }
 }

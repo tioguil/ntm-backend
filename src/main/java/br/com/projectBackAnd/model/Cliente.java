@@ -11,7 +11,7 @@ public class Cliente {
 
     private Long id;
     private String nome;
-    private String cpfCnpj;
+    private Long cpfCnpj;
     private String seguimento;
     private List<Dados> dados;
 }
