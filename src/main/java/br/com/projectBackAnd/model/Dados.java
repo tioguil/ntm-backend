@@ -10,5 +10,6 @@ public class Dados {
     private Long id;
     private String tipo;
     private String valor;
+    private Long clienteId;
 }
 

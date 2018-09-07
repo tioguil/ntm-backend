@@ -9,7 +9,6 @@ import java.sql.SQLException;
 @Component
 public class DemandaDAO extends GenericDAO{
 
-
     public Long cadastrar(Demanda demanda) throws SQLException, IOException, ClassNotFoundException {
         String sql = "INSERT into demanda(nome, descricao,complexidade, cep, endereco, endereco_numero, complemento, cidade, uf ,projeto_id)values(?,?,?,?,?,?,?,?,?,?)";
 

@@ -43,10 +43,7 @@ public class DemandaController {
 		}
 
 		try {
-
 			response = demandaService.cadastrar(demanda, idUser);
-
-
 		}catch (Exception e){
 			response.setResponse(null);
 			response.setStatusCode("500");
