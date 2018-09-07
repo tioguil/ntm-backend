@@ -57,4 +57,35 @@ public class ProjetoController {
 
         return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
     }
+
+    @ApiOperation("Lista Projetos")
+    @GetMapping("/listar")
+    public ResponseEntity<ResponseMessage>listar(@RequestHeader(value = "authentication") String token) throws SQLException, IOException, ClassNotFoundException {
+
+        ResponseMessage response = responseMessage;
+
+        Long idUser = tokenService.tokenInvalido(token).getUsuario().getId();
+
+        if(idUser == -1) {
+            response.setStatusCode("401");
+            response.setMessage("Token invalido ou expirado");
+            response.setResponse(null);
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.UNAUTHORIZED);
+        }
+
+
+        try{
+
+            response =  projetoService.listar();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            response.setStatusCode("500");
+            response.setMessage(e.getMessage());
+            response.setResponse(null);
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+    }
 }
