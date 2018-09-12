@@ -1,8 +1,8 @@
 package br.com.projectBackAnd.model;
 
-public class DemandaHasHabilidade {
+public class AtividadeHasHabilidade {
 
-    private Demanda demanda;
+    private Atividade atividade;
     private Habilidade habilidade;
     private String descricao;
 

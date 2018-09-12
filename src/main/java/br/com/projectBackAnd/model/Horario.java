@@ -15,6 +15,6 @@ public class Horario {
     private String latitude;
     private String longitude;
     private Usuario usuario;
-    private Demanda demanda;
+    private Atividade Atividade;
 
 }

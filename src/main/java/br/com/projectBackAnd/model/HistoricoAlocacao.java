@@ -13,6 +13,6 @@ public class HistoricoAlocacao {
     private String status;
     private Date dataAlteracao;
     private Usuario usuario;
-    private Demanda demanda;
+    private Atividade atividade;
 
 }

@@ -21,9 +21,12 @@ public class Usuario {
 	private String nome;
 	private String sobreNome;
 	private String cpfCnpj;
-	private Integer perfilAcesso;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date nascimento;
+	private String rg;
+	private String perfilAcesso;
+	private String telefone;
+	private String celular;
+	private String cargo;
+	private String observacao;
 	private String cep;
 	private String endereco;
 	private Integer numero;
@@ -36,28 +39,13 @@ public class Usuario {
 	private List<Horario> horario;
 	private List<Anexo> anexos;
 	private List<Comentario> comentarios;
-	private List<Demanda> demanda;
+	private List<Atividade> atividades;
 
 	public Usuario(){
 
 	}
 	public Usuario(Long id){
 		this.id = id;
-	}
-	/**
-		Recebe formato e retorna data no formato String já formadata
-	 */
-	public String getNascimentoFormater(String formato) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
-		return dateFormat.format(this.nascimento);
-	}
-
-	/**
-	 Recebe formato e data em String
-	 */
-	public void setNascimentoGeracao(String formato, String data) throws ParseException {
-		SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
-		this.nascimento = dateFormat.parse(data);
 	}
 
 }

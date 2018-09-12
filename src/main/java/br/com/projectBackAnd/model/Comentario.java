@@ -13,5 +13,5 @@ public class Comentario {
     private String comentario;
     private Date dataComentario;
     private Usuario usuario;
-    private Demanda demanda;
+    private Atividade Atividade;
 }

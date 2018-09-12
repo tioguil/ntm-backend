@@ -13,5 +13,5 @@ public class Anexo {
     private Date dataInsercao;
     private String tamanho;
     private Usuario usuario;
-    private Demanda demanda;
+    private Atividade atividade;
 }

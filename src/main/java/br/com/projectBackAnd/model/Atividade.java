@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Demanda {
+public class Atividade {
 
     private Long id;
     private String nome;
@@ -26,5 +26,5 @@ public class Demanda {
     private List<Horario> horario;
     private List<Anexo> anexos;
     private List<Comentario> comentarios;
-    private List<DemandaHasHabilidade> DescricaoHabilidade;
+    private List<AtividadeHasHabilidade> DescricaoHabilidade;
 }

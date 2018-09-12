@@ -14,8 +14,11 @@ import java.util.List;
 public class Projeto {
 
     private Long id;
+    private Integer numeroProjeto;
+
     private String nome;
     private String descricao;
+    private Integer estimativaEsforco;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date inicio;
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -23,7 +26,7 @@ public class Projeto {
     private Integer status;
     private Cliente cliente;
     private Usuario usuario;
-    private List<Demanda> demanda;
+    private List<Atividade> demanda;
 
 
 

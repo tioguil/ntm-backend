@@ -38,11 +38,6 @@ public class ClienteService {
         //salva Cliente no banco
         cliente = clienteDao.cadastrar(cliente);
 
-        // Verifica se consta dados a ser inserido
-        if(cliente.getDados().size() > 0){
-            List<Dados> dados = dadosService.inserir(cliente.getDados(), cliente.getId());
-            cliente.setDados(dados);
-        }
 
         //Cliando Response de sucesso!
         response.setMessage("Cliente cadastrado com sucesso!");

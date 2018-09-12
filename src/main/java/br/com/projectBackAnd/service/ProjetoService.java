@@ -32,7 +32,7 @@ public class ProjetoService {
         return response;
     }
 
-    public ResponseMessage listar() {
+    public ResponseMessage listar() throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
 
         List<Projeto> listaProjeto = projetoDAO.listar();

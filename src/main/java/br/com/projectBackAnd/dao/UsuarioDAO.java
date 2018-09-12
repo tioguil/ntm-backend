@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class UsuarioDAO extends GenericDAO{
 
 	public Long cadastrar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
-	    String sql = "INSERT into usuario(nome, sobrenome, email, senha, data_nascimento, perfil_acesso, cep, endereco, numero, " +
+	    String sql = "INSERT into usuario(nome, sobrenome, email, senha, perfil_acesso, cep, endereco, numero_endereco, " +
                 "complemento, cidade, uf)" +
                 " values(?,?,?,MD5(?),?,?,?,?,?,?,?,?)";
         Long id = super.executeQuery(sql,
@@ -19,7 +19,6 @@ public class UsuarioDAO extends GenericDAO{
                 usuario.getSobreNome(),
                 usuario.getEmail(),
                 usuario.getSenha(),
-                usuario.getNascimentoFormater("yyyy-MM-dd"),
                 usuario.getPerfilAcesso(),
                 usuario.getCep(),
                 usuario.getEndereco(),
@@ -41,8 +40,7 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setId(rs.getLong("id"));
             usuario.setNome(rs.getString("nome"));
             usuario.setSobreNome(rs.getString("sobrenome"));
-            usuario.setNascimento(rs.getDate("data_nascimento"));
-            usuario.setPerfilAcesso(rs.getInt("perfil_acesso"));
+            usuario.setPerfilAcesso(rs.getString("perfil_acesso"));
             usuario.setCep(rs.getString("cep"));
             usuario.setEndereco(rs.getString("endereco"));
             usuario.setNumero(rs.getInt("numero"));
