@@ -37,9 +37,9 @@ public class UsuarioService {
      */
     public ResponseMessage cadastrar(Usuario usuario, Long idUser) throws SQLException, IOException, ClassNotFoundException, MessagingException {
         ResponseMessage response = responseMessage;
-        Integer nivel = usuarioDAO.consultaNivel(idUser);
+        String nivel = usuarioDAO.consultaNivel(idUser);
 
-        if(nivel == 0){
+        if(!nivel.equals("gestor")){
             response.setMessage("Você não tem autorização para realizar essa ação");
             response.setStatusCode("400");
             response.setResponse(null);

@@ -11,21 +11,26 @@ import java.sql.SQLException;
 public class UsuarioDAO extends GenericDAO{
 
 	public Long cadastrar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
-	    String sql = "INSERT into usuario(nome, sobrenome, email, senha, perfil_acesso, cep, endereco, numero_endereco, " +
-                "complemento, cidade, uf)" +
-                " values(?,?,?,MD5(?),?,?,?,?,?,?,?,?)";
+	    String sql = "INSERT into usuario(nome, sobrenome, email, senha, cep, endereco, numero_endereco, " +
+                "complemento, cidade, uf, telefone, celular, cpf_cnpj, rg, cargo, observacao)" +
+                " values(?,?,?,MD5(?),?,?,?,?,?,?,?,?,?,?,?,?)";
         Long id = super.executeQuery(sql,
                 usuario.getNome(),
                 usuario.getSobreNome(),
                 usuario.getEmail(),
                 usuario.getSenha(),
-                usuario.getPerfilAcesso(),
                 usuario.getCep(),
                 usuario.getEndereco(),
-                usuario.getNumero(),
+                usuario.getEnderecoNumero(),
                 usuario.getComplemento(),
                 usuario.getCidade(),
-                usuario.getUf()
+                usuario.getUf(),
+                usuario.getTelefone(),
+                usuario.getCelular(),
+                usuario.getCpfCnpj(),
+                usuario.getRg(),
+                usuario.getCargo(),
+                usuario.getObservacao()
                 );
         return id;
 	}
@@ -43,7 +48,7 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setPerfilAcesso(rs.getString("perfil_acesso"));
             usuario.setCep(rs.getString("cep"));
             usuario.setEndereco(rs.getString("endereco"));
-            usuario.setNumero(rs.getInt("numero"));
+            usuario.setEnderecoNumero(rs.getInt("numero_endereco"));
             usuario.setComplemento(rs.getString("complemento"));
             usuario.setCidade(rs.getString("cidade"));
             usuario.setUf(rs.getString("uf"));
@@ -54,15 +59,15 @@ public class UsuarioDAO extends GenericDAO{
         return usuario;
     }
 
-    public Integer consultaNivel(Long idUser) throws SQLException, IOException, ClassNotFoundException {
+    public String consultaNivel(Long idUser) throws SQLException, IOException, ClassNotFoundException {
         String sql = "select perfil_acesso from usuario where id = ?";
 
         ResultSet rs = super.executeResutSet(sql, idUser);
 
         if(rs.next()){
-            return rs.getInt("perfil_acesso");
+            return rs.getString("perfil_acesso");
         }else {
-            return -1;
+            return "-1";
         }
     }
 }

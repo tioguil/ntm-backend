@@ -29,7 +29,7 @@ public class Usuario {
 	private String observacao;
 	private String cep;
 	private String endereco;
-	private Integer numero;
+	private Integer enderecoNumero;
 	private String complemento;
 	private String cidade;
 	private String uf;
