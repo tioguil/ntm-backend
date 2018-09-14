@@ -50,7 +50,7 @@ public class UsuarioService {
         String senha = (uuid.toString().substring(0,8));
         System.out.println(senha);
         usuario.setSenha(senha);
-
+        usuario.setPerfilAcesso("analista");
         usuario.setId(usuarioDAO.cadastrar(usuario));
         usuario.setSenha("");
 
