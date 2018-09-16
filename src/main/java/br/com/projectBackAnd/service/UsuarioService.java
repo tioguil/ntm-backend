@@ -7,6 +7,7 @@ import br.com.projectBackAnd.dao.UsuarioDAO;
 import br.com.projectBackAnd.model.ResponseMessage;
 import br.com.projectBackAnd.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -35,25 +36,21 @@ public class UsuarioService {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public ResponseMessage cadastrar(Usuario usuario, Long idUser) throws SQLException, IOException, ClassNotFoundException, MessagingException {
+    public ResponseMessage cadastrar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException, MessagingException {
         ResponseMessage response = responseMessage;
-        String nivel = usuarioDAO.consultaNivel(idUser);
 
-        if(!nivel.equals("gestor")){
-            response.setMessage("Você não tem autorização para realizar essa ação");
-            response.setStatusCode("400");
-            response.setResponse(null);
-            return response;
-        }
-
+        //Gerando senha random
         UUID uuid = UUID.randomUUID();
         String senha = (uuid.toString().substring(0,8));
         System.out.println(senha);
-        usuario.setSenha(senha);
-        usuario.setPerfilAcesso("analista");
+        //Encoder Senha
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        usuario.setSenha(bCryptPasswordEncoder.encode(senha));
+
         usuario.setId(usuarioDAO.cadastrar(usuario));
         usuario.setSenha("");
 
+        //Criando e enviando Email
         EnviarEmail email = new EnviarEmail();
 
         email.sendHtmlEmail(usuario.getEmail(), "Activict Controll", "<h2>Bem Vindo</h2>  <br/> sua senha de acesso: " + senha);
@@ -99,4 +96,6 @@ public class UsuarioService {
         }
         return response;
     }
+
+
 }

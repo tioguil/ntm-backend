@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -26,26 +27,17 @@ public class ProjetoController {
     @Autowired
     private ResponseMessage responseMessage;
 
-
     @ApiOperation("Cadastra um projeto")
-    @PostMapping("/cadastrar")
+    @PostMapping("/gestor/cadastrar")
     public ResponseEntity<ResponseMessage> cadastrar(@RequestBody Projeto projeto,
-                                                     @RequestHeader(value = "authentication") String token) throws SQLException, IOException, ClassNotFoundException {
+                                                     Authentication authentication) throws SQLException, IOException, ClassNotFoundException {
 
         ResponseMessage response = responseMessage;
-
-        Long idUser = tokenService.tokenInvalido(token).getUsuario().getId();
-
-        if(idUser == -1) {
-            response.setStatusCode("401");
-            response.setMessage("Token invalido ou expirado");
-            response.setResponse(null);
-            return new ResponseEntity<ResponseMessage>(response, HttpStatus.UNAUTHORIZED);
-        }
+        Usuario usuario = (Usuario) authentication.getPrincipal();
 
         try{
-
-           response =  projetoService.cadastrar(projeto, idUser);
+            projeto.setUsuario(usuario);
+            response =  projetoService.cadastrar(projeto);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -59,20 +51,10 @@ public class ProjetoController {
     }
 
     @ApiOperation("Lista Projetos")
-    @GetMapping("/listar")
-    public ResponseEntity<ResponseMessage>listar(@RequestHeader(value = "authentication") String token) throws SQLException, IOException, ClassNotFoundException {
+    @GetMapping("/gestor/listar")
+    public ResponseEntity<ResponseMessage>listar(Authentication authentication) throws SQLException, IOException, ClassNotFoundException {
 
         ResponseMessage response = responseMessage;
-
-        Long idUser = tokenService.tokenInvalido(token).getUsuario().getId();
-
-        if(idUser == -1) {
-            response.setStatusCode("401");
-            response.setMessage("Token invalido ou expirado");
-            response.setResponse(null);
-            return new ResponseEntity<ResponseMessage>(response, HttpStatus.UNAUTHORIZED);
-        }
-
 
         try{
 

@@ -18,19 +18,14 @@ public class AtividadeService {
     private AtividadeDAO atividadeDAO;
 
 
-    public ResponseMessage cadastrar(Atividade demanda, Long idUser) throws SQLException, IOException, ClassNotFoundException {
+    public ResponseMessage cadastrar(Atividade demanda) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
 
 
-
         demanda.setId(atividadeDAO.cadastrar(demanda));
-        response.setMessage("Demanda cadastrada com sucesso!");
+        response.setMessage("Atividade cadastrada com sucesso!");
         response.setStatusCode("201");
         response.setResponse(demanda);
-
-
-
-
 
         return response;
     }

@@ -2,12 +2,14 @@ package br.com.projectBackAnd.controller;
 
 import br.com.projectBackAnd.model.Atividade;
 import br.com.projectBackAnd.model.ResponseMessage;
+import br.com.projectBackAnd.model.Usuario;
 import br.com.projectBackAnd.service.AtividadeService;
 import br.com.projectBackAnd.service.TokenService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +19,7 @@ import java.sql.SQLException;
 
 @Api(value="API REST Usuarios")
 @RestController
-@RequestMapping("/demanda")
+@RequestMapping("/atividade")
 public class AtividadeController {
 
 	@Autowired
@@ -27,21 +29,13 @@ public class AtividadeController {
 	@Autowired
 	private AtividadeService atividadeService;
 
-	@ApiOperation(value="Inserir uma Demanda")
-	@PostMapping("/cadastrar")
-	public ResponseEntity<ResponseMessage> cadastrar(@RequestBody Atividade atividade, @RequestHeader(value="authentication") String token) throws SQLException, IOException, ClassNotFoundException {
+	@ApiOperation(value="Inserir atividade")
+	@PostMapping("/gestor/cadastrar")
+	public ResponseEntity<ResponseMessage> cadastrar(@RequestBody Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
 		ResponseMessage response = responseMessage;
 
-		Long idUser = tokenService.tokenInvalido(token).getUsuario().getId();
-		if(idUser == -1) {
-			response.setStatusCode("401");
-			response.setMessage("Token invalido ou expirado");
-			response.setResponse(null);
-			return new ResponseEntity<ResponseMessage>(response, HttpStatus.UNAUTHORIZED);
-		}
-
 		try {
-			response = atividadeService.cadastrar(atividade, idUser);
+			response = atividadeService.cadastrar(atividade);
 		}catch (Exception e){
 			response.setResponse(null);
 			response.setStatusCode("500");

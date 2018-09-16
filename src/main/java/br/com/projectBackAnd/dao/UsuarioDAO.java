@@ -13,7 +13,7 @@ public class UsuarioDAO extends GenericDAO{
 	public Long cadastrar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
 	    String sql = "INSERT into usuario(nome, sobrenome, email, senha, cep, endereco, numero_endereco, " +
                 "complemento, cidade, uf, telefone, celular, cpf_cnpj, rg, cargo_id, observacao, perfil_acesso)" +
-                " values(?,?,?,MD5(?),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Long id = super.executeQuery(sql,
                 usuario.getNome(),
                 usuario.getSobreNome(),
@@ -35,6 +35,36 @@ public class UsuarioDAO extends GenericDAO{
                 );
         return id;
 	}
+
+	public Usuario findByEmail(String email) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select * from usuario where email = ?";
+
+        Usuario usuario = new Usuario();
+        ResultSet rs = super.executeResutSet(sql, email);
+
+        if(rs.next()){
+            usuario.setEmail(email);
+            usuario.setSenha(rs.getString("senha"));
+            usuario.setTelefone(rs.getString("telefone"));
+            usuario.setCelular(rs.getString("celular"));
+            usuario.setId(rs.getLong("id"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setCpfCnpj(rs.getString("cpf_cnpj"));
+            usuario.setRg(rs.getString("rg"));
+            usuario.setSobreNome(rs.getString("sobrenome"));
+            usuario.setPerfilAcesso(rs.getString("perfil_acesso"));
+            usuario.setCep(rs.getString("cep"));
+            usuario.setEndereco(rs.getString("endereco"));
+            usuario.setEnderecoNumero(rs.getString("numero_endereco"));
+            usuario.setComplemento(rs.getString("complemento"));
+            usuario.setCidade(rs.getString("cidade"));
+            usuario.setUf(rs.getString("uf"));
+        }else{
+            usuario = null;
+        }
+
+        return usuario;
+    }
 
     public Usuario autenticar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
         String sql = "select * from usuario where email = ? and senha = MD5(?)";

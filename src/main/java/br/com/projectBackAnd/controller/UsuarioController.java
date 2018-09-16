@@ -1,24 +1,29 @@
 package br.com.projectBackAnd.controller;
 
 import br.com.projectBackAnd.model.ResponseMessage;
-import br.com.projectBackAnd.service.TokenService;
+import br.com.projectBackAnd.model.Usuario;
 import br.com.projectBackAnd.service.UsuarioService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
-import br.com.projectBackAnd.model.Usuario;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
+
+
+/**
+ * Nova forma de autenticação
+ * para logar deve enviar credenciais no Body através da Rota http://localhost:8080/login
+ * sera devolvido response com usuário e token
+ */
+
 
 @Api(value="API REST Usuarios")
 @RequestMapping("/usuario")
@@ -29,24 +34,15 @@ public class UsuarioController {
 	private ResponseMessage responseMessage;
 	@Autowired
 	private UsuarioService usuarioService;
-	@Autowired
-	private TokenService tokenService;
 
-	@ApiOperation(value="Inserir Usuario")
-	@PostMapping("/cadastrar")
-	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario, @RequestHeader(value="authentication") String token) throws SQLException, IOException, ClassNotFoundException {
+	@ApiOperation(value="Cadastra Analista no sistema")
+	@PostMapping("/gestor/cadastrar")
+	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
 		ResponseMessage response = responseMessage;
 
-		Long idUser = tokenService.tokenInvalido(token).getUsuario().getId();
-		if(idUser == -1) {
-			response.setStatusCode("401");
-			response.setMessage("Token invalido ou expirado");
-			response.setResponse(null);
-			return new ResponseEntity<ResponseMessage>(response, HttpStatus.UNAUTHORIZED);
-		}
-
 		try {
-			response = usuarioService.cadastrar(usuario, idUser);
+			usuario.setPerfilAcesso("analista");
+			response = usuarioService.cadastrar(usuario);
 		} catch (Exception e) {
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
@@ -56,20 +52,21 @@ public class UsuarioController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 
-
-
-	@ApiOperation(value="Autenticação")
-	@PostMapping("/autenticar")
-	public ResponseEntity<ResponseMessage> autenticar(@RequestBody Usuario usuarioRequest){
+	@ApiOperation(value="Cadastra gestor no sistema")
+	@PostMapping("/adm/cadastrar/gestor")
+	public ResponseEntity<ResponseMessage> inserirGestor(@RequestBody Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
 		ResponseMessage response = responseMessage;
 
 		try {
-			response = usuarioService.autenticar(usuarioRequest);
+			usuario.setPerfilAcesso("adm");
+			response = usuarioService.cadastrar(usuario);
 		} catch (Exception e) {
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
 			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
+
 }
