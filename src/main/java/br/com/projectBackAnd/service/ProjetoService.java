@@ -3,6 +3,7 @@ package br.com.projectBackAnd.service;
 import br.com.projectBackAnd.dao.ProjetoDAO;
 import br.com.projectBackAnd.model.Projeto;
 import br.com.projectBackAnd.model.ResponseMessage;
+import br.com.projectBackAnd.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,9 @@ public class ProjetoService {
     @Autowired
     private ProjetoDAO projetoDAO;
 
-    public ResponseMessage cadastrar(Projeto projeto, Long idUser) throws SQLException, IOException, ClassNotFoundException {
+    public ResponseMessage cadastrar(Projeto projeto) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
+
 
         projeto.setId(projetoDAO.cadastrar(projeto));
         response.setMessage("Projeto cadastrado com sucesso!");

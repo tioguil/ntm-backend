@@ -1,5 +1,7 @@
 package br.com.projectBackAnd.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,14 +27,14 @@ public class Usuario {
 	private String perfilAcesso;
 	private String telefone;
 	private String celular;
-	private String cargo;
 	private String observacao;
 	private String cep;
 	private String endereco;
-	private Integer enderecoNumero;
+	private String enderecoNumero;
 	private String complemento;
 	private String cidade;
 	private String uf;
+	private Cargo cargo;
 	private Token token;
 	private List<UsuarioHasHabilidade> usuarioHasHabilidade;
 	private List<HistoricoAlocacao> historicoAlocacao;

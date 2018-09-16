@@ -13,6 +13,7 @@ public class Token {
 
     private Long id;
     private String numero;
+    private Long expiracao;
     private Date dataGeracao;
     private Usuario usuario;
 
