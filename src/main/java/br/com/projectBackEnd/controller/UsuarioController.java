@@ -46,6 +46,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
+			response.setResponse(null);
 			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -63,7 +64,26 @@ public class UsuarioController {
 		} catch (Exception e) {
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
+			response.setResponse(null);
 			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@ApiOperation(value="Recupera senha")
+	@PostMapping("/recuperacao")
+	public ResponseEntity<ResponseMessage> recuperarSenha(@RequestBody Usuario usuario){
+		ResponseMessage response = responseMessage;
+
+		try{
+			response = usuarioService.recuperarSenha(usuario);
+		}catch (Exception e ){
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+
 		}
 
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);

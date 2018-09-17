@@ -98,4 +98,41 @@ public class UsuarioService {
     }
 
 
+    public ResponseMessage recuperarSenha(Usuario usuario) throws IOException, MessagingException, SQLException, ClassNotFoundException {
+
+        ResponseMessage response = responseMessage;
+
+        //Gerando senha random
+        UUID uuid = UUID.randomUUID();
+        String senha = (uuid.toString().substring(0,8));
+        System.out.println(senha);
+        //Encoder Senha
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        usuario.setSenha(bCryptPasswordEncoder.encode(senha));
+
+        //Atualiza senha do usuario na base, caso funcione retorna true
+        if(usuarioDAO.recuperarSenha(usuario)){
+            //Criando e enviando Email
+            EnviarEmail email = new EnviarEmail();
+
+            email.sendHtmlEmail(usuario.getEmail(), "Recupeção de senha", "<h2>Senha de acesso</h2>  <br/> Sua nova senha de acesso: " + senha);
+
+            usuario.setSenha("");
+            response.setStatusCode("200");
+            response.setMessage("Enviado email com informações para recuperação de senha.");
+            response.setResponse(null);
+
+            return response;
+        }else{
+            usuario.setSenha("");
+            response.setStatusCode("200");
+            response.setMessage("conta não cadastrada.");
+            response.setResponse(null);
+
+            return response;
+        }
+
+
+
+    }
 }

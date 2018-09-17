@@ -3,11 +3,9 @@ package br.com.projectBackEnd.Utili;
 import br.com.projectBackEnd.dao.UsuarioDAO;
 import br.com.projectBackEnd.model.Token;
 import br.com.projectBackEnd.model.Usuario;
-import br.com.projectBackEnd.service.UsuarioService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,8 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.Signature;
-import java.sql.SQLException;
 import java.util.Date;
 
 import static br.com.projectBackEnd.Utili.SecurityConstants.*;
@@ -56,7 +52,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         System.out.println("UserEmail " + username);
         Usuario usuario;
-        String jsonUsuario;
+        String jsonUsuario = "";
         try {
             usuario = new UsuarioDAO().findByEmail(username);
             usuario.setSenha("");

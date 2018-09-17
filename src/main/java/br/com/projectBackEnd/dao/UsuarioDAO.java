@@ -105,4 +105,20 @@ public class UsuarioDAO extends GenericDAO{
             return "-1";
         }
     }
+
+    public Boolean recuperarSenha(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
+
+	    String sqlGet = "select id from usuario where email = ?";
+
+	    ResultSet rs = super.executeResutSet(sqlGet, usuario.getEmail());
+
+        if(rs.next()){
+            String sql = "update usuario set senha = ? where id = ?";
+
+            super.executeQuery(sql, usuario.getSenha(), rs.getLong("id"));
+            return true;
+        }
+
+        return false;
+    }
 }
