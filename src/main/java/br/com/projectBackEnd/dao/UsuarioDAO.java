@@ -1,11 +1,14 @@
 package br.com.projectBackEnd.dao;
 
+import br.com.projectBackEnd.model.Cargo;
 import br.com.projectBackEnd.model.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UsuarioDAO extends GenericDAO{
@@ -121,4 +124,37 @@ public class UsuarioDAO extends GenericDAO{
 
         return false;
     }
+
+    public List<Usuario> listarAnalistas() throws SQLException, IOException, ClassNotFoundException {
+
+
+	    String sql = "select a.nome,a.sobrenome, b.cargo\n" +
+                "from usuario a \n" +
+                "inner join cargo b \n" +
+                "on a.cargo_id = b.id\n" +
+                "where a.perfil_acesso = \"analista\"; ";
+
+	    ResultSet rs = super.executeResutSet(sql);
+
+        ArrayList<Usuario> analistas = new ArrayList<>();
+
+
+        while (rs.next()){
+            Usuario analista = new Usuario();
+            Cargo cargo = new Cargo();
+
+            analista.setNome(rs.getString("nome"));
+            analista.setSobreNome(rs.getString("sobrenome"));
+            cargo.setCargo(rs.getString("cargo"));
+            analista.setCargo(cargo);
+
+            analistas.add(analista);
+
+        }
+
+        return  analistas;
+
+    }
+
+
 }
