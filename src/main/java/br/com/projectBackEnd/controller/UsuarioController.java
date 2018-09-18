@@ -110,4 +110,5 @@ public class UsuarioController {
 
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
+
 }
