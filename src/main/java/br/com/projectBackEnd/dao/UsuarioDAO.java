@@ -121,4 +121,20 @@ public class UsuarioDAO extends GenericDAO{
 
         return false;
     }
+
+    public String findPasswordById(Long id) throws SQLException, IOException, ClassNotFoundException {
+	    String sql = "select senha from usuario where id = ?";
+	    ResultSet rs = super.executeResutSet(sql, id);
+
+	    if(rs.next()){
+	        return rs.getString("senha");
+        }else {
+            return null;
+        }
+    }
+
+    public void atualizarSenha(Usuario usuarioFront) throws SQLException, IOException, ClassNotFoundException {
+	    String sql = "update usuario set senha = ? where id = ?";
+	    super.executeQuery(sql, usuarioFront.getSenha(), usuarioFront.getId());
+    }
 }

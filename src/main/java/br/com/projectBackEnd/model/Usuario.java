@@ -1,15 +1,9 @@
 package br.com.projectBackEnd.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -36,6 +30,7 @@ public class Usuario {
 	private String uf;
 	private Cargo cargo;
 	private Token token;
+	private String novaSenha;
 	private List<UsuarioHasHabilidade> usuarioHasHabilidade;
 	private List<HistoricoAlocacao> historicoAlocacao;
 	private List<Horario> horario;
