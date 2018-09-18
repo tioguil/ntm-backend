@@ -135,4 +135,28 @@ public class UsuarioService {
 
 
     }
+
+    public ResponseMessage atualizarSenha(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        //bucando senha no banco
+        String senhaBanco = usuarioDAO.findPasswordById(usuario.getId());
+
+        //object de encod
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+        if(bCryptPasswordEncoder.matches(usuario.getSenha(),senhaBanco)){
+            usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getNovaSenha()));
+            usuarioDAO.atualizarSenha(usuario);
+            response.setResponse(null);
+            response.setMessage("Senha atualizada com sucesso!");
+            response.setStatusCode("200");
+        }else {
+            response.setResponse(null);
+            response.setMessage("Senhas não conferem");
+            response.setStatusCode("400");
+        }
+
+        return response;
+    }
 }
