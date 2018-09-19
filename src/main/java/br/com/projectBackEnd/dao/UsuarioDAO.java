@@ -173,5 +173,4 @@ public class UsuarioDAO extends GenericDAO{
 	    String sql = "update usuario set senha = ? where id = ?";
 	    super.executeQuery(sql, usuarioFront.getSenha(), usuarioFront.getId());
     }
->>>>>>> 26b0673714b0f7b6ad2f28f442e92c080eacf94d
 }

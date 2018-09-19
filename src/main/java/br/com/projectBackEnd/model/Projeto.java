@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class Projeto {
 
     private Long id;
-    private Integer numeroProjeto;
+    private String numeroProjeto;
 
     private String nome;
     private String descricao;
@@ -26,7 +25,7 @@ public class Projeto {
     private Integer status;
     private Cliente cliente;
     private Usuario usuario;
-    private List<Atividade> demanda;
+    private List<Atividade> atividades;
 
 
 

@@ -24,7 +24,7 @@ public class AtividadeDAO extends GenericDAO{
 
     }
 
-    
+
     public List<Atividade> listarAtividade (long idProject, Projeto projeto) throws SQLException, IOException, ClassNotFoundException{
 
 
@@ -50,9 +50,9 @@ public class AtividadeDAO extends GenericDAO{
             atividades.add(atividade);
         }
 
-        projeto.setDemanda(atividades);
+        projeto.setAtividades(atividades);
 
-        return projeto.getDemanda();
+        return projeto.getAtividades();
 
     }
 
