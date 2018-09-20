@@ -14,7 +14,6 @@ public class Projeto {
 
     private Long id;
     private String numeroProjeto;
-
     private String nome;
     private String descricao;
     private Integer estimativaEsforco;
@@ -22,13 +21,11 @@ public class Projeto {
     private Date inicio;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fim;
-    private Integer status;
+    private String status;
     private Cliente cliente;
     private Usuario usuario;
     private List<Atividade> atividades;
-
-
-
+    
     /**
      Recebe formato e retorna data no formato String já formadata
      */

@@ -46,4 +46,23 @@ public class ClienteService {
 
         return response;
     }
+
+	public ResponseMessage pesquisarClientes(String search) throws ClassNotFoundException, SQLException, IOException {
+		List<Cliente> clientes = clienteDao.pesquisarClientes(search);
+		ResponseMessage response;
+        response = responseMessage;
+
+		if (clientes.size() > 0 ) {
+			//Response de sucesso!
+	        response.setMessage("Cliente encontrado!");
+	        response.setStatusCode("201");
+	        response.setResponse(clientes);
+		}
+		else {
+			response.setMessage("Cliente Não encontrado!");
+	        response.setStatusCode("400");
+	        response.setResponse(clientes);
+		}
+		return response;
+	}
 }
