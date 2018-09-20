@@ -8,14 +8,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import java.util.Optional;
 
 
 /**
@@ -84,6 +82,48 @@ public class UsuarioController {
 			response.setResponse(null);
 			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "Alteração de senha do usuario")
+	@PostMapping("/avaliador/atualizarsenha")
+	public ResponseEntity<ResponseMessage> atualizarSenha(@RequestBody Usuario usuario, Authentication authentication){
+		ResponseMessage response = responseMessage;
+
+		Usuario usuarioToken = (Usuario) authentication.getPrincipal();
+
+		try{
+			usuario.setId(usuarioToken.getId());
+			response = usuarioService.atualizarSenha(usuario);
+		}catch (Exception e ){
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@ApiOperation(value="Pesquisa Analista no banco")
+	@GetMapping({"/gestor/pesquisar/{search}", "/gestor/pesquisar/"})
+	public ResponseEntity<ResponseMessage> pesquisaAnalista(@PathVariable Optional<String> search){
+		ResponseMessage response = responseMessage;
+		try {
+			if(search.isPresent()){
+				response = usuarioService.pesquisaAnalista(search.get());
+			}else {
+				response = usuarioService.pesquisaAnalista("");
+			}
+
+		}catch (Exception e){
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);

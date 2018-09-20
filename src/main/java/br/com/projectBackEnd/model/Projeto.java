@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +24,7 @@ public class Projeto {
     private String status;
     private Cliente cliente;
     private Usuario usuario;
-    private List<Atividade> demanda;
-
-
+    private List<Atividade> atividades;
 
     /**
      Recebe formato e retorna data no formato String já formadata

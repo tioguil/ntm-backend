@@ -24,16 +24,22 @@ public class AtividadeDAO extends GenericDAO{
 
     }
 
-    public List<Atividade> listarAtividade (long idProject , Projeto projeto) throws SQLException, IOException, ClassNotFoundException{
+
+    public List<Atividade> listarAtividade (long idProject, Projeto projeto) throws SQLException, IOException, ClassNotFoundException{
+
 
         String sql = "select nome, descricao, complexidade, data_criacao, endereco from atividade where projeto_id = ?";
 
         List<Atividade> atividades = new ArrayList<>();
+
         ResultSet rs = super.executeResutSet(sql, idProject);
+
         Atividade atividade = new Atividade();
-        projeto = new Projeto();
+
+
 
         while (rs.next()){
+
             atividade.setNome(rs.getString("nome"));
             atividade.setDescricao(rs.getString("descricao"));
             atividade.setComplexidade(rs.getInt("complexidade"));
@@ -44,9 +50,40 @@ public class AtividadeDAO extends GenericDAO{
             atividades.add(atividade);
         }
 
+        projeto.setAtividades(atividades);
 
-        return atividades;
+        return projeto.getAtividades();
 
+    }
+
+    public List<Atividade> listaAtividadeByAnalista(Long id) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select * from atividade join atividade_usuario on id = atividade_id where usuario_id = ?";
+        ResultSet rs = super.executeResutSet(sql, id);
+
+        List<Atividade> list = new ArrayList<>();
+
+        while (rs.next()){
+            Atividade atividade = new Atividade();
+            atividade.setNome(rs.getString("nome"));
+            atividade.setDescricao(rs.getString("descricao"));
+            atividade.setComplexidade(rs.getInt("complexidade"));
+            atividade.setDataCriacao(rs.getTimestamp("data_criacao"));
+            atividade.setDataEntrega(rs.getDate("data_entrega"));
+            atividade.setCep(rs.getString("cep"));
+            atividade.setEndereco(rs.getString("endereco"));
+            atividade.setEnderecoNumero(rs.getString("numero_endereco"));
+            atividade.setComplemento(rs.getString("complemento"));
+            atividade.setCidade(rs.getString("cidade"));
+            atividade.setUf(rs.getString("uf"));
+            atividade.setStatus(rs.getString("status"));
+            Projeto projeto = new Projeto();
+            projeto.setId(rs.getLong("projeto_id"));
+            atividade.setProjeto(projeto);
+            list.add(atividade);
+
+        }
+
+        return list;
     }
 
 }

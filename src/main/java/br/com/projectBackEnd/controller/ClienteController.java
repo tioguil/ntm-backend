@@ -26,7 +26,7 @@ public class ClienteController {
 
     @ApiOperation(value="Cadastra um cliente no sistema")
     @PostMapping("/gestor/cadastrar")
-    public ResponseEntity<ResponseMessage> cadastrar(@RequestBody Cliente cliente, @RequestHeader(value="authentication") String token){
+    public ResponseEntity<ResponseMessage> cadastrar(@RequestBody Cliente cliente){
         ResponseMessage response = responseMessage;
 
         try {
