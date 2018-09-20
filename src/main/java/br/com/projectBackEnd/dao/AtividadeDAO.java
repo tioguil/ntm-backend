@@ -25,14 +25,14 @@ public class AtividadeDAO extends GenericDAO{
     }
 
 
-    public List<Atividade> listarAtividade (long idProject, Projeto projeto) throws SQLException, IOException, ClassNotFoundException{
+    public List<Atividade> listarAtividadebyProject (Projeto projeto) throws SQLException, IOException, ClassNotFoundException{
 
 
         String sql = "select nome, descricao, complexidade, data_criacao, endereco from atividade where projeto_id = ?";
 
         List<Atividade> atividades = new ArrayList<>();
 
-        ResultSet rs = super.executeResutSet(sql, idProject);
+        ResultSet rs = super.executeResutSet(sql, projeto.getId());
 
         Atividade atividade = new Atividade();
 
