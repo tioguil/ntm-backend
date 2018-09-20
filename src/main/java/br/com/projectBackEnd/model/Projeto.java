@@ -25,7 +25,7 @@ public class Projeto {
     private Cliente cliente;
     private Usuario usuario;
     private List<Atividade> atividades;
-
+    
     /**
      Recebe formato e retorna data no formato String já formadata
      */
