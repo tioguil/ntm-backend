@@ -31,7 +31,7 @@ public class Usuario {
 	private Cargo cargo;
 	private Token token;
 	private String novaSenha;
-	private List<UsuarioHasHabilidade> usuarioHasHabilidade;
+	private List<Habilidade> habilidades;
 	private List<HistoricoAlocacao> historicoAlocacao;
 	private List<Horario> horario;
 	private List<Anexo> anexos;

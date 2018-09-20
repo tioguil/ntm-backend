@@ -11,4 +11,12 @@ public class Habilidade {
 
     private Long id;
     private String nome;
+
+    public Habilidade(){
+
+    }
+
+    public Habilidade(String nome){
+        this.nome = nome;
+    }
 }

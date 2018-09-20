@@ -1,6 +1,7 @@
 package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.model.Cargo;
+import br.com.projectBackEnd.model.Habilidade;
 import br.com.projectBackEnd.model.Usuario;
 import org.springframework.stereotype.Component;
 
@@ -172,5 +173,31 @@ public class UsuarioDAO extends GenericDAO{
     public void atualizarSenha(Usuario usuarioFront) throws SQLException, IOException, ClassNotFoundException {
 	    String sql = "update usuario set senha = ? where id = ?";
 	    super.executeQuery(sql, usuarioFront.getSenha(), usuarioFront.getId());
+    }
+
+    public List<Usuario> pesquisaAnalista(String search) throws SQLException, IOException, ClassNotFoundException {
+	    search = "%"+search+"%";
+	    String sql = "select us.id ,us.nome, us.email,ha.nome 'habilidade', ca.cargo from usuario us left join habilidade_usuario hu on us.id = hu.usuario_id left join habilidade ha on ha.id = hu.habilidade_id left join cargo ca on us.cargo_id = ca.id where us.perfil_acesso = 'analista' and (us.nome like ? or us.email like ? or ha.nome like ? or ca.cargo like ? or us.cpf_cnpj like ?) limit 7";
+	    ResultSet rs = super.executeResutSet(sql, search, search, search , search, search );
+
+        List<Usuario> list = new ArrayList<>();
+	    while (rs.next()){
+            Usuario us = new Usuario();
+            us.setId(rs.getLong("id"));
+            us.setNome(rs.getString("nome"));
+            us.setEmail(rs.getString("email"));
+
+            Cargo cargo = new Cargo();
+            cargo.setCargo(rs.getString("cargo"));
+            us.setCargo(cargo);
+
+            List<Habilidade> listHabilidade = new ArrayList<>();
+            Habilidade habilidade = new Habilidade(rs.getString("habilidade"));
+            if(habilidade.getNome() != null) listHabilidade.add(habilidade);
+            us.setHabilidades(listHabilidade);
+            list.add(us);
+        }
+
+	    return list;
     }
 }

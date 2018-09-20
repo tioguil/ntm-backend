@@ -85,4 +85,5 @@ public class AtividadeDAO extends GenericDAO{
 
         return list;
     }
+
 }

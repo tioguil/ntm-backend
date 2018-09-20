@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -154,6 +155,24 @@ public class UsuarioService {
         }else {
             response.setResponse(null);
             response.setMessage("Senhas não conferem");
+            response.setStatusCode("400");
+        }
+
+        return response;
+    }
+
+    public ResponseMessage pesquisaAnalista(String search) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        List<Usuario> list = usuarioDAO.pesquisaAnalista(search);
+
+        if(list.size()>0){
+             response.setStatusCode("200");
+             response.setMessage("Analista para o parametro " + search);
+             response.setResponse(list);
+        }else {
+            response.setResponse(list);
+            response.setMessage("Nenhum analista encontrado com o parametro "+ search);
             response.setStatusCode("400");
         }
 
