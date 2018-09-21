@@ -53,4 +53,26 @@ public class AtividadeService {
         return response;
 
     }
+
+    public ResponseMessage listarAtividadeByProject(Long idProject) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+        List<Atividade> atividades = atividadeDAO.listarAtividadebyProject(idProject);
+
+
+        if(atividades.size() > 0){
+
+
+            response.setResponse(atividades);
+            response.setMessage("Total de atividade " + atividades.size());
+            response.setStatusCode("200");
+        }else {
+
+            response.setResponse(atividades);
+            response.setMessage("Nenhuma atividade cadastrada");
+            response.setStatusCode("200");
+        }
+
+        return response;
+
+    }
 }
