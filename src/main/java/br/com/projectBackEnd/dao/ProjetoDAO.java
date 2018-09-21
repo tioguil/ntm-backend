@@ -38,6 +38,7 @@ public class ProjetoDAO extends GenericDAO{
             projeto.setEstimativaEsforco(rs.getInt("estimativa_esforco"));
             projeto.setInicio(rs.getTimestamp("inicio"));
             projeto.setFim(rs.getTimestamp("fim"));
+            projeto.setStatus(rs.getString("status"));
 
             Cliente cliente = new Cliente();
             cliente.setId(rs.getLong("cliente_id"));
