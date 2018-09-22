@@ -6,6 +6,7 @@ import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
 import br.com.projectBackEnd.service.ProjetoService;
 import br.com.projectBackEnd.service.TokenService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 @RequestMapping("/projeto")
 @RestController
@@ -38,7 +40,7 @@ public class ProjetoController {
         try{
             projeto.setUsuario(usuario);
             response =  projetoService.cadastrar(projeto);
-
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
         }catch (Exception e){
             e.printStackTrace();
             response.setStatusCode("500");
@@ -47,18 +49,23 @@ public class ProjetoController {
             return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
     }
 
-    @ApiOperation("Lista Projetos")
-    @GetMapping("/gestor/listar")
-    public ResponseEntity<ResponseMessage>listar(Authentication authentication) throws SQLException, IOException, ClassNotFoundException {
+    @ApiOperation("pesquisa projeto")
+    @GetMapping({"/gestor/listar/", "/gestor/listar/{search}"})
+    public ResponseEntity<ResponseMessage>listar(@PathVariable(value = "search") Optional<String> search) throws SQLException, IOException, ClassNotFoundException {
 
         ResponseMessage response = responseMessage;
 
         try{
+            if(search.isPresent()){
+                response =  projetoService.listar(search.get());
+            }else {
+                response =  projetoService.listar("");
+            }
 
-            response =  projetoService.listar();
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -68,7 +75,22 @@ public class ProjetoController {
             return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
     }
 
+    @ApiOperation("Busca Projeto pelo ID")
+    @GetMapping("/gestor/buscaid/{idPorjeto}")
+    public ResponseEntity<ResponseMessage> buscaProjetoById(@PathVariable(value = "idPorjeto") Long idPorjeto){
+        ResponseMessage response = responseMessage;
+
+        try{
+            response = projetoService.buscaProjetoById(idPorjeto);
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            response.setStatusCode("500");
+            response.setMessage(e.getMessage());
+            response.setResponse(null);
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

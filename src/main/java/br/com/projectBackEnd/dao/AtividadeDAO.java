@@ -37,8 +37,6 @@ public class AtividadeDAO extends GenericDAO{
 
         Atividade atividade = new Atividade();
 
-
-
         while (rs.next()){
 
             atividade.setNome(rs.getString("nome"));

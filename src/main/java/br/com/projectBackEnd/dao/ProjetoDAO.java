@@ -24,10 +24,14 @@ public class ProjetoDAO extends GenericDAO{
         return id;
     }
 
-    public List<Projeto> listar() throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select * from projeto order by id desc limit 500";
+    public List<Projeto> listar(String search) throws SQLException, IOException, ClassNotFoundException {
+        search = "%" + search + "%";
+        String sql = "select pr.id, pr.nome, pr.numero_projeto, pr.descricao, pr.estimativa_esforco, pr.fim," +
+                " pr.inicio, pr.status, pr.cliente_id, cl.nome 'nomeCliente', cl.cpf_cnpj 'cpf_cnpjCliente', cl.telefone 'telefoneCliente', cl.email 'emailCliente', cl.observacao 'observacaoCliente' from projeto pr " +
+                "left join cliente cl on cl.id = pr.cliente_id where numero_projeto like ? " +
+                "or pr.nome like ? or cl.nome like ? or cl.cpf_cnpj like ? order by pr.id desc limit 20";
 
-        ResultSet rs = super.executeResutSet(sql);
+        ResultSet rs = super.executeResutSet(sql, search, search, search, search);
         List<Projeto> projetos = new ArrayList<>();
         while (rs.next()){
             Projeto projeto = new Projeto();
@@ -40,15 +44,50 @@ public class ProjetoDAO extends GenericDAO{
             projeto.setFim(rs.getTimestamp("fim"));
             projeto.setStatus(rs.getString("status"));
 
+
             Cliente cliente = new Cliente();
             cliente.setId(rs.getLong("cliente_id"));
+            cliente.setNome(rs.getString("nomeCliente"));
+            cliente.setCpfCnpj(rs.getString("cpf_cnpjCliente"));
+            cliente.setTelefone(rs.getString("telefoneCliente"));
+            cliente.setObservacao(rs.getString("observacaoCliente"));
+            cliente.setEmail(rs.getString("emailCliente"));
             projeto.setCliente(cliente);
 
-//            Usuario usuario = new Usuario();
-//            usuario.setId(rs.getLong("usuario_id"));
-//            projeto.setUsuario(usuario);
             projetos.add(projeto);
         }
         return projetos;
+    }
+
+    public Projeto buscaProjetoById(Long idPorjeto) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select pr.id, pr.nome, pr.numero_projeto, pr.descricao, pr.estimativa_esforco, pr.fim," +
+                " pr.inicio, pr.status, pr.cliente_id, cl.nome 'nomeCliente', cl.cpf_cnpj 'cpf_cnpjCliente', cl.telefone 'telefoneCliente', cl.email 'emailCliente', cl.observacao 'observacaoCliente' from projeto pr " +
+                "left join cliente cl on cl.id = pr.cliente_id where pr.id = ?";
+        ResultSet rs = super.executeResutSet(sql, idPorjeto);
+
+        if(rs.next()){
+            Projeto projeto = new Projeto();
+            projeto.setId(rs.getLong("id"));
+            projeto.setNumeroProjeto(rs.getString("numero_projeto"));
+            projeto.setNome(rs.getString("nome"));
+            projeto.setDescricao(rs.getString("descricao"));
+            projeto.setEstimativaEsforco(rs.getInt("estimativa_esforco"));
+            projeto.setInicio(rs.getTimestamp("inicio"));
+            projeto.setFim(rs.getTimestamp("fim"));
+            projeto.setStatus(rs.getString("status"));
+
+            Cliente cliente = new Cliente();
+            cliente.setId(rs.getLong("cliente_id"));
+            cliente.setNome(rs.getString("nomeCliente"));
+            cliente.setCpfCnpj(rs.getString("cpf_cnpjCliente"));
+            cliente.setTelefone(rs.getString("telefoneCliente"));
+            cliente.setObservacao(rs.getString("observacaoCliente"));
+            cliente.setEmail(rs.getString("emailCliente"));
+            projeto.setCliente(cliente);
+
+            return projeto;
+        }else {
+            return null;
+        }
     }
 }
