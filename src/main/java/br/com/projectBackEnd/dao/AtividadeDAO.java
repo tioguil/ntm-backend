@@ -35,10 +35,8 @@ public class AtividadeDAO extends GenericDAO{
 
         ResultSet rs = super.executeResutSet(sql, idProject);
 
-        Atividade atividade = new Atividade();
-
         while (rs.next()){
-
+            Atividade atividade = new Atividade();
             atividade.setNome(rs.getString("nome"));
             atividade.setDescricao(rs.getString("descricao"));
             atividade.setComplexidade(rs.getInt("complexidade"));
