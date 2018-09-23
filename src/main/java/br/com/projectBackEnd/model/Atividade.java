@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class Atividade {
 
-    private Long id;
+    private int id;
     private String nome;
     private String descricao;
     private Projeto projeto;
