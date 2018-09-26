@@ -4,6 +4,7 @@ import br.com.projectBackEnd.Utili.EnviarEmail;
 import br.com.projectBackEnd.Utili.TokenGenerator;
 import br.com.projectBackEnd.dao.TokenDao;
 import br.com.projectBackEnd.dao.UsuarioDAO;
+import br.com.projectBackEnd.model.Habilidade;
 import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class UsuarioService {
     private TokenGenerator tokenGenerator;
     @Autowired
     private TokenDao tokenDao;
+
+    @Autowired
+    private HabilidadeService habilidadeService;
 
     /**
      *
@@ -177,5 +181,14 @@ public class UsuarioService {
         }
 
         return response;
+    }
+
+    public Usuario getUsuarioID(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
+
+        Usuario usuario = usuarioDAO.getUsuarioID(idUsuario);
+        usuario.setHabilidades(habilidadeService.listHabilidades(usuario.getId()));
+
+        return usuario;
+
     }
 }

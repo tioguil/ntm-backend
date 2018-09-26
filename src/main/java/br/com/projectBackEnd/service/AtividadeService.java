@@ -1,9 +1,7 @@
 package br.com.projectBackEnd.service;
 
 import br.com.projectBackEnd.dao.AtividadeDAO;
-import br.com.projectBackEnd.model.Atividade;
-import br.com.projectBackEnd.model.ResponseMessage;
-import br.com.projectBackEnd.model.Usuario;
+import br.com.projectBackEnd.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,10 @@ public class AtividadeService {
     private ResponseMessage responseMessage;
     @Autowired
     private AtividadeDAO atividadeDAO;
-
+    @Autowired
+    private HistoricoAlocacaoService historicoAlocacaoService;
+    @Autowired
+    private HorarioTrabalhoService horarioTrabalhoService;
 
     public ResponseMessage cadastrar(Atividade demanda) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
@@ -71,6 +72,21 @@ public class AtividadeService {
             response.setMessage("Nenhuma atividade cadastrada");
             response.setStatusCode("200");
         }
+
+        return response;
+
+    }
+
+    public ResponseMessage detalheAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        Atividade atividade = atividadeDAO.detalheAtividade(idAtividade);
+
+        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoService.listaHistorico(idAtividade);
+        atividade.setHistoricoAlocacao(alocacaoList);
+
+        List<HorarioTrabalho> trabalhoList = horarioTrabalhoService.listHorarioTrabalho(idAtividade);
+
 
         return response;
 

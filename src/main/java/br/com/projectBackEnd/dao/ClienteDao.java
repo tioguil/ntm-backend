@@ -2,6 +2,7 @@ package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.model.Cliente;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class ClienteDao extends GenericDAO{
 
     public Cliente cadastrar(Cliente cliente) throws SQLException, IOException, ClassNotFoundException {

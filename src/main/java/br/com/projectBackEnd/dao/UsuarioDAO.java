@@ -3,7 +3,7 @@ package br.com.projectBackEnd.dao;
 import br.com.projectBackEnd.model.Cargo;
 import br.com.projectBackEnd.model.Habilidade;
 import br.com.projectBackEnd.model.Usuario;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class UsuarioDAO extends GenericDAO{
 
 	public Long cadastrar(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
@@ -199,5 +199,38 @@ public class UsuarioDAO extends GenericDAO{
         }
 
 	    return list;
+    }
+
+    public Usuario getUsuarioID(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
+
+	    String sql = "select *, cargo.cargo 'cargoNome', cargo.descricao 'cargoDescricao' from usuario join cargo on cargo.id = usuario.cargo_id where usuario.id = ?";
+	    ResultSet rs = super.executeResutSet(sql, idUsuario);
+
+	    if(rs.next()){
+	        Usuario usuario = new Usuario();
+            usuario.setTelefone(rs.getString("telefone"));
+            usuario.setCelular(rs.getString("celular"));
+            usuario.setId(rs.getLong("id"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setCpfCnpj(rs.getString("cpf_cnpj"));
+            usuario.setRg(rs.getString("rg"));
+            usuario.setSobreNome(rs.getString("sobrenome"));
+            usuario.setPerfilAcesso(rs.getString("perfil_acesso"));
+            usuario.setCep(rs.getString("cep"));
+            usuario.setEndereco(rs.getString("endereco"));
+            usuario.setEnderecoNumero(rs.getString("numero_endereco"));
+            usuario.setComplemento(rs.getString("complemento"));
+            usuario.setCidade(rs.getString("cidade"));
+            usuario.setUf(rs.getString("uf"));
+            Cargo cargo = new Cargo();
+            cargo.setId(rs.getLong("cargo_id"));
+            cargo.setCargo(rs.getString("cargoNome"));
+            cargo.setDescricao(rs.getString("cargoDescricao"));
+            usuario.setCargo(cargo);
+            return usuario;
+
+        }else {
+	        return null;
+        }
     }
 }

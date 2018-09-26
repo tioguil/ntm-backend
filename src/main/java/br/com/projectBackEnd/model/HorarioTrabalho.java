@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class Horario {
+public class HorarioTrabalho {
 
     private Long id;
     private Date dataInicio;

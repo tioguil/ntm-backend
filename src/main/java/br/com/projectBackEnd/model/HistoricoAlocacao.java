@@ -10,7 +10,7 @@ import java.util.Date;
 public class HistoricoAlocacao {
 
     private Long id;
-    private String status;
+    private Integer status;
     private Date dataAlteracao;
     private Usuario usuario;
     private Atividade atividade;
