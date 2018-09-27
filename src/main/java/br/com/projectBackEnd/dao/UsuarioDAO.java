@@ -130,7 +130,7 @@ public class UsuarioDAO extends GenericDAO{
     public List<Usuario> listarAnalistas() throws SQLException, IOException, ClassNotFoundException {
 
 
-	    String sql = "select a.nome,a.sobrenome, b.cargo\n" +
+	    String sql = "select a.nome,a.sobrenome,a.cidaade, b.cargo\n" +
                 "from usuario a \n" +
                 "inner join cargo b \n" +
                 "on a.cargo_id = b.id\n" +
@@ -147,6 +147,7 @@ public class UsuarioDAO extends GenericDAO{
 
             analista.setNome(rs.getString("nome"));
             analista.setSobreNome(rs.getString("sobrenome"));
+            analista.setCidade(rs.getString("cidade"));
             cargo.setCargo(rs.getString("cargo"));
             analista.setCargo(cargo);
 
@@ -177,7 +178,7 @@ public class UsuarioDAO extends GenericDAO{
 
     public List<Usuario> pesquisaAnalista(String search) throws SQLException, IOException, ClassNotFoundException {
 	    search = "%"+search+"%";
-	    String sql = "select us.id ,us.nome, us.email,ha.nome 'habilidade', ca.cargo from usuario us left join habilidade_usuario hu on us.id = hu.usuario_id left join habilidade ha on ha.id = hu.habilidade_id left join cargo ca on us.cargo_id = ca.id where us.perfil_acesso = 'analista' and (us.nome like ? or us.email like ? or ha.nome like ? or ca.cargo like ? or us.cpf_cnpj like ?) limit 7";
+	    String sql = "select us.id, us.email, us.nome,us.cidade, ca.cargo from usuario us join habilidade_usuario hu on us.id = hu.usuario_id join habilidade ha on ha.id = hu.habilidade_id join cargo ca on us.cargo_id = ca.id where us.perfil_acesso = 'analista' and (us.nome like ? or us.email like ? or ha.nome like ? or ca.cargo like ? or us.cpf_cnpj like ?) group by us.id limit 5";
 	    ResultSet rs = super.executeResutSet(sql, search, search, search , search, search );
 
         List<Usuario> list = new ArrayList<>();
@@ -186,15 +187,15 @@ public class UsuarioDAO extends GenericDAO{
             us.setId(rs.getLong("id"));
             us.setNome(rs.getString("nome"));
             us.setEmail(rs.getString("email"));
-
+            us.setCidade(rs.getString("cidade"));
             Cargo cargo = new Cargo();
             cargo.setCargo(rs.getString("cargo"));
             us.setCargo(cargo);
 
-            List<Habilidade> listHabilidade = new ArrayList<>();
-            Habilidade habilidade = new Habilidade(rs.getString("habilidade"));
-            if(habilidade.getNome() != null) listHabilidade.add(habilidade);
-            us.setHabilidades(listHabilidade);
+//            List<Habilidade> listHabilidade = new ArrayList<>();
+//            Habilidade habilidade = new Habilidade(rs.getString("habilidade"));
+//            if(habilidade.getNome() != null) listHabilidade.add(habilidade);
+//            us.setHabilidades(listHabilidade);
             list.add(us);
         }
 
