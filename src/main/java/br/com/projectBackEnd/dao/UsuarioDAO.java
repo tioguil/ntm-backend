@@ -203,7 +203,7 @@ public class UsuarioDAO extends GenericDAO{
 
     public Usuario getUsuarioID(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
 
-	    String sql = "select *, cargo.cargo 'cargoNome', cargo.descricao 'cargoDescricao' from usuario join cargo on cargo.id = usuario.cargo_id where usuario.id = ?";
+	    String sql = "select * from usuario join cargo on cargo.id = usuario.cargo_id where usuario.id = ?";
 	    ResultSet rs = super.executeResutSet(sql, idUsuario);
 
 	    if(rs.next()){
@@ -224,8 +224,8 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setUf(rs.getString("uf"));
             Cargo cargo = new Cargo();
             cargo.setId(rs.getLong("cargo_id"));
-            cargo.setCargo(rs.getString("cargoNome"));
-            cargo.setDescricao(rs.getString("cargoDescricao"));
+            cargo.setCargo(rs.getString("cargo"));
+            cargo.setDescricao(rs.getString("descricao"));
             usuario.setCargo(cargo);
             return usuario;
 

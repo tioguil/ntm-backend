@@ -20,6 +20,11 @@ public class AtividadeService {
     private HistoricoAlocacaoService historicoAlocacaoService;
     @Autowired
     private HorarioTrabalhoService horarioTrabalhoService;
+    @Autowired
+    private AnexoService anexoService;
+    @Autowired
+    private ComentarioService comentarioService;
+
 
     public ResponseMessage cadastrar(Atividade demanda) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
@@ -80,13 +85,36 @@ public class AtividadeService {
     public ResponseMessage detalheAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
 
+        //busca dados Atividade
         Atividade atividade = atividadeDAO.detalheAtividade(idAtividade);
 
-        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoService.listaHistorico(idAtividade);
+        if(atividade == null){
+            response.setResponse(null);
+            response.setStatusCode("200");
+            response.setMessage("Atividade não localizada");
+            return response;
+        }
+
+        //Busca analistas alocados a atividade
+        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoService.listAlocadosByAtividade(idAtividade);
         atividade.setHistoricoAlocacao(alocacaoList);
 
-        List<HorarioTrabalho> trabalhoList = horarioTrabalhoService.listHorarioTrabalho(idAtividade);
+        //Busca horarios de trabalho dos analistas
+        List<HorarioTrabalho> trabalhoList = horarioTrabalhoService.listHorarioTrabalhoByAtividade(idAtividade);
+        atividade.setHorarioTrabalho(trabalhoList);
 
+        //Busca Anexos da Atividade
+        List<Anexo> anexos = anexoService.listAnexosByAtividades(idAtividade);
+        atividade.setAnexos(anexos);
+
+        //Busca Comentarios
+        List<Comentario> comentarios = comentarioService.listComentariosByAtividade(idAtividade);
+        atividade.setComentarios(comentarios);
+
+        //montando retorno
+        response.setResponse(atividade);
+        response.setStatusCode("200");
+        response.setMessage("Atividade localizada com sucesso!");
 
         return response;
 

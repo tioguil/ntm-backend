@@ -9,6 +9,7 @@ import java.util.Date;
 @Setter
 public class Anexo {
 
+    private Long id;
     private String localArmazenamento;
     private Date dataInsercao;
     private String tamanho;

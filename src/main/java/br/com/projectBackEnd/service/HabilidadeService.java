@@ -15,7 +15,8 @@ public class HabilidadeService {
     @Autowired
     private HabilidadeDAO habilidadeDAO;
 
-    public List<Habilidade> listHabilidades(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
+    public List<Habilidade> listHabilidadesByUsuario(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
+
 
         List<Habilidade> habilidadeList = habilidadeDAO.listHabilidades(idUsuario);
 

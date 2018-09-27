@@ -186,7 +186,7 @@ public class UsuarioService {
     public Usuario getUsuarioID(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
 
         Usuario usuario = usuarioDAO.getUsuarioID(idUsuario);
-        usuario.setHabilidades(habilidadeService.listHabilidades(usuario.getId()));
+        usuario.setHabilidades(habilidadeService.listHabilidadesByUsuario(usuario.getId()));
 
         return usuario;
 

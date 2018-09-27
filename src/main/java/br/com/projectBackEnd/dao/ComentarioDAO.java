@@ -1,0 +1,37 @@
+package br.com.projectBackEnd.dao;
+
+import br.com.projectBackEnd.model.Comentario;
+import br.com.projectBackEnd.model.Usuario;
+import org.springframework.stereotype.Repository;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class ComentarioDAO extends GenericDAO{
+
+
+    public List<Comentario> listComentariosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select co.id, co.comentario, co.data_comentario, co.atividade_usuario_usuario_id, us.nome, us.sobrenome from comentario co join usuario us on us.id = co.atividade_usuario_usuario_id where co.atividade_usuario_atividade_id = ?";
+        ResultSet rs = super.executeResutSet(sql, idAtividade);
+
+        List<Comentario> comentarios = new ArrayList<>();
+
+        while (rs.next()){
+            Comentario comentario = new Comentario();
+            comentario.setId(rs.getLong("id"));
+            comentario.setComentario(rs.getString("comentario"));
+            comentario.setDataComentario(rs.getTimestamp("data_comentario"));
+            Usuario usuario = new Usuario();
+            usuario.setId(rs.getLong("atividade_usuario_usuario_id"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setSobreNome(rs.getString("sobrenome"));
+            comentario.setUsuario(usuario);
+            comentarios.add(comentario);
+        }
+        return comentarios;
+    }
+}

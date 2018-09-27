@@ -14,8 +14,8 @@ import java.util.List;
 public class HistoricoAlocacaoDAO extends GenericDAO{
 
 
-    public List<HistoricoAlocacao> listaHistorico(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select * from historico_alocacao where atividade_usuario_atividade_id = ? order by status desc";
+    public List<HistoricoAlocacao> listAlocadosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select DISTINCT atividade_usuario_usuario_id, id, status, data_alteracao, atividade_usuario_atividade_id from historico_alocacao where atividade_usuario_atividade_id = ? and status = 1";
 
         ResultSet rs = super.executeResutSet(sql, idAtividade);
 

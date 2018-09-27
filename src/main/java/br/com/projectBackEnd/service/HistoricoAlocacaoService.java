@@ -19,9 +19,9 @@ public class HistoricoAlocacaoService {
     @Autowired
     private UsuarioService usuarioService;
 
-    public List<HistoricoAlocacao> listaHistorico (Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+    public List<HistoricoAlocacao> listAlocadosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
 
-        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoDAO.listaHistorico(idAtividade);
+        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoDAO.listAlocadosByAtividade(idAtividade);
 
         for (int i =0; i < alocacaoList.size(); i++){
 

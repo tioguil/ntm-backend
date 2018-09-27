@@ -28,5 +28,5 @@ public class Atividade {
     private List<HorarioTrabalho> horarioTrabalho;
     private List<Anexo> anexos;
     private List<Comentario> comentarios;
-    private List<AtividadeHasHabilidade> DescricaoHabilidade;
+    //private List<AtividadeHasHabilidade> DescricaoHabilidade;
 }

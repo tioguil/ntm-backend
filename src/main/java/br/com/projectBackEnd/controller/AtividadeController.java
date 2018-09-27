@@ -95,6 +95,7 @@ public class AtividadeController {
 			response = atividadeService.detalheAtividade(idAtividade);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
 			response.setResponse(null);

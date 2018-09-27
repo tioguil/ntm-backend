@@ -15,7 +15,7 @@ public class HabilidadeDAO extends GenericDAO {
 
 
     public List<Habilidade> listHabilidades(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select ha.id, ha.nome, hu.descricao, hu.nivel from habilidade ha join habilidade_usuario hu on hu.habilidade_id = ha.id where hu.usuario_id";
+        String sql = "select ha.id, ha.nome, hu.descricao, hu.nivel from habilidade ha join habilidade_usuario hu on hu.habilidade_id = ha.id where hu.usuario_id = ?";
 
         ResultSet rs = super.executeResutSet(sql, idUsuario);
 
