@@ -33,7 +33,7 @@ public class Usuario {
 	private String novaSenha;
 	private List<Habilidade> habilidades;
 	private List<HistoricoAlocacao> historicoAlocacao;
-	private List<Horario> horario;
+	private List<HorarioTrabalho> horario;
 	private List<Anexo> anexos;
 	private List<Comentario> comentarios;
 	private List<Atividade> atividades;

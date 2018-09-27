@@ -2,13 +2,13 @@ package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.model.Token;
 import br.com.projectBackEnd.model.Usuario;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
+@Repository
 public class TokenDao extends GenericDAO{
 
     public Usuario registraToken(String token, Usuario usuario) throws SQLException, IOException, ClassNotFoundException {

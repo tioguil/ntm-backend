@@ -3,6 +3,7 @@ package br.com.projectBackEnd.dao;
 import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.Projeto;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class AtividadeDAO extends GenericDAO{
 
     public Long cadastrar(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
@@ -89,4 +90,34 @@ public class AtividadeDAO extends GenericDAO{
         return list;
     }
 
+    public Atividade detalheAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+
+        String sql = "select * from atividade where id = ?";
+
+        ResultSet rs = super.executeResutSet(sql, idAtividade);
+
+        if(rs.next()){
+            Atividade atividade = new Atividade();
+            atividade.setId(rs.getLong("id"));
+            atividade.setNome(rs.getString("nome"));
+            atividade.setDescricao(rs.getString("descricao"));
+            atividade.setComplexidade(rs.getInt("complexidade"));
+            atividade.setDataCriacao(rs.getTimestamp("data_criacao"));
+            atividade.setDataEntrega(rs.getDate("data_entrega"));
+            atividade.setCep(rs.getString("cep"));
+            atividade.setEndereco(rs.getString("endereco"));
+            atividade.setEnderecoNumero(rs.getString("numero_endereco"));
+            atividade.setComplemento(rs.getString("complemento"));
+            atividade.setCidade(rs.getString("cidade"));
+            atividade.setUf(rs.getString("uf"));
+            atividade.setStatus(rs.getString("status"));
+            Projeto projeto = new Projeto();
+            projeto.setId(rs.getLong("projeto_id"));
+            atividade.setProjeto(projeto);
+            return atividade;
+
+        }else{
+            return null;
+        }
+    }
 }

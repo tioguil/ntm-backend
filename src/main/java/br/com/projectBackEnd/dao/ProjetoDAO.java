@@ -2,7 +2,7 @@ package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.model.Cliente;
 import br.com.projectBackEnd.model.Projeto;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class ProjetoDAO extends GenericDAO{
 
 

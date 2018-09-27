@@ -11,6 +11,8 @@ public class Habilidade {
 
     private Long id;
     private String nome;
+    private String descricao;
+    private String nivel;
 
     public Habilidade(){
 
