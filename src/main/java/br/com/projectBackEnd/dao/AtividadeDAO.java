@@ -42,7 +42,7 @@ public class AtividadeDAO extends GenericDAO{
             atividade.setNome(rs.getString("nome"));
             atividade.setDescricao(rs.getString("descricao"));
             atividade.setComplexidade(rs.getInt("complexidade"));
-            atividade.setDataCriacao(rs.getTimestamp("data_criacao"));
+            atividade.setDataCriacao(rs.getDate("data_criacao"));
             atividade.setDataEntrega(rs.getDate("data_entrega"));
             atividade.setCep(rs.getString("cep"));
             atividade.setEndereco(rs.getString("endereco"));
