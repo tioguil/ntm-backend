@@ -25,8 +25,8 @@ public class Atividade {
     private String uf;
     private String status;
     private List<HistoricoAlocacao> historicoAlocacao;
-    private List<Horario> horario;
+    private List<HorarioTrabalho> horarioTrabalho;
     private List<Anexo> anexos;
     private List<Comentario> comentarios;
-    private List<AtividadeHasHabilidade> DescricaoHabilidade;
+    //private List<AtividadeHasHabilidade> DescricaoHabilidade;
 }

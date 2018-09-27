@@ -63,5 +63,47 @@ public class AtividadeController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 
+	@ApiOperation("Listar atividades por projeto")
+	@GetMapping("/gestor/Listar/{idProject}")
+	public ResponseEntity<ResponseMessage> listarAtividadeByProject(@PathVariable(value = "idProject") Long idProject) {
 
+		ResponseMessage response = responseMessage;
+
+		try {
+			response = atividadeService.listarAtividadeByProject(idProject);
+
+
+		} catch (Exception e) {
+            response.setStatusCode("500");
+            response.setMessage(e.getMessage());
+            response.setResponse(null);
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+	}
+
+
+	@ApiOperation("Detalhe da atividade")
+	@GetMapping("/analista/detalhe/{idAtividade}")
+	public ResponseEntity<ResponseMessage> detalheAtividade(@PathVariable(value = "idAtividade") Long idAtividade){
+
+		ResponseMessage response = responseMessage;
+
+		try {
+			response = atividadeService.detalheAtividade(idAtividade);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+
+	}
 }

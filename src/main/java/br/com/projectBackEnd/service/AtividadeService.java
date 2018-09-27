@@ -1,9 +1,7 @@
 package br.com.projectBackEnd.service;
 
 import br.com.projectBackEnd.dao.AtividadeDAO;
-import br.com.projectBackEnd.model.Atividade;
-import br.com.projectBackEnd.model.ResponseMessage;
-import br.com.projectBackEnd.model.Usuario;
+import br.com.projectBackEnd.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +16,14 @@ public class AtividadeService {
     private ResponseMessage responseMessage;
     @Autowired
     private AtividadeDAO atividadeDAO;
+    @Autowired
+    private HistoricoAlocacaoService historicoAlocacaoService;
+    @Autowired
+    private HorarioTrabalhoService horarioTrabalhoService;
+    @Autowired
+    private AnexoService anexoService;
+    @Autowired
+    private ComentarioService comentarioService;
 
 
     public ResponseMessage cadastrar(Atividade demanda) throws SQLException, IOException, ClassNotFoundException {
@@ -49,6 +55,66 @@ public class AtividadeService {
             response.setMessage("Nenhuma atividade cadastrada");
             response.setStatusCode("200");
         }
+
+        return response;
+
+    }
+
+    public ResponseMessage listarAtividadeByProject(Long idProject) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+        List<Atividade> atividades = atividadeDAO.listarAtividadebyProject(idProject);
+
+
+        if(atividades.size() > 0){
+
+
+            response.setResponse(atividades);
+            response.setMessage("Total de atividade " + atividades.size());
+            response.setStatusCode("200");
+        }else {
+
+            response.setResponse(atividades);
+            response.setMessage("Nenhuma atividade cadastrada");
+            response.setStatusCode("200");
+        }
+
+        return response;
+
+    }
+
+    public ResponseMessage detalheAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        //busca dados Atividade
+        Atividade atividade = atividadeDAO.detalheAtividade(idAtividade);
+
+        if(atividade == null){
+            response.setResponse(null);
+            response.setStatusCode("200");
+            response.setMessage("Atividade não localizada");
+            return response;
+        }
+
+        //Busca analistas alocados a atividade
+        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoService.listAlocadosByAtividade(idAtividade);
+        atividade.setHistoricoAlocacao(alocacaoList);
+
+        //Busca horarios de trabalho dos analistas
+        List<HorarioTrabalho> trabalhoList = horarioTrabalhoService.listHorarioTrabalhoByAtividade(idAtividade);
+        atividade.setHorarioTrabalho(trabalhoList);
+
+        //Busca Anexos da Atividade
+        List<Anexo> anexos = anexoService.listAnexosByAtividades(idAtividade);
+        atividade.setAnexos(anexos);
+
+        //Busca Comentarios
+        List<Comentario> comentarios = comentarioService.listComentariosByAtividade(idAtividade);
+        atividade.setComentarios(comentarios);
+
+        //montando retorno
+        response.setResponse(atividade);
+        response.setStatusCode("200");
+        response.setMessage("Atividade localizada com sucesso!");
 
         return response;
 
