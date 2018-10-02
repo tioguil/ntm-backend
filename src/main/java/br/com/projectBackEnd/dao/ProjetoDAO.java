@@ -18,7 +18,7 @@ public class ProjetoDAO extends GenericDAO{
         String sql = "INSERT into projeto(nome,numero_projeto, descricao, inicio, fim, status, cliente_id, usuario_id) values(?,?,?,?,?,?,?,?)";
 
         Long id = super.executeQuery(sql,projeto.getNome(), projeto.getNumeroProjeto() ,projeto.getDescricao(), projeto.getInicio("yyyy-MM-dd"),
-                projeto.getFim("yyyy-MM-dd"), projeto.getStatus(), projeto.getCliente().getId(),
+                projeto.getFim(), projeto.getStatus(), projeto.getCliente().getId(),
                 projeto.getUsuario().getId());
 
         return id;
