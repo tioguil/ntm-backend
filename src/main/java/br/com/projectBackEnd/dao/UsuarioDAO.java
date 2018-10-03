@@ -98,10 +98,10 @@ public class UsuarioDAO extends GenericDAO{
         return usuario;
     }
 
-    public String consultaNivel(Long idUser) throws SQLException, IOException, ClassNotFoundException {
+    public String consultaNivel(Long idusuario) throws SQLException, IOException, ClassNotFoundException {
         String sql = "select perfil_acesso from usuario where id = ?";
 
-        ResultSet rs = super.executeResutSet(sql, idUser);
+        ResultSet rs = super.executeResutSet(sql, idusuario);
 
         if(rs.next()){
             return rs.getString("perfil_acesso");
@@ -234,4 +234,14 @@ public class UsuarioDAO extends GenericDAO{
 	        return null;
         }
     }
+    
+    public Usuario editarUsuario(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
+		
+    	String sql = "update usuario set nome = ?, sobrenome = ?, telefone = ?, celular = ?, endereco = ?, numero_endereco = ?, complemento = ?, cep = ?, cidade = ?, uf = ? where id = ?";	    
+   		
+    	super.executeQuery(sql, usuario.getNome(), usuario.getSobreNome(), usuario.getTelefone(), usuario.getCelular(), usuario.getEndereco(), usuario.getEnderecoNumero(), usuario.getComplemento(), usuario.getCep(), usuario.getCidade(), usuario.getUf(), usuario.getId());			
+				
+			return usuario;
+    	    	
+    }//fim editarUsuario
 }

@@ -88,7 +88,7 @@ public class UsuarioController {
 	}
 
 	@ApiOperation(value = "Alteração de senha do usuario")
-	@PostMapping("/avaliador/atualizarsenha")
+	@PostMapping("/analista/atualizarsenha")
 	public ResponseEntity<ResponseMessage> atualizarSenha(@RequestBody Usuario usuario, Authentication authentication){
 		ResponseMessage response = responseMessage;
 
@@ -128,5 +128,24 @@ public class UsuarioController {
 
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value="Edita Usuário")
+	@PostMapping({"/analista/editar_perfil"})
+	public ResponseEntity<ResponseMessage> editarUsuario(@RequestBody Usuario usuario){
+		ResponseMessage response = responseMessage;
+		
+		try {
+			response = usuarioService.editarUsuario(usuario);
+			
+		}catch (Exception e){
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+	
 
 }
