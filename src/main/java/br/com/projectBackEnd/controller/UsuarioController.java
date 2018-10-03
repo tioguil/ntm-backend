@@ -131,8 +131,12 @@ public class UsuarioController {
 	
 	@ApiOperation(value="Edita Usuário")
 	@PostMapping({"/analista/editar_perfil"})
-	public ResponseEntity<ResponseMessage> editarUsuario(@RequestBody Usuario usuario){
+	public ResponseEntity<ResponseMessage> editarUsuario(@RequestBody Usuario usuario, Authentication authentication){
 		ResponseMessage response = responseMessage;
+		
+		Usuario usuarioToken = (Usuario) authentication.getPrincipal();
+		
+		usuario.setId(usuarioToken.getId()); 
 		
 		try {
 			response = usuarioService.editarUsuario(usuario);
