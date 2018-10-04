@@ -37,6 +37,7 @@ public class AtividadeController {
 			response.setResponse(null);
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
+			e.printStackTrace();
 			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
