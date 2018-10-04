@@ -1,5 +1,6 @@
 package br.com.projectBackEnd.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,8 +18,10 @@ public class Projeto {
     private String nome;
     private String descricao;
     private Integer estimativaEsforco;
+    @JsonFormat(pattern="dd/MM/yyyy")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date inicio;
+    @JsonFormat(pattern="dd/MM/yyyy")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fim;
     private String status;

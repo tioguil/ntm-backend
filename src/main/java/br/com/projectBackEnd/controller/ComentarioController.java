@@ -1,9 +1,8 @@
 package br.com.projectBackEnd.controller;
 
-
-import br.com.projectBackEnd.model.HistoricoAlocacao;
+import br.com.projectBackEnd.model.Comentario;
 import br.com.projectBackEnd.model.ResponseMessage;
-import br.com.projectBackEnd.service.HistoricoAlocacaoService;
+import br.com.projectBackEnd.service.ComentarioService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,50 +10,47 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/historicoAlocacao")
-public class HistoricoAlocacaoController {
+@RequestMapping("/comentario")
+public class ComentarioController {
 
     @Autowired
     private ResponseMessage responseMessage;
     @Autowired
-    private HistoricoAlocacaoService alocacaoService;
+    private ComentarioService comentarioService;
 
-
-    @ApiOperation("Vincula Analista a atividade")
-    @PostMapping("/gestor/vincular")
-    public ResponseEntity<ResponseMessage> vincularAnalista(@RequestBody HistoricoAlocacao alocacao){
-
+    @ApiOperation("Cadastra Comentario")
+    @PostMapping("/analista/cadastrar")
+    public ResponseEntity<ResponseMessage> inserirComentario(@RequestBody Comentario  comentario){
         ResponseMessage response = responseMessage;
 
-        try{
-            response = alocacaoService.vincularAnalista(alocacao);
+        try {
+            response = comentarioService.inserirComentario(comentario);
         }catch (Exception e){
             e.printStackTrace();
+            response.setResponse(e);
             response.setStatusCode("500");
             response.setMessage(e.getMessage());
-            response.setResponse(null);
             return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/analista/listar/{idAtividade}")
-    public ResponseEntity<ResponseMessage> listarHistoricoVinculo(@PathVariable Long idAtividade){
+    @GetMapping("/analista/lista/{idAtividade}")
+    public ResponseEntity<ResponseMessage> listaComentarioByAtividade(@PathVariable Long idAtividade){
         ResponseMessage response = responseMessage;
 
-
         try {
-            response = alocacaoService.listarHistoricoVinculo(idAtividade);
-        }catch (Exception e ){
+            response = comentarioService.listaComentarioByAtividade(idAtividade);
+
+        }catch (Exception e){
             e.printStackTrace();
+            response.setResponse(e);
             response.setStatusCode("500");
             response.setMessage(e.getMessage());
-            response.setResponse(null);
             return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
-
     }
 }

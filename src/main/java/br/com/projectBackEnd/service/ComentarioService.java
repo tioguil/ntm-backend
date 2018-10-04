@@ -2,6 +2,7 @@ package br.com.projectBackEnd.service;
 
 import br.com.projectBackEnd.dao.ComentarioDAO;
 import br.com.projectBackEnd.model.Comentario;
+import br.com.projectBackEnd.model.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,39 @@ public class ComentarioService {
 
     @Autowired
     private ComentarioDAO comentarioDAO;
+    @Autowired
+    private ResponseMessage responseMessage;
 
     public List<Comentario> listComentariosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
 
         List<Comentario> comentarios = comentarioDAO.listComentariosByAtividade(idAtividade);
 
         return comentarios;
+    }
+
+    public ResponseMessage inserirComentario(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
+
+        ResponseMessage response = responseMessage;
+
+        comentario = comentarioDAO.inserirComentario(comentario);
+
+        response.setResponse(comentario);
+        response.setMessage("Comentario inserido com sucesso!");
+        response.setStatusCode("200");
+
+       return response;
+    }
+
+    public ResponseMessage listaComentarioByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        List<Comentario> comentarios = listComentariosByAtividade(idAtividade);
+
+        response.setResponse(comentarios);
+        response.setMessage("Total de comentarios encontrados " + comentarios.size());
+        response.setStatusCode("200");
+
+       return response;
+
     }
 }

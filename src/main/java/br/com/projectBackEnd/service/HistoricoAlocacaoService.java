@@ -46,4 +46,19 @@ public class HistoricoAlocacaoService {
 
         return response;
     }
+
+    public ResponseMessage listarHistoricoVinculo(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        List<HistoricoAlocacao> alocacaoList = historicoAlocacaoDAO.listarHistoricoVinculo(idAtividade);
+
+        for (int i =0; i < alocacaoList.size(); i++){
+
+            Usuario usuario = usuarioService.getUsuarioID(alocacaoList.get(i).getUsuario().getId());
+
+            alocacaoList.get(i).setUsuario(usuario);
+        }
+
+        return response;
+    }
 }
