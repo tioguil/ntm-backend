@@ -1,5 +1,6 @@
 package br.com.projectBackEnd.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +15,11 @@ public class Atividade {
     private String nome;
     private String descricao;
     private Projeto projeto;
-    private Integer complexidade;
-    private Date dataCriacao;
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataEntrega;
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private Date dataCriacao;
+    private Integer complexidade;
     private String cep;
     private String endereco;
     private String enderecoNumero;

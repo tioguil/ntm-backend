@@ -2,7 +2,6 @@ package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.Projeto;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -15,13 +14,12 @@ import java.util.List;
 public class AtividadeDAO extends GenericDAO{
 
     public Long cadastrar(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
-
     	
     	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id)values(?,?,?,?,?,?,?,?,?,?)";
 
         Long id = super.executeQuery(sql, atividade.getNome(), atividade.getDescricao(), atividade.getComplexidade(), atividade.getCep(),
                 atividade.getEndereco(), atividade.getEnderecoNumero(), atividade.getComplemento(),atividade.getCidade(), atividade.getUf(),
-                atividade.getProjeto().getId());
+                atividade.getProjeto().getId(), atividade.getDataEntrega());
 
         return id;
         
