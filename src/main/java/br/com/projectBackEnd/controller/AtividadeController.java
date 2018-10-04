@@ -34,6 +34,7 @@ public class AtividadeController {
 		try {
 			response = atividadeService.cadastrar(atividade);
 		}catch (Exception e){
+			e.printStackTrace();
 			response.setResponse(null);
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
