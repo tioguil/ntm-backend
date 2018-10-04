@@ -191,4 +191,16 @@ public class UsuarioService {
         return usuario;
 
     }
+    
+    public ResponseMessage editarUsuario(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
+    	
+    	ResponseMessage response = responseMessage;
+    		
+    	usuario = usuarioDAO.editarUsuario(usuario);    		
+    	response.setMessage("Usuário atualizado com sucesso");
+    	response.setStatusCode("200");
+    	response.setResponse(usuario);
+    		
+    	return response;    	
+    }
 }
