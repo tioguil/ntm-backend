@@ -134,9 +134,11 @@ public class UsuarioController {
 	public ResponseEntity<ResponseMessage> editarUsuario(@RequestBody Usuario usuario, Authentication authentication){
 		ResponseMessage response = responseMessage;
 		
+		System.out.println(authentication.getPrincipal());
 		Usuario usuarioToken = (Usuario) authentication.getPrincipal();
 		
 		usuario.setId(usuarioToken.getId()); 
+		
 		
 		try {
 			response = usuarioService.editarUsuario(usuario);
