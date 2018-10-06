@@ -34,4 +34,15 @@ public class ComentarioDAO extends GenericDAO{
         }
         return comentarios;
     }
+
+    public Comentario inserirComentario(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "INSERT comentario(comentario, atividade_usuario_atividade_id, atividade_usuario_usuario_id)" +
+                " values(?,?,?)";
+
+        Long id = super.executeQuery(sql, comentario.getComentario(), comentario.getAtividade().getId(), comentario.getUsuario().getId());
+
+        comentario.setId(id);
+
+        return comentario;
+    }
 }
