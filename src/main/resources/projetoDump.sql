@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `db_ntm`.`atividade` (
   `complemento` VARCHAR(100) NULL DEFAULT NULL,
   `cidade` VARCHAR(60) NULL DEFAULT NULL,
   `uf` CHAR(2) NULL DEFAULT NULL,
-  `status` ENUM('iniciada', 'cancelada', 'finalizada') NULL DEFAULT NULL,
+  `status` ENUM('pendente','iniciada', 'cancelada', 'finalizada') NULL DEFAULT 'pendente',
   `projeto_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_atividade_projeto_idx` (`projeto_id` ASC),

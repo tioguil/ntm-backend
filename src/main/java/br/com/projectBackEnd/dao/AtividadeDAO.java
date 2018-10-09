@@ -15,7 +15,7 @@ public class AtividadeDAO extends GenericDAO{
 
     public Long cadastrar(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
     	
-    	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id, data_entrega, status)values(?,?,?,?,?,?,?,?,?,?,?,'iniciada')";
+    	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id, data_entrega)values(?,?,?,?,?,?,?,?,?,?,?)";
 
         Long id = super.executeQuery(sql, atividade.getNome(), atividade.getDescricao(), atividade.getComplexidade(), atividade.getCep(),
                 atividade.getEndereco(), atividade.getEnderecoNumero(), atividade.getComplemento(),atividade.getCidade(), atividade.getUf(),
@@ -68,7 +68,7 @@ public class AtividadeDAO extends GenericDAO{
 
         while (rs.next()){
             Atividade atividade = new Atividade();
-            atividade.setId(rs.getLong("id"));
+            atividade.setId(rs.getLong("id"));		
             atividade.setNome(rs.getString("nome"));
             atividade.setDescricao(rs.getString("descricao"));
             atividade.setComplexidade(rs.getInt("complexidade"));
