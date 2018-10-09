@@ -11,6 +11,7 @@ public class PasswordEncoder {
         System.out.println(senhaEncod);
         senhaEncod = "$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu";
         if(bCryptPasswordEncoder.matches("123456",senhaEncod )){
+
             System.out.println("Senha ok");
         }else {
             System.out.println("Senha nao conferem");

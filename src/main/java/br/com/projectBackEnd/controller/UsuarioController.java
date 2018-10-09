@@ -42,6 +42,7 @@ public class UsuarioController {
 			usuario.setPerfilAcesso("analista");
 			response = usuarioService.cadastrar(usuario);
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
 			response.setResponse(null);
