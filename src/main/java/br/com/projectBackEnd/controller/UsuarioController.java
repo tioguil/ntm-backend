@@ -42,6 +42,7 @@ public class UsuarioController {
 			usuario.setPerfilAcesso("analista");
 			response = usuarioService.cadastrar(usuario);
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
 			response.setResponse(null);
@@ -134,9 +135,11 @@ public class UsuarioController {
 	public ResponseEntity<ResponseMessage> editarUsuario(@RequestBody Usuario usuario, Authentication authentication){
 		ResponseMessage response = responseMessage;
 		
+		System.out.println(authentication.getPrincipal());
 		Usuario usuarioToken = (Usuario) authentication.getPrincipal();
 		
 		usuario.setId(usuarioToken.getId()); 
+		
 		
 		try {
 			response = usuarioService.editarUsuario(usuario);
