@@ -109,6 +109,8 @@ public class AtividadeController {
 
 	}
 
+	@ApiOperation("Muda status da atividade para Finalizado")
+	@PostMapping("/analista/finalizar")
 	public ResponseEntity<ResponseMessage> finalizarAtividade(@RequestBody Atividade atividade, Authentication authentication){
 		ResponseMessage response = responseMessage;
 
