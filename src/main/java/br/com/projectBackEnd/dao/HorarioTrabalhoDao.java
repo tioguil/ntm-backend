@@ -43,7 +43,7 @@ public class HorarioTrabalhoDao extends GenericDAO{
         String sql = "INSERT into horario_trabalho(latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id, data_inicio) " +
                 "values(?,?,?,?, now())";
 
-        Long id = super.executeQuery(sql, trabalho.getLatitude(), trabalho.getLongitude(), trabalho.getUsuario().getId(), trabalho.getAtividade().getId());
+        Long id = super.executeQuery(sql, trabalho.getLatitude(), trabalho.getLongitude(), trabalho.getAtividade().getId(), trabalho.getUsuario().getId());
 
         trabalho.setId(id);
         return trabalho;
