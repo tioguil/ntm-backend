@@ -119,4 +119,8 @@ public class AtividadeService {
         return response;
 
     }
+
+    public void alteraStatus(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
+        atividadeDAO.alteraStatus(atividade);
+    }
 }

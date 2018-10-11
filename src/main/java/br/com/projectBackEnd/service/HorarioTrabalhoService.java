@@ -1,7 +1,9 @@
 package br.com.projectBackEnd.service;
 
 import br.com.projectBackEnd.dao.HorarioTrabalhoDao;
+import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.HorarioTrabalho;
+import br.com.projectBackEnd.model.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ public class HorarioTrabalhoService {
 
     @Autowired
     private HorarioTrabalhoDao horarioTrabalhoDao;
+    @Autowired
+    private ResponseMessage responseMessage;
+    @Autowired
+    private AtividadeService atividadeService;
 
     public List<HorarioTrabalho> listHorarioTrabalhoByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
 
@@ -21,5 +27,62 @@ public class HorarioTrabalhoService {
 
         return trabalhoList;
 
+    }
+
+    public ResponseMessage registrarHorarioTrabalho(HorarioTrabalho trabalho) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response;
+        if(!horarioTrabalhoDao.horarioEmAndamento(trabalho)){
+            trabalho = horarioTrabalhoDao.registrarHorarioTrabalho(trabalho);
+            response = listHorarioTrabalho(trabalho);
+            response.setStatusCode("200");
+            response.setMessage("Horario de trabalho registrado com sucesso");
+
+        }else {
+            response = listHorarioTrabalho(trabalho);
+            response.setStatusCode("400");
+            response.setMessage("Falha ao cadastrar, pois já consta trabalho em aberto");
+        }
+
+        Atividade atividade = trabalho.getAtividade();
+        atividade.setStatus("iniciada");
+        atividadeService.alteraStatus(atividade);
+
+
+        return response;
+    }
+
+
+    public ResponseMessage finalizarTrabalho(HorarioTrabalho trabalho) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        horarioTrabalhoDao.finalizarTrabalho(trabalho);
+        Atividade atividade = trabalho.getAtividade();
+        atividade.setStatus("pendente");
+        atividadeService.alteraStatus(atividade);
+
+        response.setStatusCode("200");
+        response.setMessage("Horario registrado com sucesso!");
+        response.setResponse(trabalho);
+
+        return response;
+
+    }
+
+    /**
+     * Lista horario de trabalho do analista referente a atividade
+     * @param horarioTrabalho
+     * @return
+     */
+    public ResponseMessage listHorarioTrabalho(HorarioTrabalho horarioTrabalho) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+
+        List<HorarioTrabalho> horarioTrabalhos = horarioTrabalhoDao.listHorarioTrabalho(horarioTrabalho);
+
+        response.setStatusCode("200");
+        response.setMessage("Total de registros encontratos: " + horarioTrabalhos.size());
+        response.setResponse(horarioTrabalhos);
+
+        return response;
     }
 }
