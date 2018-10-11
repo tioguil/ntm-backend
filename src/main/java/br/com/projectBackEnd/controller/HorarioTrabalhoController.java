@@ -47,7 +47,7 @@ public class HorarioTrabalhoController {
 
 
     @ApiOperation("Registra Horario de fim do trabalho")
-    @PutMapping("/analista/finalizar-trabalho")
+    @PostMapping("/analista/finalizar-trabalho")
     public ResponseEntity<ResponseMessage> finalizarTrabalho(@RequestBody HorarioTrabalho trabalho, Authentication authentication){
         ResponseMessage response = responseMessage;
 
