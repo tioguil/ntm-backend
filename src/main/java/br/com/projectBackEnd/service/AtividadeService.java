@@ -127,7 +127,7 @@ public class AtividadeService {
     public ResponseMessage finalizarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
 
-        atividadeDAO.finalizarAtividade(atividade);
+        atividade = atividadeDAO.finalizarAtividade(atividade);
 
         response.setResponse(atividade);
         response.setStatusCode("200");

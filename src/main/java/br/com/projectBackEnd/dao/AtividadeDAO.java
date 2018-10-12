@@ -127,8 +127,10 @@ public class AtividadeDAO extends GenericDAO{
         super.executeQuery(sql, atividade.getStatus(), atividade.getId());
     }
 
-    public void finalizarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "updade atividade set status = 'finalizado' where id = ?";
+    public Atividade finalizarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "update atividade set status = 'finalizada' where id = ?";
         super.executeQuery(sql, atividade.getId());
+        atividade = detalheAtividade(atividade.getId());
+        return atividade;
     }
 }
