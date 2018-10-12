@@ -1,5 +1,6 @@
 package br.com.projectBackEnd.service;
 
+import br.com.projectBackEnd.Utili.CalculoHoras;
 import br.com.projectBackEnd.dao.HorarioTrabalhoDao;
 import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.HorarioTrabalho;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,7 +49,6 @@ public class HorarioTrabalhoService {
         atividade.setStatus("iniciada");
         atividadeService.alteraStatus(atividade);
 
-
         return response;
     }
 
@@ -78,9 +79,17 @@ public class HorarioTrabalhoService {
 
 
         List<HorarioTrabalho> horarioTrabalhos = horarioTrabalhoDao.listHorarioTrabalho(horarioTrabalho);
+        CalculoHoras calculoHoras = new CalculoHoras();
+
+        for(int i = 0; i < horarioTrabalhos.size(); i++){
+            Date inicio = horarioTrabalhos.get(i).getDataInicio();
+            Date fim = horarioTrabalhos.get(i).getDataFim();
+            String horasTabalhadas = calculoHoras.calculaDiferenca(inicio, fim);
+            horarioTrabalhos.get(i).setTotalHoras(horasTabalhadas);
+        }
 
         response.setStatusCode("200");
-        response.setMessage("Total de registros encontratos: " + horarioTrabalhos.size());
+        response.setMessage(calculoHoras.getTotalHoras());
         response.setResponse(horarioTrabalhos);
 
         return response;
