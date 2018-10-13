@@ -90,7 +90,7 @@ public class UsuarioController {
 
 	@ApiOperation(value = "Alteração de senha do usuario")
 	@PostMapping("/analista/atualizarsenha")
-	public ResponseEntity<ResponseMessage> atualizarSenha(@RequestBody Usuario usuario, Authentication authentication){
+	public ResponseEntity<ResponseMessage> atualizarSenha(@RequestBody Usuario usuario,Authentication authentication){
 		ResponseMessage response = responseMessage;
 
 		Usuario usuarioToken = (Usuario) authentication.getPrincipal();

@@ -82,10 +82,14 @@ public class HorarioTrabalhoService {
         CalculoHoras calculoHoras = new CalculoHoras();
 
         for(int i = 0; i < horarioTrabalhos.size(); i++){
-            Date inicio = horarioTrabalhos.get(i).getDataInicio();
             Date fim = horarioTrabalhos.get(i).getDataFim();
-            String horasTabalhadas = calculoHoras.calculaDiferenca(inicio, fim);
-            horarioTrabalhos.get(i).setTotalHoras(horasTabalhadas);
+            if(fim != null){
+
+                Date inicio = horarioTrabalhos.get(i).getDataInicio();
+                String horasTabalhadas = calculoHoras.calculaDiferenca(inicio, fim);
+                horarioTrabalhos.get(i).setTotalHoras(horasTabalhadas);
+            }
+
         }
 
         response.setStatusCode("200");
