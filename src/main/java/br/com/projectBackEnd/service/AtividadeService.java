@@ -119,4 +119,20 @@ public class AtividadeService {
         return response;
 
     }
+
+    public void alteraStatus(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
+        atividadeDAO.alteraStatus(atividade);
+    }
+
+    public ResponseMessage finalizarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        atividade = atividadeDAO.finalizarAtividade(atividade);
+
+        response.setResponse(atividade);
+        response.setStatusCode("200");
+        response.setMessage("Atividade Finalizada com sucesso!");
+
+        return response;
+    }
 }

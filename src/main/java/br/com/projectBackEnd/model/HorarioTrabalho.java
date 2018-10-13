@@ -15,6 +15,7 @@ public class HorarioTrabalho {
     private Date dataInicio;
     @JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
     private Date dataFim;
+    private String totalHoras = "";
     private String latitude;
     private String longitude;
     private Usuario usuario;

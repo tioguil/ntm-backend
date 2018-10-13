@@ -15,7 +15,7 @@ public class ComentarioDAO extends GenericDAO{
 
 
     public List<Comentario> listComentariosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select co.id, co.comentario, co.data_comentario, co.atividade_usuario_usuario_id, us.nome, us.sobrenome from comentario co join usuario us on us.id = co.atividade_usuario_usuario_id where co.atividade_usuario_atividade_id = ?";
+        String sql = "select co.id, co.comentario, co.data_comentario, co.atividade_usuario_usuario_id, us.nome, us.sobrenome from comentario co join usuario us on us.id = co.atividade_usuario_usuario_id where co.atividade_usuario_atividade_id = ? order by data_comentario";
         ResultSet rs = super.executeResutSet(sql, idAtividade);
 
         List<Comentario> comentarios = new ArrayList<>();

@@ -15,7 +15,7 @@ public class AtividadeDAO extends GenericDAO{
 
     public Long cadastrar(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
     	
-    	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id)values(?,?,?,?,?,?,?,?,?,?)";
+    	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id, data_entrega)values(?,?,?,?,?,?,?,?,?,?,?)";
 
         Long id = super.executeQuery(sql, atividade.getNome(), atividade.getDescricao(), atividade.getComplexidade(), atividade.getCep(),
                 atividade.getEndereco(), atividade.getEnderecoNumero(), atividade.getComplemento(),atividade.getCidade(), atividade.getUf(),
@@ -68,6 +68,7 @@ public class AtividadeDAO extends GenericDAO{
 
         while (rs.next()){
             Atividade atividade = new Atividade();
+            atividade.setId(rs.getLong("id"));		
             atividade.setNome(rs.getString("nome"));
             atividade.setDescricao(rs.getString("descricao"));
             atividade.setComplexidade(rs.getInt("complexidade"));
@@ -119,5 +120,19 @@ public class AtividadeDAO extends GenericDAO{
         }else{
             return null;
         }
+    }
+
+    public void alteraStatus(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "update atividade set status = ? where id = ?";
+        super.executeQuery(sql, atividade.getStatus(), atividade.getId());
+    }
+
+    public Atividade finalizarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "update atividade set status = 'finalizada' where id = ?";
+        super.executeQuery(sql, atividade.getId());
+        String sql1 = "update horario_trabalho set data_fim = now() where atividade_usuario_atividade_id = ? and data_fim is null";
+        super.executeQuery(sql1, atividade.getId());
+        atividade = detalheAtividade(atividade.getId());
+        return atividade;
     }
 }

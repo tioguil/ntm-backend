@@ -18,6 +18,10 @@ import java.io.IOException;
 
 import static br.com.projectBackEnd.Utili.SecurityConstants.*;
 
+
+/**
+ * class que verificar token a cada requisição
+ */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     @Autowired
     private CunstonUsuarioDetailService cunstonUsuarioDetailService;

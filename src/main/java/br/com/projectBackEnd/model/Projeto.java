@@ -18,10 +18,8 @@ public class Projeto {
     private String nome;
     private String descricao;
     private Integer estimativaEsforco;
-    @JsonFormat(pattern="dd/MM/yyyy")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date inicio;
-    @JsonFormat(pattern="dd/MM/yyyy")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fim;
     private String status;

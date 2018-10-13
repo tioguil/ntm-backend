@@ -7,6 +7,8 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Getter
 @Setter
 public class Atividade {
@@ -15,9 +17,8 @@ public class Atividade {
     private String nome;
     private String descricao;
     private Projeto projeto;
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dataEntrega;
-    @JsonFormat(pattern="dd/MM/yyyy")
     private Date dataCriacao;
     private Integer complexidade;
     private String cep;

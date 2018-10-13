@@ -22,6 +22,10 @@ import java.util.Date;
 
 import static br.com.projectBackEnd.Utili.SecurityConstants.*;
 
+
+/**
+ * Class responsavel por realizar autenticação e gerar Token
+ */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;

@@ -34,6 +34,7 @@ public class AtividadeController {
 		try {
 			response = atividadeService.cadastrar(atividade);
 		}catch (Exception e){
+			e.printStackTrace();
 			response.setResponse(null);
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
@@ -108,4 +109,24 @@ public class AtividadeController {
 
 	}
 
+
+	@ApiOperation("Muda status da atividade para Finalizado")
+	@PostMapping("/analista/finalizar")
+	public ResponseEntity<ResponseMessage> finalizarAtividade(@RequestBody Atividade atividade, Authentication authentication){
+		ResponseMessage response = responseMessage;
+
+		try {
+			response = atividadeService.finalizarAtividade(atividade);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+	}
 }
