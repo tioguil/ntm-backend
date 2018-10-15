@@ -36,14 +36,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String header =  request.getHeader(HEADER_STRING);
         if(header == null || !header.startsWith(TOKEN_PREFIX)){
-            chain.doFilter(request,response);
-            return;
-        }
-        
+            chain.doFilter(null,null);
+            throw new ServletException("Nenhum token informado");
 
-        UsernamePasswordAuthenticationToken authemticationToken = getAuthemticationToken(request);
-        SecurityContextHolder.getContext().setAuthentication(authemticationToken);
-        chain.doFilter(request,response);
+        }else {
+            UsernamePasswordAuthenticationToken authemticationToken = getAuthemticationToken(request);
+            SecurityContextHolder.getContext().setAuthentication(authemticationToken);
+            chain.doFilter(request,response);
+        }
     }
 
 

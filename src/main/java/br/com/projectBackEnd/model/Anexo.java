@@ -2,6 +2,7 @@ package br.com.projectBackEnd.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -11,8 +12,12 @@ public class Anexo {
 
     private Long id;
     private String localArmazenamento;
+    private String nomeAquivo;
+    private String descriocao;
+    private String extencao;
     private Date dataInsercao;
-    private String tamanho;
+    private Long tamanho;
+    private MultipartFile file;
     private Usuario usuario;
     private Atividade atividade;
 }

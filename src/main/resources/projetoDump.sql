@@ -171,10 +171,12 @@ DROP TABLE IF EXISTS `db_ntm`.`anexo` ;
 
 CREATE TABLE IF NOT EXISTS `db_ntm`.`anexo` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `local_armazenamento` VARCHAR(255) NOT NULL,
+  `local_armazenamento` VARCHAR(300) NOT NULL,
+  `nome_arquivo` VARCHAR(255) NOT NULL,
+  `descricao` VARCHAR(300) NOT NULL,
   `extensao` varchar(10) NULL DEFAULT NULL,
   `data_insercao` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `tamanho` VARCHAR(45) NULL DEFAULT NULL,
+  `tamanho` LONG NULL DEFAULT NULL,
   `atividade_usuario_atividade_id` INT(11) NOT NULL,
   `atividade_usuario_usuario_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -808,93 +810,93 @@ value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um tex
 #desc anexo;
 #insert Anexos
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 1,1);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 2,1);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 3,1);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 4,1);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 5,1);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 1,1, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 2,1, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 3,1, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 4,1, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 5,1, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 6,2);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 7,2);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 8,2);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 9,2);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 10,2);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 6,2, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 7,2, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 8,2, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 9,2, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 10,2, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 11,3);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 12,3);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 13,3);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 14,3);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 15,3);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 11,3, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 12,3, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 13,3, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 14,3, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 15,3, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 16,4);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 17,4);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 18,4);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 19,4);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 20,4);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 16,4, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 17,4, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 18,4, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 19,4, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 20,4, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 21,5);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 22,5);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 23,5);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 24,5);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 25,5);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 21,5, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 22,5, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 23,5, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 24,5, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 25,5, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 26,6);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 27,6);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 28,6);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 29,6);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 30,6);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 26,6, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 27,6, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 28,6, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 29,6, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 30,6, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 31,7);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 32,7);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 33,7);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 34,7);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 35,7);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 31,7, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 32,7, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 33,7, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 34,7, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 35,7, 'codigoFonte.pdf', 'Descrição do anexo');
 
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 36,8);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 37,8);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 38,8);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 39,8);
-insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
-value('C:/meu documentos', '1mb', 40,8);
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 36,8, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 37,8, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 38,8, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 39,8, 'codigoFonte.pdf', 'Descrição do anexo');
+insert anexo(local_armazenamento,tamanho,atividade_usuario_atividade_id, atividade_usuario_usuario_id, nome_arquivo, descricao)
+value('C:/meu documentos', 12348, 40,8, 'codigoFonte.pdf', 'Descrição do anexo');
 
 
 #desc horario_trabalho;
