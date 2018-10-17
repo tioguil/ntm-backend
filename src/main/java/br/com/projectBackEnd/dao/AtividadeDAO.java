@@ -15,11 +15,11 @@ public class AtividadeDAO extends GenericDAO{
 
     public Long cadastrar(Atividade atividade) throws SQLException, IOException, ClassNotFoundException {
     	
-    	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id, data_entrega)values(?,?,?,?,?,?,?,?,?,?,?)";
+    	String sql = "INSERT into atividade(nome, descricao,complexidade, cep, endereco, numero_endereco, complemento, cidade, uf ,projeto_id, data_entrega,data_criacao)values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
         Long id = super.executeQuery(sql, atividade.getNome(), atividade.getDescricao(), atividade.getComplexidade(), atividade.getCep(),
                 atividade.getEndereco(), atividade.getEnderecoNumero(), atividade.getComplemento(),atividade.getCidade(), atividade.getUf(),
-                atividade.getProjeto().getId(), atividade.getDataEntrega());
+                atividade.getProjeto().getId(), atividade.getDataEntrega(),atividade.getDataCriacao());
 
         return id;
         

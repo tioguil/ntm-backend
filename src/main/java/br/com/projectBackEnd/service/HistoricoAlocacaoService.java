@@ -1,6 +1,8 @@
 package br.com.projectBackEnd.service;
 
+import br.com.projectBackEnd.dao.AtividadeDAO;
 import br.com.projectBackEnd.dao.HistoricoAlocacaoDAO;
+import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.HistoricoAlocacao;
 import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
@@ -20,6 +22,8 @@ public class HistoricoAlocacaoService {
     private UsuarioService usuarioService;
     @Autowired
     private ResponseMessage responseMessage;
+    @Autowired
+    private AtividadeDAO atividadeDAO;
 
     public List<HistoricoAlocacao> listAlocadosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
 
@@ -37,14 +41,42 @@ public class HistoricoAlocacaoService {
 
     public ResponseMessage vincularAnalista(HistoricoAlocacao alocacao) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
-
-         alocacao = historicoAlocacaoDAO.vincularAnalista(alocacao);
-
-         response.setStatusCode("200");
-         response.setMessage("Usuario vinculado com sucesso!");
-         response.setResponse(alocacao);
-
-        return response;
+        
+        	if(historicoAlocacaoDAO.consultaVinculado(alocacao)) {
+        		 response.setStatusCode("401");
+    	         response.setMessage("Usuário já vinculado!");
+    	         response.setResponse(null);
+    	        return response;
+        	}else {
+        		
+        		alocacao = historicoAlocacaoDAO.vincularAnalista(alocacao);
+	         response.setStatusCode("200");
+	         response.setMessage("Usuario vinculado com sucesso!");
+	         response.setResponse(alocacao);
+	
+	        return response;
+        	}
+        			
+        
+    }
+    
+    public ResponseMessage consultaConflito(HistoricoAlocacao alocacao) throws ClassNotFoundException, SQLException, IOException {
+    	ResponseMessage response = responseMessage;
+    	
+    		Atividade atividade = atividadeDAO.detalheAtividade(alocacao.getAtividade().getId());
+		
+		if(historicoAlocacaoDAO.consultaConflitoAtividade(atividade, alocacao)) {
+	         response.setStatusCode("401");
+	         response.setMessage("Conflito de atividade");
+	         response.setResponse(null);
+	         
+		}else {
+			response.setStatusCode("200");
+	         response.setMessage("Nenhum conflito de horario");
+	         response.setResponse(null);
+		}
+		
+		return response;
     }
 
     public ResponseMessage listarHistoricoVinculo(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
@@ -61,4 +93,5 @@ public class HistoricoAlocacaoService {
 
         return response;
     }
+    
 }

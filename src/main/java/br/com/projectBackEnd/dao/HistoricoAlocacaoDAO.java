@@ -1,5 +1,6 @@
 package br.com.projectBackEnd.dao;
 
+import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.HistoricoAlocacao;
 import br.com.projectBackEnd.model.Usuario;
 import org.springframework.stereotype.Repository;
@@ -76,4 +77,29 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
         return alocacaoList;
 
     }
+    
+    public Boolean consultaVinculado(HistoricoAlocacao historicoAlocacao) throws SQLException, IOException, ClassNotFoundException {
+		String sql= "SELECT * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+		ResultSet rs = super.executeResutSet(sql, historicoAlocacao.getAtividade().getId(),historicoAlocacao.getUsuario().getId());
+		if (rs.next()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+}
+
+	public Boolean consultaConflitoAtividade(Atividade atividade, HistoricoAlocacao alocacao) throws ClassNotFoundException, SQLException, IOException {
+		String sql = "select id from atividade atv join atividade_usuario au on atv.id = au.atividade_id where au.usuario_id = ? and atv.status <> 'finalizada' and atv.status <> 'cancelada' and atv.data_criacao <= ? and atv.data_entrega >= ?";
+		ResultSet rs = super.executeResutSet(sql, alocacao.getUsuario().getId(), atividade.getDataCriacao(),  atividade.getDataCriacao());
+		
+		if(rs.next()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+    
+    
 }
