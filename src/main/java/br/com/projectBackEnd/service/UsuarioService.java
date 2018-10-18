@@ -192,6 +192,19 @@ public class UsuarioService {
 
     }
     
+    public ResponseMessage getUsuarioById(Long usuarioId) throws SQLException, IOException, ClassNotFoundException {
+
+    	ResponseMessage response = responseMessage;
+    	
+        Usuario usuario = usuarioDAO.getUsuarioById(usuarioId);
+        
+    	response.setMessage("Busca efetuada com sucesso");
+    	response.setStatusCode("200");
+    	response.setResponse(usuario);
+    	
+    	return response;
+
+    }
     public ResponseMessage editarUsuario(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
     	
     	ResponseMessage response = responseMessage;

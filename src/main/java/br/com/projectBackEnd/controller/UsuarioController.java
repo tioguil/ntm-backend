@@ -154,5 +154,23 @@ public class UsuarioController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Busca do usuário pelo ID")
+	@GetMapping("/analista/buscar_usuario_by_id/{idUsuario}")
+	public ResponseEntity<ResponseMessage> getUsuarioById(@PathVariable Long idUsuario){
+		ResponseMessage response = responseMessage;
+
+		try{
+			response = usuarioService.getUsuarioById(idUsuario);
+			
+		}catch (Exception e ){
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
 
 }
