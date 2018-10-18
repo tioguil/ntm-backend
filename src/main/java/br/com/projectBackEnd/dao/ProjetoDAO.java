@@ -1,5 +1,6 @@
 package br.com.projectBackEnd.dao;
 
+import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.Cliente;
 import br.com.projectBackEnd.model.Projeto;
 import org.springframework.stereotype.Repository;
@@ -90,4 +91,10 @@ public class ProjetoDAO extends GenericDAO{
             return null;
         }
     }
+    public Projeto alteraStatus(Projeto projeto) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "update projeto set status = ? where id = ?";
+        super.executeQuery(sql, projeto.getStatus(), projeto.getId());
+		return projeto;
+    }
+
 }

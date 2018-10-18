@@ -1,6 +1,7 @@
 package br.com.projectBackEnd.controller;
 
 
+import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.Projeto;
 import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
@@ -93,4 +94,25 @@ public class ProjetoController {
             return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+	@ApiOperation("Muda status do Projeto")
+	@PostMapping("/gestor/atualizar_status_projeto")
+	public ResponseEntity<ResponseMessage> alteraStatus(@RequestBody Projeto projeto, Authentication authentication){
+		ResponseMessage response = responseMessage;
+
+		try {
+			response = projetoService.alteraStatus(projeto);
+	
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+	}
 }
