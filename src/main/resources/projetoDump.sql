@@ -362,14 +362,14 @@ insert into habilidade (nome) values ('PostgreSQL');
 
 #Insert Usuarios
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('analista.junior@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Analista', 'Júnior', '(11) 7070-7070', '(11) 97070-7070', '00000000010', '33333333-3', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'São Paulo', 'SP', 1);
+values ('renan.gouveia@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Renan', 'Gouveia', '(11) 7070-7070', '(11) 97070-7070', '00000000010', '33333333-3', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'São Paulo', 'SP', 1);
 #Vinculando Habilidades
 insert habilidade_usuario value(1, 1, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(2, 1, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 insert habilidade_usuario value(3, 1, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('analista.junior2@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Analista2', 'Júnior2', '(11) 7070-7070', '(11) 97070-7070', '00017000010', '33333333-3', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'São Paulo', 'SP', 1);
+values ('rodrigo.santos@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Rodrigo', 'Santos', '(11) 7070-7070', '(11) 97070-7070', '00017000010', '33333333-3', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'São Paulo', 'SP', 1);
 #Vinculando Habilidades
 insert habilidade_usuario value(8, 2, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(9, 2, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
@@ -377,14 +377,14 @@ insert habilidade_usuario value(5, 2, 'Lorem Ipsum é simplesmente uma simulaç�
 
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('analista.senior@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Analista', 'Sênior', '(21) 8080-8080', '(21) 98080-8080', '00000000011', '44444444-4', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Rio de Janeiro', 'RJ', 2);
+values ('guilherme.brito@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Guilherme', 'Brito', '(21) 8080-8080', '(21) 98080-8080', '00000000011', '44444444-4', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Rio de Janeiro', 'RJ', 2);
 #Vinculando Habilidades
 insert habilidade_usuario value(4, 3, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(5, 3, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
 insert habilidade_usuario value(6, 3, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('analista.senior2@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Analista2', 'Sênior2', '(21) 8080-8080', '(21) 98080-8080', '00000012011', '44444444-4', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Rio de Janeiro', 'RJ', 2);
+values ('jorge.sampaio@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Jorge', 'Sampaio', '(21) 8080-8080', '(21) 98080-8080', '00000012011', '44444444-4', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Rio de Janeiro', 'RJ', 2);
 #Vinculando Habilidades
 insert habilidade_usuario value(13,4, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(1, 4, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
@@ -392,21 +392,21 @@ insert habilidade_usuario value(2, 4, 'Lorem Ipsum é simplesmente uma simulaç�
 
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('analista.pleno@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Analista', 'Pleno', '(11) 9090-9090', '(11) 99090-9090', '00000000012', '55555555-5', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Minas Gerais', 'MG', 3);
+values ('leonardo.siqueira@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Leonardo', 'Siqueira', '(11) 9090-9090', '(11) 99090-9090', '00000000012', '55555555-5', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Minas Gerais', 'MG', 3);
 #Vinculando Habilidades
 insert habilidade_usuario value(7, 5, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(8, 5, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
 insert habilidade_usuario value(9, 5, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('analista.pleno2@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Analista2', 'Pleno2', '(11) 9090-9090', '(11) 99090-9090', '000000000147', '55555555-5', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Minas Gerais', 'MG', 3);
+values ('fabricio.caires@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Fabrício', 'Caires', '(11) 9090-9090', '(11) 99090-9090', '000000000147', '55555555-5', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Minas Gerais', 'MG', 3);
 #Vinculando Habilidades
 insert habilidade_usuario value(10, 6, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 insert habilidade_usuario value(11, 6, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
 insert habilidade_usuario value(12, 6, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
-values ('gerente@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Gerente', 'Projeto', '(11) 1010-1010', '(11) 91010-1010', '00000000013', '66666666-6', 'TESTE DO GERENTE', 'gestor', '00000-000', 'Rua Gestor', 	'123', 'Perto da casa do Gestor', 'São Paulo', 'SP', 4);
+values ('rodrigo.bossini@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Rodrigo', 'Bossini', '(11) 1010-1010', '(11) 91010-1010', '00000000013', '66666666-6', 'TESTE DO GERENTE', 'gestor', '00000-000', 'Rua Gestor', 	'123', 'Perto da casa do Gestor', 'São Paulo', 'SP', 4);
 
 insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
 values ('admin@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Admin', 'Projeto', '(11) 1010-1010', '(11) 91010-1010', '00000000013', '66666666-6', 'TESTE DO ADMIN', 'adm', '00000-000', 'Rua Gestor', 	'123', 'Perto da casa do Gestor', 'São Paulo', 'SP', 5);
