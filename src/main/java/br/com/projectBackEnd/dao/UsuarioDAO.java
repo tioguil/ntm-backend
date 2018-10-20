@@ -265,6 +265,7 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setEnderecoNumero(rs.getString("numero_endereco"));
             usuario.setComplemento(rs.getString("complemento"));
             usuario.setCidade(rs.getString("cidade"));
+            usuario.setEmail(rs.getString("email"));
             usuario.setUf(rs.getString("uf"));
             return usuario;
 
