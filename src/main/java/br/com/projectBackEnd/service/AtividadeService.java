@@ -146,7 +146,7 @@ public class AtividadeService {
         return response;
     }
 
-    public ResponseMessage listarAtividadeByData(Timestamp dt_inicio, Date dt_fim, Long usuario_id) throws SQLException, IOException, ClassNotFoundException{
+    public ResponseMessage listarAtividadeByData(Date dt_inicio, Date dt_fim, Long usuario_id) throws SQLException, IOException, ClassNotFoundException{
 
         ResponseMessage response = responseMessage;
 
