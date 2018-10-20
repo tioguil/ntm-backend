@@ -57,7 +57,6 @@ public class AnexoDAO extends  GenericDAO{
         }
     }
 
-
     public void vincularGestor(Usuario usuario, Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
         String sql = "insert atividade_usuario value(?,?)";
         super.executeQuery(sql, idAtividade, usuario.getId());
