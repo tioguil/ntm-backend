@@ -13,7 +13,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("/atividade")
@@ -148,4 +150,25 @@ public class AtividadeController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 
 	}
+
+	@ApiOperation("Listar atividades do analista por data")
+	@GetMapping("gestor/listar/{dt_inicio}/{dt_fim}/{usuario_id}")
+	public ResponseEntity<ResponseMessage> listarAtividadeByData(@PathVariable("dt_inicio") Timestamp dt_inicio, @PathVariable("dt_fim") Date dt_fim, @PathVariable("usuario_id") Long usuario_id, Authentication authentication){
+
+		ResponseMessage response = responseMessage;
+
+		try {
+			response = atividadeService.listarAtividadeByData(dt_inicio,dt_fim,usuario_id);
+		} catch (Exception e){
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+
 }

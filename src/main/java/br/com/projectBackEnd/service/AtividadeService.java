@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -140,6 +142,26 @@ public class AtividadeService {
         response.setResponse(atividade);
         response.setStatusCode("200");
         response.setMessage("Atividade Finalizada com sucesso!");
+
+        return response;
+    }
+
+    public ResponseMessage listarAtividadeByData(Timestamp dt_inicio, Date dt_fim, Long usuario_id) throws SQLException, IOException, ClassNotFoundException{
+
+        ResponseMessage response = responseMessage;
+
+        List<Atividade> atividades = atividadeDAO.listarAtividadeByData(dt_inicio,dt_fim,usuario_id);
+
+        if (atividades.size() > 0){
+            response.setResponse(atividades);
+            response.setStatusCode("200");
+            response.setMessage("Total de atividades " + atividades.size());
+
+        } else {
+            response.setResponse(atividades);
+            response.setStatusCode("200");
+            response.setMessage("Nenhuma atividade encontrada");
+        }
 
         return response;
     }
