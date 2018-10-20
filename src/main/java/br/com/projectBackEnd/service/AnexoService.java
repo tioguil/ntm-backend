@@ -74,9 +74,9 @@ public class AnexoService {
 
     }
 
-    public Resource loadFileAsResource(Long idAnexo) {
+    public Resource loadFileAsResource(String nameFile) {
 
-        Resource resource = disco.loadFileAsResource("c:/anexo/date1539563201406_User1_Ativ1Fatura.pdf");
+        Resource resource = disco.loadFileAsResource("c:/anexo/" + nameFile);
 
         return resource;
     }

@@ -66,10 +66,10 @@ public class AnexoController {
     }
 
 
-    @GetMapping("/analista/download/{idAnexo}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable Long idAnexo, HttpServletRequest request) {
+    @GetMapping("/analista/download/{nameFile}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String nameFile, HttpServletRequest request) {
         // Load file as Resource
-        Resource resource = anexoService.loadFileAsResource(idAnexo);
+        Resource resource = anexoService.loadFileAsResource(nameFile);
 
         // Try to determine file's content type
         String contentType = null;
