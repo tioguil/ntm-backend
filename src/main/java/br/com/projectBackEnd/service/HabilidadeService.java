@@ -1,6 +1,6 @@
 package br.com.projectBackEnd.service;
 
-import br.com.projectBackEnd.controller.HabilidadeDAO;
+import br.com.projectBackEnd.dao.HabilidadeDAO;
 import br.com.projectBackEnd.model.Habilidade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

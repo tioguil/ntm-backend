@@ -1,4 +1,4 @@
-package br.com.projectBackEnd.controller;
+package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.dao.GenericDAO;
 import br.com.projectBackEnd.model.Habilidade;
