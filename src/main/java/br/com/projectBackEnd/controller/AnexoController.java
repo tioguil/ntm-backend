@@ -7,6 +7,7 @@ import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
 import br.com.projectBackEnd.service.AnexoService;
 import br.com.projectBackEnd.service.UsuarioService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +30,7 @@ public class AnexoController {
     @Autowired
     private AnexoService anexoService;
 
+    @ApiOperation("Upload de anexos")
     @PostMapping("/analista/upload")
     public ResponseEntity<ResponseMessage> uploadAnexo(@RequestParam MultipartFile anexo, @RequestParam Long idAtividade , Authentication authentication){
         ResponseMessage response = responseMessage;
@@ -47,6 +49,7 @@ public class AnexoController {
         return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
     }
 
+    @ApiOperation("Lista anxeos a partir do id da atividade")
     @GetMapping("/analista/list/{idAtividade}")
     public ResponseEntity<ResponseMessage> listAnexosByAtividades(@PathVariable Long idAtividade){
 
@@ -66,14 +69,17 @@ public class AnexoController {
     }
 
 
+    @ApiOperation("Realiza Downlod do anexo")
     @GetMapping("/analista/download/{nameFile}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String nameFile, HttpServletRequest request) {
+
         // Load file as Resource
         Resource resource = anexoService.loadFileAsResource(nameFile);
 
         // Try to determine file's content type
         String contentType = null;
         try {
+
             contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -89,4 +95,25 @@ public class AnexoController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
+
+    @ApiOperation("Deleta Anexo")
+    @DeleteMapping("/analista/delete")
+    public ResponseEntity<ResponseMessage> deleteAnexo(@RequestBody Anexo anexo){
+        ResponseMessage response = responseMessage;
+
+        try{
+            response = anexoService.deleteAnexo(anexo);
+        }catch (Exception e){
+            e.printStackTrace();
+            response.setStatusCode("500");
+            response.setMessage(e.getMessage());
+            response.setResponse(null);
+            return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+
+    }
+
 }

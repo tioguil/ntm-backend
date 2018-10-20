@@ -34,12 +34,22 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+
         String header =  request.getHeader(HEADER_STRING);
+        //Verificando se foi recebido Token no header
         if(header == null || !header.startsWith(TOKEN_PREFIX)){
-            chain.doFilter(null,null);
-            throw new ServletException("Nenhum token informado");
+
+            // verificação de URI liberação para documentação swagger
+            if (request.getRequestURI().equals("/swagger-ui.html") || request.getRequestURI().matches(".*/swagger-resources.*") ||
+                request.getRequestURI().equals("/v2/api-docs") || request.getRequestURI().matches("/webjars/.*")){
+                chain.doFilter(request,response);
+            }else {
+                throw new ServletException("Nenhum token informado");
+            }
 
         }else {
+            //Realizando autenticação do usuario a partir do TOken
             UsernamePasswordAuthenticationToken authemticationToken = getAuthemticationToken(request);
             SecurityContextHolder.getContext().setAuthentication(authemticationToken);
             chain.doFilter(request,response);

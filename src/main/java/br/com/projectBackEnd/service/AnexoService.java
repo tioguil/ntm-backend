@@ -59,7 +59,7 @@ public class AnexoService {
         anexo.setNomeAquivo(file.getOriginalFilename());
         anexo.setDescriocao("Padrao");
 
-        //Salvar Arquivo
+        //Salvar Arquivo no diretorio
         anexo = disco.salvarAnexo(anexo);
         //Salvar dados no bando
         anexo = anexoDAO.salvaNoBanco(anexo);
@@ -75,9 +75,25 @@ public class AnexoService {
     }
 
     public Resource loadFileAsResource(String nameFile) {
+        return disco.loadFileAsResource(nameFile);
+    }
 
-        Resource resource = disco.loadFileAsResource("c:/anexo/" + nameFile);
+    public ResponseMessage deleteAnexo(Anexo anexo) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
 
-        return resource;
+        anexoDAO.deleteAnexo(anexo);
+        if(disco.deleteAnexo(anexo)){
+            response.setMessage("Anexo deletado com sucesso");
+            response.setStatusCode("200");
+            response.setResponse(null);
+        }else {
+            response.setMessage("Falha ao deletar Anexo");
+            response.setStatusCode("400");
+            response.setResponse(null);
+        }
+
+
+
+        return response;
     }
 }

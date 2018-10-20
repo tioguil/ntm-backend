@@ -44,6 +44,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
+
+    // Autenticação reazada com sucesso! Montando response com token e usuario no body
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String username = ((User) authResult.getPrincipal()).getUsername();
@@ -54,7 +56,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
 
-        System.out.println("UserEmail " + username);
         Usuario usuario;
         String jsonUsuario = "";
         try {

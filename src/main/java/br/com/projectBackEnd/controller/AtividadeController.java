@@ -137,8 +137,6 @@ public class AtividadeController {
 
 		try {
 			response = atividadeService.alteraStatus(atividade);
-	
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.setStatusCode("500");
