@@ -49,6 +49,10 @@ public class AnexoService {
     public ResponseMessage uploadAnexo(MultipartFile file, Long idAtividade, Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
 
+        if(usuario.getPerfilAcesso().equals("gestor")){
+            verificaVinculo(usuario, idAtividade );
+        }
+
         Anexo anexo = new Anexo();
         anexo.setUsuario(usuario);
         Atividade atividade = new Atividade();
@@ -95,5 +99,12 @@ public class AnexoService {
 
 
         return response;
+    }
+
+    private void verificaVinculo(Usuario usuario, Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+
+        if(!anexoDAO.verificaVinculo(usuario, idAtividade)){
+            anexoDAO.vincularGestor(usuario, idAtividade);
+        }
     }
 }

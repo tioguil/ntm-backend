@@ -3,6 +3,7 @@ package br.com.projectBackEnd.service;
 import br.com.projectBackEnd.dao.ComentarioDAO;
 import br.com.projectBackEnd.model.Comentario;
 import br.com.projectBackEnd.model.ResponseMessage;
+import br.com.projectBackEnd.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,10 @@ public class ComentarioService {
 
     public ResponseMessage inserirComentario(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
 
+        if(comentario.getUsuario().getPerfilAcesso().equals("gestor")){
+            verificaVinculo(comentario);
+        }
+
         ResponseMessage response = responseMessage;
 
         comentario = comentarioDAO.inserirComentario(comentario);
@@ -49,5 +54,12 @@ public class ComentarioService {
 
        return response;
 
+    }
+
+    private void verificaVinculo(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
+
+        if(!comentarioDAO.verificaVinculo(comentario)){
+            comentarioDAO.vincularGestor(comentario);
+        }
     }
 }
