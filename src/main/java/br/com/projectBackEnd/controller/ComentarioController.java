@@ -44,9 +44,6 @@ public class ComentarioController {
     public ResponseEntity<ResponseMessage> listaComentarioByAtividade(@PathVariable Long idAtividade){
         ResponseMessage response = responseMessage;
 
-
-
-
         try {
             response = comentarioService.listaComentarioByAtividade(idAtividade);
 

@@ -44,4 +44,22 @@ public class AnexoDAO extends  GenericDAO{
         anexo.setId(id);
         return anexo;
     }
+
+    public boolean verificaVinculo(Usuario usuario, Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+
+        ResultSet rs = super.executeResutSet(sql, idAtividade,  usuario.getId());
+
+        if (rs.next()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+    public void vincularGestor(Usuario usuario, Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "insert atividade_usuario value(?,?)";
+        super.executeQuery(sql, idAtividade, usuario.getId());
+    }
 }

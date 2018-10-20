@@ -45,4 +45,22 @@ public class ComentarioDAO extends GenericDAO{
 
         return comentario;
     }
+
+    public boolean verificaVinculo(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+
+        ResultSet rs = super.executeResutSet(sql, comentario.getAtividade().getId(), comentario.getUsuario().getId());
+
+        if (rs.next()){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    public void vincularGestor(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "insert atividade_usuario value(?,?)";
+        super.executeQuery(sql, comentario.getAtividade().getId(), comentario.getUsuario().getId());
+    }
 }
