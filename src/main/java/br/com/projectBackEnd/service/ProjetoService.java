@@ -76,4 +76,17 @@ public class ProjetoService {
         return response;
 
     }
+    
+    public ResponseMessage alteraStatus(Projeto projeto) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+        
+    	projeto = projetoDAO.alteraStatus(projeto);
+        
+        response.setResponse(projeto);
+        response.setStatusCode("200");
+        response.setMessage("Projeto atualizado com sucesso!");
+
+        return response;
+    }
+
 }

@@ -244,4 +244,33 @@ public class UsuarioDAO extends GenericDAO{
 			return usuario;
     	    	
     }//fim editarUsuario
+    
+    public Usuario getUsuarioById(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
+
+	    String sql = "select * from usuario where usuario.id = ?";
+	    ResultSet rs = super.executeResutSet(sql, idUsuario);
+
+	    if(rs.next()){
+	        Usuario usuario = new Usuario();
+            usuario.setTelefone(rs.getString("telefone"));
+            usuario.setCelular(rs.getString("celular"));
+            usuario.setId(rs.getLong("id"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setCpfCnpj(rs.getString("cpf_cnpj"));
+            usuario.setRg(rs.getString("rg"));
+            usuario.setSobreNome(rs.getString("sobrenome"));
+            usuario.setPerfilAcesso(rs.getString("perfil_acesso"));
+            usuario.setCep(rs.getString("cep"));
+            usuario.setEndereco(rs.getString("endereco"));
+            usuario.setEnderecoNumero(rs.getString("numero_endereco"));
+            usuario.setComplemento(rs.getString("complemento"));
+            usuario.setCidade(rs.getString("cidade"));
+            usuario.setUf(rs.getString("uf"));
+            return usuario;
+
+        }else {
+	        return null;
+        }
+    }
+
 }
