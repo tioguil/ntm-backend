@@ -1,5 +1,6 @@
 package br.com.projectBackEnd.Utili;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,7 +29,7 @@ public class Disco {
         String sufixo = "date" + date.getTime() + "_User" + anexo.getUsuario().getId()
                 + "_Ativ" + anexo.getAtividade().getId();
 
-        anexo.setLocalArmazenamento(diretorioRaiz+sufixo);
+        anexo.setLocalArmazenamento(sufixo);
         this.salvar(anexo.getFile(), sufixo);
 
         return anexo;
@@ -36,7 +37,7 @@ public class Disco {
 
     private void salvar(MultipartFile arquivo, String sufixo) {
         Path diretorioPath = Paths.get(diretorioRaiz);
-        String nomeArquivo = sufixo + arquivo.getOriginalFilename();
+        String nomeArquivo = diretorioRaiz + sufixo + arquivo.getOriginalFilename();
         Path arquivoPath = diretorioPath.resolve(nomeArquivo);
 
         try {
@@ -50,6 +51,7 @@ public class Disco {
 
     public Resource loadFileAsResource(String fileName) {
         try {
+            fileName = diretorioRaiz + fileName;
             Path diretorioPath = Paths.get(diretorioRaiz);
             Path filePath = diretorioPath.resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
@@ -61,6 +63,22 @@ public class Disco {
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
+        }
+
+    }
+
+
+    public Boolean deleteAnexo(Anexo anexo){
+
+        String localArmazenamento = diretorioRaiz + anexo.getLocalArmazenamento() + anexo.getNomeAquivo();
+        File file = new File(localArmazenamento);
+
+        if(file.delete()){
+            System.out.println(file.getName() + " is deleted!");
+            return true;
+        }else{
+            System.out.println("Delete operation is failed.");
+            return false;
         }
 
     }
