@@ -153,7 +153,7 @@ public class AtividadeController {
 
 	@ApiOperation("Listar atividades do analista por data")
 	@GetMapping("gestor/listar/{dt_inicio}/{dt_fim}/{usuario_id}")
-	public ResponseEntity<ResponseMessage> listarAtividadeByData(@PathVariable("dt_inicio") Timestamp dt_inicio, @PathVariable("dt_fim") Date dt_fim, @PathVariable("usuario_id") Long usuario_id, Authentication authentication){
+	public ResponseEntity<ResponseMessage> listarAtividadeByData(@PathVariable("dt_inicio") Date dt_inicio, @PathVariable("dt_fim") Date dt_fim, @PathVariable("usuario_id") Long usuario_id, Authentication authentication){
 
 		ResponseMessage response = responseMessage;
 

@@ -1,16 +1,16 @@
 package br.com.projectBackEnd.dao;
 
-import br.com.projectBackEnd.model.Atividade;
-import br.com.projectBackEnd.model.Projeto;
-import org.springframework.stereotype.Repository;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import br.com.projectBackEnd.model.Atividade;
+import br.com.projectBackEnd.model.Projeto;
 
 @Repository
 public class AtividadeDAO extends GenericDAO{
@@ -139,7 +139,7 @@ public class AtividadeDAO extends GenericDAO{
         return atividade;
     }
 
-    public List<Atividade> listarAtividadeByData(Timestamp dt_inicio, Date dt_fim, Long usuario_id) throws SQLException, IOException, ClassNotFoundException{
+    public List<Atividade> listarAtividadeByData(Date dt_inicio, Date dt_fim, Long usuario_id) throws SQLException, IOException, ClassNotFoundException{
 
         String sql = "SELECT a.id, a.nome, a.descricao, a.status, a.data_criacao, a.data_entrega\n" +
                 "FROM atividade a\n" +
@@ -147,7 +147,7 @@ public class AtividadeDAO extends GenericDAO{
                 "ON a.id = ati.atividade_id \n" +
                 "JOIN usuario u\n" +
                 "ON u.id = ati.usuario_id\n" +
-                "WHERE a.data_criacao = ? AND a.data_entrega = ? AND u.id = ?;";
+                "WHERE a.data_criacao BETWEEN ? AND ? AND u.id = ?;";
 
         ResultSet rs = super.executeResutSet( sql, dt_inicio,dt_fim, usuario_id);
         List<Atividade> list = new ArrayList<>();
@@ -158,7 +158,7 @@ public class AtividadeDAO extends GenericDAO{
             atividade.setNome(rs.getString("nome"));
             atividade.setDescricao(rs.getString("descricao"));
             atividade.setStatus(rs.getNString("status"));
-            atividade.setDataCriacao(rs.getTimestamp("data_criacao"));
+            atividade.setDataCriacao(rs.getDate("data_criacao"));
             atividade.setDataEntrega(rs.getDate("data_entrega"));
             list.add(atividade);
         }
