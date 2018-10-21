@@ -97,7 +97,7 @@ public class AnexoController {
     }
 
     @ApiOperation("Deleta Anexo")
-    @DeleteMapping("/analista/delete")
+    @PostMapping("/analista/delete")
     public ResponseEntity<ResponseMessage> deleteAnexo(@RequestBody Anexo anexo){
         ResponseMessage response = responseMessage;
 

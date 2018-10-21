@@ -76,10 +76,11 @@ public class Disco {
 
 
     public Boolean deleteAnexo(Anexo anexo){
+        Path diretorioPath = Paths.get(diretorioRaiz);
+        Path filePath = diretorioPath.resolve(diretorioRaiz + anexo.getLocalArmazenamento() + anexo.getNomeAquivo()).normalize();
 
-        String localArmazenamento = diretorioRaiz + anexo.getLocalArmazenamento() + anexo.getNomeAquivo();
-        File file = new File(localArmazenamento);
-
+        //String localArmazenamento = diretorioRaiz + anexo.getLocalArmazenamento() + anexo.getNomeAquivo();
+        File file = filePath.toFile();
         if(file.delete()){
             System.out.println(file.getName() + " is deleted!");
             return true;
