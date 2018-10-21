@@ -38,14 +38,21 @@ public class Disco {
     private void salvar(MultipartFile arquivo, String sufixo) {
         Path diretorioPath = Paths.get(diretorioRaiz);
         String nomeArquivo = diretorioRaiz + sufixo + arquivo.getOriginalFilename();
-        Path arquivoPath = diretorioPath.resolve(nomeArquivo);
+    	Path anexosPath = diretorioPath.toAbsolutePath();
+        Path arquivoPath = anexosPath.resolve(nomeArquivo);
 
         try {
             Files.createDirectories(diretorioPath);
-            arquivo.transferTo(arquivoPath.toFile());
         } catch (IOException e) {
-            throw new RuntimeException("Problemas na tentativa de salvar arquivo.", e);
+            throw new RuntimeException("Problemas na tentativa de criar o diretorio.", e);
         }
+        
+        try {
+        	arquivo.transferTo(arquivoPath.toFile());
+        } catch (IOException e) {
+        	throw new RuntimeException("Problemas na tentativa de salvar o arquivo no diretorio.", e);
+        }
+        
     }
 
 
