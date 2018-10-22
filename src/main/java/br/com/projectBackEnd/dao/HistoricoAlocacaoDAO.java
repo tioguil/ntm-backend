@@ -100,6 +100,28 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
 		}
 		
 	}
+
+    public HistoricoAlocacao desvincularAanalista(HistoricoAlocacao historicoAlocacao) throws  ClassNotFoundException, SQLException, IOException{
+
+        String verificar = "select * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+
+        String insert = " INSERT into historico_alocacao(status, atividade_usuario_atividade_id, atividade_usuario_usuario_id) values(?,?,?)\";";
+
+        String atividadeUsuario = "insert into atividade_usuario(atividade_id, usuario_id) values(?,?)";
+
+        ResultSet rs = super.executeResutSet(verificar, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId());
+
+        if (!rs.next()){
+            super.executeQuery(atividadeUsuario, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId());
+        }
+
+        Long id = super.executeQuery(insert, 0, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId() );
+        historicoAlocacao.setId(id);
+
+        return historicoAlocacao;
+    }
+
+
     
     
 }
