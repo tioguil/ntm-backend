@@ -147,6 +147,7 @@ DROP TABLE IF EXISTS `db_ntm`.`atividade_usuario` ;
 CREATE TABLE IF NOT EXISTS `db_ntm`.`atividade_usuario` (
   `atividade_id` INT(11) NOT NULL,
   `usuario_id` INT(11) NOT NULL,
+  `status`  INTEGER NOT NULL default 1,
   PRIMARY KEY (`atividade_id`, `usuario_id`),
   INDEX `fk_atividade_usuario_idx` (`usuario_id` ASC),
   INDEX `fk_atividade_usuario_atividade_idx` (`atividade_id` ASC),

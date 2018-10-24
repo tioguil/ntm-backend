@@ -86,4 +86,21 @@ public class HorarioTrabalhoDao extends GenericDAO{
             return false;
         }
     }
+
+    public List<HorarioTrabalho> listHorarioTrabalhoByAtividade2(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "select * from horario_trabalho where atividade_usuario_atividade_id = ?";
+
+        ResultSet rs = super.executeResutSet(sql, idAtividade);
+
+        List<HorarioTrabalho> trabalhos = new ArrayList<>();
+
+        while (rs.next()){
+            HorarioTrabalho horarioTrabalho = new HorarioTrabalho();
+            horarioTrabalho.setId(rs.getLong("id"));
+        }
+
+
+        return trabalhos;
+
+    }
 }

@@ -16,7 +16,7 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
 
 
     public List<HistoricoAlocacao> listAlocadosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select DISTINCT atividade_usuario_usuario_id, id, status, data_alteracao, atividade_usuario_atividade_id from historico_alocacao where atividade_usuario_atividade_id = ? and status = 1";
+        String sql = "select * from atividade_usuario au join historico_alocacao ha on atividade_usuario_atividade_id = atividade_id where atividade_id = ? and au.status = 1 group by usuario_id";
 
         ResultSet rs = super.executeResutSet(sql, idAtividade);
 
@@ -28,7 +28,7 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
             alocacao.setDataAlteracao(rs.getTimestamp("data_alteracao"));
             alocacao.setStatus(rs.getInt("status"));
             Usuario usuario = new Usuario();
-            usuario.setId(rs.getLong("atividade_usuario_usuario_id"));
+            usuario.setId(rs.getLong("usuario_id"));
             alocacao.setUsuario(usuario);
             alocacaoList.add(alocacao);
         }
@@ -42,11 +42,14 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
         String insertAlocacao = "INSERT into historico_alocacao(status, atividade_usuario_atividade_id, atividade_usuario_usuario_id) " +
                 "values(?,?,?)";
         String atividadeUsuario ="insert into atividade_usuario(atividade_id, usuario_id) values(?,?)";
+        String updateAtividadeUsuario ="update atividade_usuario set status = 1 where atividade_id = ? and usuario_id = ?";
 
         ResultSet rs = super.executeResutSet(sqlVerifica, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
 
         if(!rs.next()){
             super.executeQuery(atividadeUsuario, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
+        }else {
+            super.executeQuery(updateAtividadeUsuario, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
         }
 
         Long id = super.executeQuery(insertAlocacao, 1, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
@@ -79,7 +82,7 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
     }
     
     public Boolean consultaVinculado(HistoricoAlocacao historicoAlocacao) throws SQLException, IOException, ClassNotFoundException {
-		String sql= "SELECT * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+		String sql= "SELECT * from atividade_usuario where atividade_id = ? and usuario_id = ? and status = 1";
 		ResultSet rs = super.executeResutSet(sql, historicoAlocacao.getAtividade().getId(),historicoAlocacao.getUsuario().getId());
 		if (rs.next()) {
 			return true;
@@ -101,24 +104,18 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
 		
 	}
 
-    public HistoricoAlocacao desvincularAanalista(HistoricoAlocacao historicoAlocacao) throws  ClassNotFoundException, SQLException, IOException{
+    public List<HistoricoAlocacao> desvincularAanalista(HistoricoAlocacao historicoAlocacao) throws  ClassNotFoundException, SQLException, IOException{
 
-        String verificar = "select * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+        String insert = "INSERT into historico_alocacao(status, atividade_usuario_atividade_id, atividade_usuario_usuario_id) values(?,?,?)";
 
-        String insert = " INSERT into historico_alocacao(status, atividade_usuario_atividade_id, atividade_usuario_usuario_id) values(?,?,?)\";";
+        String atividadeUsuarioUpDate = "update atividade_usuario set status = 0 where atividade_id = ? and usuario_id = ?";
 
-        String atividadeUsuario = "insert into atividade_usuario(atividade_id, usuario_id) values(?,?)";
+        super.executeQuery(atividadeUsuarioUpDate, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId());
 
-        ResultSet rs = super.executeResutSet(verificar, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId());
-
-        if (!rs.next()){
-            super.executeQuery(atividadeUsuario, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId());
-        }
-
-        Long id = super.executeQuery(insert, 0, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId() );
+        Long id = super.executeQuery(insert, 0, historicoAlocacao.getAtividade().getId(), historicoAlocacao.getUsuario().getId());
         historicoAlocacao.setId(id);
 
-        return historicoAlocacao;
+        return listAlocadosByAtividade(historicoAlocacao.getAtividade().getId());
     }
 
 

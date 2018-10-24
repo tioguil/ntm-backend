@@ -63,7 +63,7 @@ public class AtividadeDAO extends GenericDAO{
     }
 
     public List<Atividade> listaAtividadeByAnalista(Long id) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select * from atividade join atividade_usuario on id = atividade_id where usuario_id = ?";
+        String sql = "select * from atividade join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1";
         ResultSet rs = super.executeResutSet(sql, id);
 
         List<Atividade> list = new ArrayList<>();
