@@ -42,11 +42,14 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
         String insertAlocacao = "INSERT into historico_alocacao(status, atividade_usuario_atividade_id, atividade_usuario_usuario_id) " +
                 "values(?,?,?)";
         String atividadeUsuario ="insert into atividade_usuario(atividade_id, usuario_id) values(?,?)";
+        String updateAtividadeUsuario ="update atividade_usuario set status = 1 where atividade_id = ? and usuario_id = ?";
 
         ResultSet rs = super.executeResutSet(sqlVerifica, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
 
         if(!rs.next()){
             super.executeQuery(atividadeUsuario, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
+        }else {
+            super.executeQuery(updateAtividadeUsuario, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
         }
 
         Long id = super.executeQuery(insertAlocacao, 1, alocacao.getAtividade().getId(), alocacao.getUsuario().getId());
@@ -79,7 +82,7 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
     }
     
     public Boolean consultaVinculado(HistoricoAlocacao historicoAlocacao) throws SQLException, IOException, ClassNotFoundException {
-		String sql= "SELECT * from atividade_usuario where atividade_id = ? and usuario_id = ?";
+		String sql= "SELECT * from atividade_usuario where atividade_id = ? and usuario_id = ? and status = 1";
 		ResultSet rs = super.executeResutSet(sql, historicoAlocacao.getAtividade().getId(),historicoAlocacao.getUsuario().getId());
 		if (rs.next()) {
 			return true;

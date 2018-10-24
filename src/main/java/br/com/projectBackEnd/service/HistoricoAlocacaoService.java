@@ -48,8 +48,8 @@ public class HistoricoAlocacaoService {
     	         response.setResponse(null);
     	        return response;
         	}else {
-        		
-        		alocacao = historicoAlocacaoDAO.vincularAnalista(alocacao);
+
+        	 alocacao = historicoAlocacaoDAO.vincularAnalista(alocacao);
 	         response.setStatusCode("200");
 	         response.setMessage("Usuario vinculado com sucesso!");
 	         response.setResponse(alocacao);

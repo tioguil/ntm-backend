@@ -60,7 +60,7 @@ public class ComentarioDAO extends GenericDAO{
     }
 
     public void vincularGestor(Comentario comentario) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "insert atividade_usuario value(?,?)";
+        String sql = "insert atividade_usuario(atividade_id, usuario_id) value(?,?)";
         super.executeQuery(sql, comentario.getAtividade().getId(), comentario.getUsuario().getId());
     }
 }
