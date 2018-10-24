@@ -70,4 +70,14 @@ public class HistoricoAlocacaoController {
 
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
+
+	@PostMapping("/gestor/desvincular")
+	public ResponseEntity<ResponseMessage> desvincular(@RequestBody HistoricoAlocacao alocacao){
+
+		ResponseMessage response = responseMessage;
+
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
 }
