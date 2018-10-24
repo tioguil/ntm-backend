@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 @RestController
 @RequestMapping("/historico-trabalho")
 public class HorarioTrabalhoController {
@@ -90,5 +93,7 @@ public class HorarioTrabalhoController {
 
         return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
     }
+
+
 
 }

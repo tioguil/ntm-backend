@@ -27,6 +27,19 @@ public class HorarioTrabalhoService {
 
         List<HorarioTrabalho> trabalhoList = horarioTrabalhoDao.listHorarioTrabalhoByAtividade(idAtividade);
 
+        CalculoHoras calculoHoras = new CalculoHoras();
+
+        for(int i = 0; i < trabalhoList.size(); i++){
+            Date fim = trabalhoList.get(i).getDataFim();
+            if(fim != null){
+
+                Date inicio = trabalhoList.get(i).getDataInicio();
+                String horasTabalhadas = calculoHoras.calculaDiferenca(inicio, fim);
+                trabalhoList.get(i).setTotalHoras(horasTabalhadas);
+            }
+
+        }
+
         return trabalhoList;
 
     }
