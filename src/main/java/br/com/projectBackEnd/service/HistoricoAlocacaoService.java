@@ -6,6 +6,8 @@ import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.HistoricoAlocacao;
 import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
+import com.google.common.cache.AbstractLoadingCache;
+import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,20 +44,20 @@ public class HistoricoAlocacaoService {
     public ResponseMessage vincularAnalista(HistoricoAlocacao alocacao) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
         
-        	if(historicoAlocacaoDAO.consultaVinculado(alocacao)) {
-        		 response.setStatusCode("401");
-    	         response.setMessage("Usuário já vinculado!");
-    	         response.setResponse(null);
-    	        return response;
-        	}else {
+        if(historicoAlocacaoDAO.consultaVinculado(alocacao)) {
+            response.setStatusCode("401");
+            response.setMessage("Usuário já vinculado!");
+            response.setResponse(null);
+            return response;
+        }else {
 
-        	 alocacao = historicoAlocacaoDAO.vincularAnalista(alocacao);
-	         response.setStatusCode("200");
-	         response.setMessage("Usuario vinculado com sucesso!");
-	         response.setResponse(alocacao);
+            alocacao = historicoAlocacaoDAO.vincularAnalista(alocacao);
+            response.setStatusCode("200");
+            response.setMessage("Usuario vinculado com sucesso!");
+            response.setResponse(historicoAlocacaoDAO.listarHistoricoVinculo(alocacao.getAtividade().getId()));
 	
-	        return response;
-        	}
+            return response;
+        }
         			
         
     }
@@ -63,7 +65,7 @@ public class HistoricoAlocacaoService {
     public ResponseMessage consultaConflito(HistoricoAlocacao alocacao) throws ClassNotFoundException, SQLException, IOException {
     	ResponseMessage response = responseMessage;
     	
-    		Atividade atividade = atividadeDAO.detalheAtividade(alocacao.getAtividade().getId());
+    	Atividade atividade = atividadeDAO.detalheAtividade(alocacao.getAtividade().getId());
 		
 		if(historicoAlocacaoDAO.consultaConflitoAtividade(atividade, alocacao)) {
 	         response.setStatusCode("401");
@@ -92,6 +94,19 @@ public class HistoricoAlocacaoService {
         }
 
         return response;
+    }
+
+
+    public ResponseMessage desvincularAanalista (HistoricoAlocacao historicoAlocacao) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        List<HistoricoAlocacao> alocacaos = historicoAlocacaoDAO.desvincularAanalista(historicoAlocacao);
+
+        response.setStatusCode("200");
+        response.setMessage("Usuario desvinculado com sucesso!");
+        response.setResponse(alocacaos);
+
+        return  response;
     }
     
 }
