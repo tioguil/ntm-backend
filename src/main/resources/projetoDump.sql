@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `db_ntm`.`usuario` (
   `complemento` VARCHAR(100) NULL DEFAULT NULL,
   `cidade` VARCHAR(45) NULL DEFAULT NULL,
   `uf` CHAR(2) NOT NULL,
+  `imagePath` varchar(300) default null,
   `cargo_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_usuario_cargo1_idx` (`cargo_id` ASC),
@@ -362,14 +363,14 @@ insert into habilidade (nome) values ('PostgreSQL');
 
 
 #Insert Usuarios
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('renan.gouveia@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Renan', 'Gouveia', '(11) 7070-7070', '(11) 97070-7070', '00000000010', '33333333-3', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'São Paulo', 'SP', 1);
 #Vinculando Habilidades
 insert habilidade_usuario value(1, 1, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(2, 1, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 insert habilidade_usuario value(3, 1, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('rodrigo.santos@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Rodrigo', 'Santos', '(11) 7070-7070', '(11) 97070-7070', '00017000010', '33333333-3', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'São Paulo', 'SP', 1);
 #Vinculando Habilidades
 insert habilidade_usuario value(8, 2, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
@@ -377,14 +378,14 @@ insert habilidade_usuario value(9, 2, 'Lorem Ipsum é simplesmente uma simulaç�
 insert habilidade_usuario value(5, 2, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('guilherme.brito@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Guilherme', 'Brito', '(21) 8080-8080', '(21) 98080-8080', '00000000011', '44444444-4', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Rio de Janeiro', 'RJ', 2);
 #Vinculando Habilidades
 insert habilidade_usuario value(4, 3, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(5, 3, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
 insert habilidade_usuario value(6, 3, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('jorge.sampaio@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Jorge', 'Sampaio', '(21) 8080-8080', '(21) 98080-8080', '00000012011', '44444444-4', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Rio de Janeiro', 'RJ', 2);
 #Vinculando Habilidades
 insert habilidade_usuario value(13,4, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
@@ -392,60 +393,60 @@ insert habilidade_usuario value(1, 4, 'Lorem Ipsum é simplesmente uma simulaç�
 insert habilidade_usuario value(2, 4, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('leonardo.siqueira@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Leonardo', 'Siqueira', '(11) 9090-9090', '(11) 99090-9090', '00000000012', '55555555-5', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Minas Gerais', 'MG', 3);
 #Vinculando Habilidades
 insert habilidade_usuario value(7, 5, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'tecnico');
 insert habilidade_usuario value(8, 5, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
 insert habilidade_usuario value(9, 5, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('fabricio.caires@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Fabrício', 'Caires', '(11) 9090-9090', '(11) 99090-9090', '000000000147', '55555555-5', 'TESTE DO ANALISTA', 'analista', '00000-000', 'Rua Analista', 	'123', 'Perto da casa do Analista', 'Minas Gerais', 'MG', 3);
 #Vinculando Habilidades
 insert habilidade_usuario value(10, 6, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'junior');
 insert habilidade_usuario value(11, 6, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'pleno');
 insert habilidade_usuario value(12, 6, 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos', 'senior');
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('rodrigo.bossini@nilone.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Rodrigo', 'Bossini', '(11) 1010-1010', '(11) 91010-1010', '00000000013', '66666666-6', 'TESTE DO GERENTE', 'gestor', '00000-000', 'Rua Gestor', 	'123', 'Perto da casa do Gestor', 'São Paulo', 'SP', 4);
 
-insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id) 
+insert into usuario (email, senha, nome, sobrenome, telefone, celular, cpf_cnpj, rg, observacao, perfil_acesso, cep, endereco, numero_endereco, complemento, cidade, uf, cargo_id)
 values ('admin@empresa.com.br', '$2a$10$LxlmcNDtrKCnnLjkSezoA.8rz6.tYs5U/rnxXYMMknDBxr.D5/JIu', 'Admin', 'Projeto', '(11) 1010-1010', '(11) 91010-1010', '00000000013', '66666666-6', 'TESTE DO ADMIN', 'adm', '00000-000', 'Rua Gestor', 	'123', 'Perto da casa do Gestor', 'São Paulo', 'SP', 5);
 
 
 
 #Insert Projetos
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000001', 'Projeto Teste INC.', 'Projeto da empresa 1, software Web.', 10, '2018-09-04', 'finalizado', 1, 1);
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000002', 'Projeto Teste INC.', 'Projeto da empresa 1, software Web.', 10, '2018-09-04', 'finalizado', 1, 1);
 
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000003', 'Projeto Teste INC.', 'Projeto da empresa 2, software Web.', 10, '2018-09-04', 'finalizado', 2, 1);
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000004', 'Projeto Teste INC.', 'Projeto da empresa 2, software Web.', 10, '2018-09-04', 'finalizado', 2, 1);
 
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000005', 'Projeto Teste INC.', 'Projeto da empresa 3, software Web.', 10, '2018-09-10', 'iniciado', 3, 1);
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000006', 'Projeto Teste INC.', 'Projeto da empresa 3, software Web.', 10, '2018-09-04', 'finalizado', 3, 1);
 
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000007', 'Projeto Teste INC.', 'Projeto da empresa 4, software Web.', 10, '2018-09-04', 'finalizado', 4, 1);
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000008', 'Projeto Teste INC.', 'Projeto da empresa 4, software Web.', 10, '2018-09-04', 'finalizado', 4, 1);
 
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000009', 'Projeto Teste INC.', 'Projeto da empresa 5, software Web.', 10, '2018-09-04', 'finalizado', 5, 1);
-insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id) 
+insert into projeto (numero_projeto, nome, descricao, estimativa_esforco, inicio, status, cliente_id, usuario_id)
 values ('00000000010', 'Projeto Teste INC.', 'Projeto da empresa 5, software Web.', 10, '2018-09-04', 'finalizado', 5, 1);
 
 
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 1);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 1);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 1);
@@ -455,9 +456,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 1);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 2);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 2);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 2);
@@ -467,9 +468,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 2);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 3);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 3);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 3);
@@ -479,9 +480,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 3);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 4);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 4);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 4);
@@ -491,9 +492,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 4);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 5);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 5);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 5);
@@ -503,9 +504,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 5);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 6);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 6);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 6);
@@ -516,9 +517,9 @@ values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08'
 
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 7);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 7);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 7);
@@ -528,9 +529,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 7);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 8);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 8);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 8);
@@ -540,9 +541,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 8);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 9);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 9);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 9);
@@ -552,9 +553,9 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 9);
 
 #Insert Atividades
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Menu', 'O menu deverá ser criado...', 1, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 10);
-insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id) 
+insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Login', 'O menu deverá ser criado...', 2, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 10);
 insert into atividade (nome, descricao, complexidade, data_entrega, cep, endereco, numero_endereco, cidade, uf, status, projeto_id)
 values ('Criar Home', 'O menu deverá ser criado...', 3, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 10);
@@ -564,247 +565,247 @@ insert into atividade (nome, descricao, complexidade, data_entrega, cep, enderec
 values ('Funcao Envio de Email', 'O menu deverá ser criado...', 5, '2018-09-08', '00000-000', 'Avenida Vital Brasil', '1000', 'São Paulo', 'SP', 'iniciada', 10);
 
 #Vincular Usuarios a atividades `atividade_id`,`usuario_id`
-insert atividade_usuario value(1,1);
+insert atividade_usuario(atividade_id, usuario_id) values(1,1);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 1, 1);
-insert atividade_usuario value(2,1);
+insert atividade_usuario(atividade_id, usuario_id) values(2,1);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 2, 1);
-insert atividade_usuario value(3,1);
+insert atividade_usuario(atividade_id, usuario_id) values(3,1);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 3, 1);
-insert atividade_usuario value(4,1);
+insert atividade_usuario(atividade_id, usuario_id) values(4,1);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 4, 1);
-insert atividade_usuario value(5,1);
+insert atividade_usuario(atividade_id, usuario_id) values(5,1);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 5, 1);
 
-insert atividade_usuario value(6,1);
+insert atividade_usuario(atividade_id, usuario_id) values(6,1);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 6, 1);
-insert atividade_usuario value(6,2);
+insert atividade_usuario(atividade_id, usuario_id) values(6,2);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(0, 6, 2);
-insert atividade_usuario value(7,2);
+insert atividade_usuario(atividade_id, usuario_id) values(7,2);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 7, 2);
-insert atividade_usuario value(8,2);
+insert atividade_usuario(atividade_id, usuario_id) values(8,2);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 8, 2);
-insert atividade_usuario value(9,2);
+insert atividade_usuario(atividade_id, usuario_id) values(9,2);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 9, 2);
-insert atividade_usuario value(10,2);
+insert atividade_usuario(atividade_id, usuario_id) values(10,2);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 10, 2);
 
 
-insert atividade_usuario value(11,2);
+insert atividade_usuario(atividade_id, usuario_id) values(11,2);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 11, 2);
-insert atividade_usuario value(11,3);
+insert atividade_usuario(atividade_id, usuario_id) values(11,3);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 11, 3);
-insert atividade_usuario value(12,3);
+insert atividade_usuario(atividade_id, usuario_id) values(12,3);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 12, 3);
-insert atividade_usuario value(13,3);
+insert atividade_usuario(atividade_id, usuario_id) values(13,3);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 13, 3);
-insert atividade_usuario value(14,3);
+insert atividade_usuario(atividade_id, usuario_id) values(14,3);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 14, 3);
-insert atividade_usuario value(15,3);
+insert atividade_usuario(atividade_id, usuario_id) values(15,3);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 15, 3);
 
-insert atividade_usuario value(16,3);
+insert atividade_usuario(atividade_id, usuario_id) values(16,3);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 16, 3);
-insert atividade_usuario value(16,4);
+insert atividade_usuario(atividade_id, usuario_id) values(16,4);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 16, 4);
-insert atividade_usuario value(17,4);
+insert atividade_usuario(atividade_id, usuario_id) values(17,4);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 17, 4);
-insert atividade_usuario value(18,4);
+insert atividade_usuario(atividade_id, usuario_id) values(18,4);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 18, 4);
-insert atividade_usuario value(19,4);
+insert atividade_usuario(atividade_id, usuario_id) values(19,4);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 19, 4);
-insert atividade_usuario value(20,4);
+insert atividade_usuario(atividade_id, usuario_id) values(20,4);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 20, 4);
 
-insert atividade_usuario value(21,4);
+insert atividade_usuario(atividade_id, usuario_id) values(21,4);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 21, 4);
-insert atividade_usuario value(21,5);
+insert atividade_usuario(atividade_id, usuario_id) values(21,5);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 21, 5);
-insert atividade_usuario value(22,5);
+insert atividade_usuario(atividade_id, usuario_id) values(22,5);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 22, 5);
-insert atividade_usuario value(23,5);
+insert atividade_usuario(atividade_id, usuario_id) values(23,5);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 23, 5);
-insert atividade_usuario value(24,5);
+insert atividade_usuario(atividade_id, usuario_id) values(24,5);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 24, 5);
-insert atividade_usuario value(25,5);
+insert atividade_usuario(atividade_id, usuario_id) values(25,5);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 25, 5);
 
-insert atividade_usuario value(26,5);
+insert atividade_usuario(atividade_id, usuario_id) values(26,5);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 26, 5);
-insert atividade_usuario value(26,6);
+insert atividade_usuario(atividade_id, usuario_id) values(26,6);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 26, 6);
-insert atividade_usuario value(27,6);
+insert atividade_usuario(atividade_id, usuario_id) values(27,6);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 27, 6);
-insert atividade_usuario value(28,6);
+insert atividade_usuario(atividade_id, usuario_id) values(28,6);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 28, 6);
-insert atividade_usuario value(29,6);
+insert atividade_usuario(atividade_id, usuario_id) values(29,6);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 29, 6);
-insert atividade_usuario value(30,6);
+insert atividade_usuario(atividade_id, usuario_id) values(30,6);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 30, 6);
 
-insert atividade_usuario value(31,6);
+insert atividade_usuario(atividade_id, usuario_id) values(31,6);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 31, 6);
-insert atividade_usuario value(31,7);
+insert atividade_usuario(atividade_id, usuario_id) values(31,7);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 31, 7);
-insert atividade_usuario value(32,7);
+insert atividade_usuario(atividade_id, usuario_id) values(32,7);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 32, 7);
-insert atividade_usuario value(33,7);
+insert atividade_usuario(atividade_id, usuario_id) values(33,7);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 33, 7);
-insert atividade_usuario value(34,7);
+insert atividade_usuario(atividade_id, usuario_id) values(34,7);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 34, 7);
-insert atividade_usuario value(35,7);
+insert atividade_usuario(atividade_id, usuario_id) values(35,7);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 35, 7);
 
-insert atividade_usuario value(36,7);
+insert atividade_usuario(atividade_id, usuario_id) values(36,7);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 36, 7);
-insert atividade_usuario value(36,8);
+insert atividade_usuario(atividade_id, usuario_id) values(36,8);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 36, 8);
-insert atividade_usuario value(37,8);
+insert atividade_usuario(atividade_id, usuario_id) values(37,8);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 37, 8);
-insert atividade_usuario value(38,8);
+insert atividade_usuario(atividade_id, usuario_id) values(38,8);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 38, 8);
-insert atividade_usuario value(39,8);
+insert atividade_usuario(atividade_id, usuario_id) values(39,8);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 39, 8);
-insert atividade_usuario value(40,8);
+insert atividade_usuario(atividade_id, usuario_id) values(40,8);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 40, 8);
-insert atividade_usuario value(1,8);
+insert atividade_usuario(atividade_id, usuario_id) values(1,8);
 #historico alocacao status - idatividade - idusuario
 insert historico_alocacao(status,atividade_usuario_atividade_id, atividade_usuario_usuario_id) value(1, 1, 8);
 
 
 #insert Comentario
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 1, 1);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 2, 1);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 3, 1);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 4, 1);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 5, 1);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 6, 2);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 7, 2);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 8, 2);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 9, 2);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 10, 2);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 11, 3);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 12, 3);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 13, 3);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 14, 3);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 15, 3);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 16, 4);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 17, 4);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 18, 4);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 19, 4);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 20, 4);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 21, 5);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 22, 5);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 23, 5);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 24, 5);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 25, 5);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 26, 6);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 27, 6);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 28, 6);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 29, 6);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 30, 6);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 31, 7);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 32, 7);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 33, 7);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 34, 7);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 35, 7);
 
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 36, 8);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 37, 8);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 38, 8);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 39, 8);
-insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert comentario(comentario,atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('Ao contrário do que se acredita, Lorem Ipsum não é simplesmente um texto randômico. Com mais de 2000 anos, suas', 40, 8);
 
 
@@ -901,90 +902,90 @@ value('C:/meu documentos', 12348, 40,8, 'codigoFonte.pdf', 'Descrição do anexo
 
 
 #desc horario_trabalho;
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 1,1);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 2,1);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 3,1);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 4,1);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 5,1);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 6,2);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 7,2);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 8,2);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 9,2);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 10,2);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 11,3);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 12,3);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 13,3);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 14,3);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 15,3);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 16,4);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 17,4);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 18,4);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 19,4);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 20,4);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 21,5);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 22,5);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 23,5);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 24,5);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 25,5);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 26,6);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 27,6);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 28,6);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 29,6);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 30,6);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 31,7);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 32,7);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 33,7);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 34,7);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 35,7);
 
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-27 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 36,8);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-10 09:00:00', '2018-09-15 17:00:00', '-23.53', '-46.79', 37,8);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-15 09:00:00', '2018-09-27 17:00:00', '-23.53', '-46.79', 38,8);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-01 09:00:00', '2018-09-09 17:00:00', '-23.53', '-46.79', 39,8);
-insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id) 
+insert horario_trabalho(data_inicio, data_fim, latitude, longitude, atividade_usuario_atividade_id, atividade_usuario_usuario_id)
 value('2018-09-20 09:00:00', '2018-09-25 17:00:00', '-23.53', '-46.79', 40,8);
