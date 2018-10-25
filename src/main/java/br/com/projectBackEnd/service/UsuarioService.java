@@ -233,7 +233,7 @@ public class UsuarioService {
         return response;
     }
 
-    public ResponseMessage saveImagePerfil(MultipartFile image, Usuario usuario) {
+    public ResponseMessage saveImagePerfil(MultipartFile image, Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
 
         ImagePerfil imagePerfil = new ImagePerfil();
         imagePerfil.setUsuario(usuario);
@@ -241,6 +241,7 @@ public class UsuarioService {
         imagePerfil = disco.saveImagePerfil(imagePerfil);
         ResponseMessage response = responseMessage;
 
+        usuarioDAO.saveImagePerfil(imagePerfil);
         response.setMessage("Imagem salva com sucesso");
         response.setStatusCode("200");
         response.setResponse(imagePerfil);
@@ -248,12 +249,12 @@ public class UsuarioService {
         return response;
     }
 
-    public ResponseMessage deleteImage(Usuario usuario) {
+    public ResponseMessage deleteImage(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
         ResponseMessage response = responseMessage;
 
-        disco.deleteImage("date1540440111846_User72015-wallpaper_111525594_269.jpg");
+        disco.deleteImage(usuario.getImagePath());
         response.setMessage("Imagem deletada com sucesso");
-
+        usuarioDAO.deleteImage(usuario);
         response.setStatusCode("200");
         response.setResponse(null);
 

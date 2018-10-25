@@ -2,6 +2,7 @@ package br.com.projectBackEnd.dao;
 
 import br.com.projectBackEnd.model.Cargo;
 import br.com.projectBackEnd.model.Habilidade;
+import br.com.projectBackEnd.model.ImagePerfil;
 import br.com.projectBackEnd.model.Usuario;
 import org.springframework.stereotype.Repository;
 
@@ -49,6 +50,7 @@ public class UsuarioDAO extends GenericDAO{
         if(rs.next()){
             usuario.setEmail(email);
             usuario.setSenha(rs.getString("senha"));
+            usuario.setImagePath(rs.getString("imagePath"));
             usuario.setTelefone(rs.getString("telefone"));
             usuario.setCelular(rs.getString("celular"));
             usuario.setId(rs.getLong("id"));
@@ -80,6 +82,7 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setTelefone(rs.getString("telefone"));
             usuario.setCelular(rs.getString("celular"));
             usuario.setId(rs.getLong("id"));
+            usuario.setImagePath(rs.getString("imagePath"));
             usuario.setNome(rs.getString("nome"));
             usuario.setCpfCnpj(rs.getString("cpf_cnpj"));
             usuario.setRg(rs.getString("rg"));
@@ -212,6 +215,7 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setTelefone(rs.getString("telefone"));
             usuario.setCelular(rs.getString("celular"));
             usuario.setId(rs.getLong("id"));
+            usuario.setImagePath(rs.getString("imagePath"));
             usuario.setNome(rs.getString("nome"));
             usuario.setCpfCnpj(rs.getString("cpf_cnpj"));
             usuario.setRg(rs.getString("rg"));
@@ -255,6 +259,7 @@ public class UsuarioDAO extends GenericDAO{
             usuario.setTelefone(rs.getString("telefone"));
             usuario.setCelular(rs.getString("celular"));
             usuario.setId(rs.getLong("id"));
+            usuario.setImagePath(rs.getString("imagePath"));
             usuario.setNome(rs.getString("nome"));
             usuario.setCpfCnpj(rs.getString("cpf_cnpj"));
             usuario.setRg(rs.getString("rg"));
@@ -274,4 +279,13 @@ public class UsuarioDAO extends GenericDAO{
         }
     }
 
+    public void saveImagePerfil(ImagePerfil imagePerfil) throws SQLException, IOException, ClassNotFoundException {
+	    String sql = "update usuario set imagePath = ? where id = ?";
+	    super.executeQuery(sql, imagePerfil.getDiretorio(), imagePerfil.getUsuario().getId());
+    }
+
+    public void deleteImage(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
+        String sql = "update usuario set imagePath = ? where id = ?";
+        super.executeQuery(sql, "sem", usuario.getId());
+    }
 }
