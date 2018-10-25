@@ -178,8 +178,8 @@ public class UsuarioDAO extends GenericDAO{
 
     public List<Usuario> pesquisaAnalista(String search) throws SQLException, IOException, ClassNotFoundException {
 	    search = "%"+search+"%";
-	    String sql = "select us.id, us.email, us.nome,us.cidade, ca.cargo from usuario us join habilidade_usuario hu on us.id = hu.usuario_id join habilidade ha on ha.id = hu.habilidade_id join cargo ca on us.cargo_id = ca.id where us.perfil_acesso = 'analista' and (us.nome like ? or us.email like ? or ha.nome like ? or ca.cargo like ? or us.cpf_cnpj like ?) group by us.id limit 5";
-	    ResultSet rs = super.executeResutSet(sql, search, search, search , search, search );
+	    String sql = "select us.id, us.email, us.nome,us.cidade, ca.cargo from usuario us left join cargo ca on us.cargo_id = ca.id where us.perfil_acesso = 'analista' and (us.nome like ? or us.email like ? or ca.cargo like ? or us.cpf_cnpj like ?) group by us.id limit 5";
+	    ResultSet rs = super.executeResutSet(sql, search, search, search , search );
 
         List<Usuario> list = new ArrayList<>();
 	    while (rs.next()){
