@@ -1,17 +1,21 @@
 package br.com.projectBackEnd.service;
 
+import br.com.projectBackEnd.Utili.Disco;
 import br.com.projectBackEnd.Utili.EnviarEmail;
 import br.com.projectBackEnd.Utili.TokenGenerator;
 import br.com.projectBackEnd.dao.TokenDao;
 import br.com.projectBackEnd.dao.UsuarioDAO;
 import br.com.projectBackEnd.model.Habilidade;
+import br.com.projectBackEnd.model.ImagePerfil;
 import br.com.projectBackEnd.model.ResponseMessage;
 import br.com.projectBackEnd.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -32,6 +36,8 @@ public class UsuarioService {
 
     @Autowired
     private HabilidadeService habilidadeService;
+    @Autowired
+    private Disco disco;
 
     /**
      *
@@ -215,5 +221,43 @@ public class UsuarioService {
     	response.setResponse(usuario);
     		
     	return response;    	
+    }
+
+    public ResponseMessage getImagePerfil(String name) throws IOException {
+        ResponseMessage response = responseMessage;
+        String image = disco.getImage(name);
+        response.setMessage("Image localizada com sucesso");
+        response.setStatusCode("200");
+        response.setResponse(image);
+
+        return response;
+    }
+
+    public ResponseMessage saveImagePerfil(MultipartFile image, Usuario usuario) {
+
+        ImagePerfil imagePerfil = new ImagePerfil();
+        imagePerfil.setUsuario(usuario);
+        imagePerfil.setMultipartFile(image);
+        imagePerfil = disco.saveImagePerfil(imagePerfil);
+        ResponseMessage response = responseMessage;
+
+        response.setMessage("Imagem salva com sucesso");
+        response.setStatusCode("200");
+        response.setResponse(imagePerfil);
+
+        return response;
+    }
+
+    public ResponseMessage deleteImage(Usuario usuario) {
+        ResponseMessage response = responseMessage;
+
+        disco.deleteImage("date1540440111846_User72015-wallpaper_111525594_269.jpg");
+        response.setMessage("Imagem deletada com sucesso");
+
+        response.setStatusCode("200");
+        response.setResponse(null);
+
+        return response;
+
     }
 }

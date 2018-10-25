@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -173,4 +174,57 @@ public class UsuarioController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 
+	@GetMapping("/analista/getimage/{name}")
+	public ResponseEntity<ResponseMessage> getImagePerfil(@PathVariable String name){
+		ResponseMessage response = responseMessage;
+
+		try{
+			response = usuarioService.getImagePerfil(name);
+
+		}catch (Exception e ){
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@PostMapping("/analista/uploadimage")
+	public ResponseEntity<ResponseMessage> saveImagePerfil(@RequestParam MultipartFile image, Authentication authentication){
+		ResponseMessage response = responseMessage;
+
+		try{
+			Usuario usuario = (Usuario) authentication.getPrincipal();
+			response = usuarioService.saveImagePerfil(image,usuario);
+		}catch (Exception e){
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@PostMapping("/analista/deleteimage")
+	public ResponseEntity<ResponseMessage> deleteImage(Authentication authentication){
+		ResponseMessage response = responseMessage;
+
+		try{
+			Usuario usuario = (Usuario) authentication.getPrincipal();
+			response = usuarioService.deleteImage(usuario);
+		}catch (Exception e){
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
 }
