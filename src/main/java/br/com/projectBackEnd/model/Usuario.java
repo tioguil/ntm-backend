@@ -30,6 +30,7 @@ public class Usuario {
 	private String uf;
 	private Cargo cargo;
 	private Token token;
+	private String imagePath;
 	private String novaSenha;
 	private List<Habilidade> habilidades;
 	private List<HistoricoAlocacao> historicoAlocacao;
