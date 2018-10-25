@@ -15,7 +15,7 @@ public class AnexoDAO extends  GenericDAO{
 
     public List<Anexo> listAnexosByAtividades(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
 
-        String sql = "select ax.atividade_usuario_usuario_id ,ax.id, ax.local_armazenamento, ax.nome_arquivo, ax.descricao, ax.data_insercao, ax.tamanho, us.nome, us.sobrenome from anexo ax join usuario us on us.id = ax.atividade_usuario_usuario_id where ax.atividade_usuario_atividade_id = ?";
+        String sql = "select ax.atividade_usuario_usuario_id ,ax.id, ax.local_armazenamento, ax.nome_arquivo, ax.descricao, ax.data_insercao, ax.tamanho, ax.atividade_usuario_usuario_id, us.nome, us.sobrenome from anexo ax join usuario us on us.id = ax.atividade_usuario_usuario_id where ax.atividade_usuario_atividade_id = ?";
         ResultSet rs = super.executeResutSet(sql, idAtividade);
 
         List<Anexo> anexos = new ArrayList<>();
@@ -29,6 +29,7 @@ public class AnexoDAO extends  GenericDAO{
             Usuario usuario = new Usuario();
             usuario.setId(rs.getLong("atividade_usuario_usuario_id"));
             usuario.setNome(rs.getString("nome"));
+            usuario.setId(rs.getLong("atividade_usuario_usuario_id"));
             usuario.setSobreNome(rs.getString("sobrenome"));
             anexo.setUsuario(usuario);
             anexos.add(anexo);
