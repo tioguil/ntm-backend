@@ -16,7 +16,7 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
 
 
     public List<HistoricoAlocacao> listAlocadosByAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "select * from atividade_usuario au join historico_alocacao ha on atividade_usuario_atividade_id = atividade_id where atividade_id = ? and au.status = 1 group by usuario_id";
+        String sql = "select * from atividade_usuario join usuario us on us.id = usuario_id where atividade_id = ? and status = 1 and perfil_acesso = 'analista'";
 
         ResultSet rs = super.executeResutSet(sql, idAtividade);
 
@@ -24,9 +24,6 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
 
         while (rs.next()){
             HistoricoAlocacao alocacao = new HistoricoAlocacao();
-            alocacao.setId(rs.getLong("id"));
-            alocacao.setDataAlteracao(rs.getTimestamp("data_alteracao"));
-            alocacao.setStatus(rs.getInt("status"));
             Usuario usuario = new Usuario();
             usuario.setId(rs.getLong("usuario_id"));
             alocacao.setUsuario(usuario);
