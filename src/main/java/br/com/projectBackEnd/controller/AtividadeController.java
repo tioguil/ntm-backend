@@ -170,5 +170,23 @@ public class AtividadeController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
 
+	@ApiOperation("Listar atividades do Dashboard")
+	@GetMapping("/gestor/listar/dash/{qtDias}")
+	public ResponseEntity<ResponseMessage> listarAtividadesByDash(Authentication authentication, @PathVariable("qtDias") Integer qtdias){
+		ResponseMessage response = responseMessage;
 
+		try {
+			response = atividadeService.listarAtividadesByDash(qtdias);
+		} catch (Exception e){
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+	}
 }
+

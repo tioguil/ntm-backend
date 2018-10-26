@@ -165,5 +165,25 @@ public class AtividadeService {
 
         return response;
     }
+
+    public ResponseMessage listarAtividadesByDash(Integer qtdias) throws SQLException, IOException, ClassNotFoundException{
+
+        ResponseMessage response = responseMessage;
+
+        List<Atividade> atividades = atividadeDAO.listarAtividadesByDash(qtdias);
+
+        if (atividades.size() > 0){
+            response.setResponse(atividades);
+            response.setStatusCode("200");
+            response.setMessage("Total de atividades no periodo " + atividades.size());
+        } else {
+            response.setResponse(atividades);
+            response.setStatusCode("200");
+            response.setMessage("Nenhuma atividade encontrada no periodo");
+        }
+
+        return response;
+
+    }
   
 }

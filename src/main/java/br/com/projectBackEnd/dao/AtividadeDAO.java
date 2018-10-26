@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import br.com.projectBackEnd.model.Atividade;
@@ -166,6 +165,42 @@ public class AtividadeDAO extends GenericDAO{
         return list;
 
 
+    }
+
+    public List<Atividade> listarAtividadesByDash(Integer qtdDias) throws SQLException, IOException, ClassNotFoundException{
+
+
+        java.util.Date dataAtual = new java.util.Date();
+        java.util.Date dataSubtraida = new java.util.Date();
+
+        //Representação de um dia em milisegundos
+        Long diasAsmili = 86400000L;
+
+        //Get dia atual em milissegundos
+        Long mili = dataSubtraida.getTime();
+
+        dataAtual.setTime(mili + 86400000L);
+
+        diasAsmili = diasAsmili * qtdDias;
+
+        mili -= diasAsmili;
+
+        dataSubtraida.setTime(mili);
+
+        String sql = "SELECT status, count(*) 'quantidade' from atividade where data_criacao between ? and ? group by status";
+
+        ResultSet rs = super.executeResutSet(sql,dataSubtraida,dataAtual);
+
+        List<Atividade> atividades = new ArrayList<>();
+
+        while (rs.next()){
+            Atividade atividade = new Atividade();
+            atividade.setStatus(rs.getString("status"));
+            atividade.setQtd(rs.getInt("quantidade"));
+            atividades.add(atividade);
+        }
+
+        return atividades;
     }
 
 }

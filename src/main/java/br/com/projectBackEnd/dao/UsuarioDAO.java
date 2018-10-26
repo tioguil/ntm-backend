@@ -1,15 +1,13 @@
 package br.com.projectBackEnd.dao;
 
-import br.com.projectBackEnd.model.Cargo;
-import br.com.projectBackEnd.model.Habilidade;
-import br.com.projectBackEnd.model.ImagePerfil;
-import br.com.projectBackEnd.model.Usuario;
+import br.com.projectBackEnd.model.*;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -288,4 +286,7 @@ public class UsuarioDAO extends GenericDAO{
         String sql = "update usuario set imagePath = ? where id = ?";
         super.executeQuery(sql, "sem", usuario.getId());
     }
+
+
+
 }

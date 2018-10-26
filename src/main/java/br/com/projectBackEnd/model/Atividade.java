@@ -21,6 +21,7 @@ public class Atividade {
     private Date dataEntrega;
     private Date dataCriacao;
     private Integer complexidade;
+    private Integer qtd;
     private String cep;
     private String endereco;
     private String enderecoNumero;
