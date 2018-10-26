@@ -130,15 +130,15 @@ public class Disco {
     public String getImage(String fileName) throws IOException {
         String base64Image = "";
 
-            Path diretorioPath = Paths.get(diretorioRaizImage);
-            Path filePath = diretorioPath.resolve(fileName).normalize();
-            File folderInput = filePath.toFile();
-            FileInputStream imageInFile = new FileInputStream(folderInput);
-            byte imageData[] = new byte[(int) folderInput.length()];
-            imageInFile.read(imageData);
-            base64Image = Base64.encodeBase64String(imageData);
+        Path diretorioPath = Paths.get(diretorioRaizImage);
+        Path filePath = diretorioPath.resolve(fileName).normalize();
+        File folderInput = filePath.toFile();
+        FileInputStream imageInFile = new FileInputStream(folderInput);
+        byte imageData[] = new byte[(int) folderInput.length()];
+        imageInFile.read(imageData);
+        base64Image = Base64.encodeBase64String(imageData);
 
-            return base64Image;
+        return base64Image;
     }
 
 
