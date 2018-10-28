@@ -18,6 +18,7 @@ public class Projeto {
     private String nome;
     private String descricao;
     private Integer estimativaEsforco;
+    private Integer quantidade;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date inicio;
     @DateTimeFormat(pattern="yyyy-MM-dd")

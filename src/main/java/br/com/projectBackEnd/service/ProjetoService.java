@@ -6,6 +6,7 @@ import br.com.projectBackEnd.model.Atividade;
 import br.com.projectBackEnd.model.Cliente;
 import br.com.projectBackEnd.model.Projeto;
 import br.com.projectBackEnd.model.ResponseMessage;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,6 +88,25 @@ public class ProjetoService {
         response.setMessage("Projeto atualizado com sucesso!");
 
         return response;
+    }
+
+    public ResponseMessage listarProjectByDash(Integer qtDias) throws  SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        List<Projeto> projetos = projetoDAO.listarProjectsByDash(qtDias);
+
+        if (projetos.size() > 0) {
+            response.setResponse(projetos);
+            response.setStatusCode("200");
+            response.setMessage("Total de projetos encontrados " + projetos.size());
+
+        } else {
+            response.setResponse(projetos);
+            response.setMessage("Nenhum projeto encontrado");
+            response.setStatusCode("200");
+        }
+
+        return  response;
     }
 
 }

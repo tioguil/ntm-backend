@@ -115,4 +115,19 @@ public class ProjetoController {
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 
 	}
+
+	@GetMapping("/gestor/listarProject/dash/{qtdDias}")
+	public ResponseEntity<ResponseMessage> listarProjectsByDash(@PathVariable("qtdDias") Integer qtdias, Authentication authentication ){
+        ResponseMessage response = responseMessage;
+
+        try {
+            response = projetoService.listarProjectByDash(qtdias);
+        } catch (Exception e){
+            e.printStackTrace();
+            response.setStatusCode("500");
+            response.setMessage(e.getMessage());
+            response.setResponse(null);
+        }
+        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+    }
 }

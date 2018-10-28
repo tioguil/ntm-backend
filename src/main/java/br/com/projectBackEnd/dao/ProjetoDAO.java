@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -91,10 +92,48 @@ public class ProjetoDAO extends GenericDAO{
             return null;
         }
     }
+
     public Projeto alteraStatus(Projeto projeto) throws SQLException, IOException, ClassNotFoundException {
         String sql = "update projeto set status = ? where id = ?";
         super.executeQuery(sql, projeto.getStatus(), projeto.getId());
 		return projeto;
+    }
+
+    public List<Projeto> listarProjectsByDash(Integer qtdDias) throws SQLException, IOException, ClassNotFoundException {
+
+
+        Date dataAtual = new Date();
+        Date dataSubtraida = new Date();
+
+        Long diasAsmili = 86400000L;
+
+        //Get dia atual em milissegundos
+        Long mili = dataSubtraida.getTime();
+
+        dataAtual.setTime(mili + 86400000L);
+
+        diasAsmili = diasAsmili * qtdDias;
+
+        mili -= diasAsmili;
+
+        dataSubtraida.setTime(mili);
+
+        String sql = "SELECT status, count(*) 'quantidade' from projeto where inicio between ? and ? group by status";
+
+
+        ResultSet rs = super.executeResutSet(sql, dataSubtraida, dataAtual);
+
+        List<Projeto> projetos = new ArrayList<>();
+
+        while (rs.next()){
+            Projeto projeto = new Projeto();
+            projeto.setStatus(rs.getString("status"));
+            projeto.setQuantidade(rs.getInt("quantidade"));
+
+            projetos.add(projeto);
+        }
+
+        return projetos;
     }
 
 }
