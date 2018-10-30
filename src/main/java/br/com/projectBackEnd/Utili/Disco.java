@@ -138,6 +138,7 @@ public class Disco {
         imageInFile.read(imageData);
         base64Image = Base64.encodeBase64String(imageData);
 
+        imageInFile.close();
         return base64Image;
     }
 

@@ -284,7 +284,7 @@ public class UsuarioDAO extends GenericDAO{
 
     public void deleteImage(Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
         String sql = "update usuario set imagePath = ? where id = ?";
-        super.executeQuery(sql, "sem", usuario.getId());
+        super.executeQuery(sql, "", usuario.getId());
     }
 
 

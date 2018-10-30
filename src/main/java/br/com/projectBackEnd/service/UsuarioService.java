@@ -236,6 +236,10 @@ public class UsuarioService {
 
     public ResponseMessage saveImagePerfil(MultipartFile image, Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
 
+        if(!usuario.getImagePath().equals("") || usuario.getImagePath() != null){
+            deleteImage(usuario);
+        }
+
         ImagePerfil imagePerfil = new ImagePerfil();
         imagePerfil.setUsuario(usuario);
         imagePerfil.setMultipartFile(image);
