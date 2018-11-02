@@ -12,10 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Date;
 
 @RestController
 @RequestMapping("/atividade")
@@ -177,6 +178,27 @@ public class AtividadeController {
 
 		try {
 			response = atividadeService.listarAtividadesByDash(qtdias);
+		} catch (Exception e){
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+
+	}
+
+	@GetMapping("/analista/search/{status}/{dataInicial}/{dataFim}")
+	public ResponseEntity<ResponseMessage> buscaByStatusData(@PathVariable("status") String status, @PathVariable Date dataInicial,
+															 @PathVariable("dataFim") Date dataFim, Authentication authentication){
+		ResponseMessage response = responseMessage;
+
+		Usuario usuario = (Usuario) authentication.getPrincipal();
+
+		try {
+			response = atividadeService.buscaByStatusData(usuario.getId(), status, dataInicial, dataFim);
 		} catch (Exception e){
 			e.printStackTrace();
 			response.setStatusCode("500");

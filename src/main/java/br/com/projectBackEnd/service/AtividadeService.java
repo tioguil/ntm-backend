@@ -185,5 +185,22 @@ public class AtividadeService {
         return response;
 
     }
-  
+
+    public ResponseMessage buscaByStatusData(Long idAnalista, String status, Date dataInicial, Date dataFim) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        List<Atividade> atividades = atividadeDAO.buscaByStatusData(idAnalista, status,dataInicial, dataFim);
+
+        if (atividades.size() > 0){
+            response.setResponse(atividades);
+            response.setStatusCode("200");
+            response.setMessage("Total de atividades no periodo " + atividades.size());
+        } else {
+            response.setResponse(atividades);
+            response.setStatusCode("200");
+            response.setMessage("Nenhuma atividade encontrada no periodo");
+        }
+
+        return response;
+    }
 }

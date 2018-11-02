@@ -203,4 +203,41 @@ public class AtividadeDAO extends GenericDAO{
         return atividades;
     }
 
+    public List<Atividade> buscaByStatusData(Long idAnalista, String status, Date dataInicial, Date dataFim) throws SQLException, IOException, ClassNotFoundException {
+        String sqlTodos = "select * from atividade atv join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1 and data_criacao between ? and ?";
+        String sqlStatus = "select * from atividade atv join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1 and data_criacao between ? and ? and atv.status = ?";
+
+        ResultSet rs;
+        if(status.equals("todos")){
+            rs = executeResutSet(sqlTodos,idAnalista, dataInicial, dataFim);
+        }else {
+            rs = executeResutSet(sqlStatus,idAnalista, dataInicial, dataFim, status);
+        }
+
+        List<Atividade> list = new ArrayList<>();
+
+        while (rs.next()){
+            Atividade atividade = new Atividade();
+            atividade.setId(rs.getLong("id"));
+            atividade.setNome(rs.getString("nome"));
+            atividade.setDescricao(rs.getString("descricao"));
+            atividade.setComplexidade(rs.getInt("complexidade"));
+            atividade.setDataCriacao(rs.getTimestamp("data_criacao"));
+            atividade.setDataEntrega(rs.getDate("data_entrega"));
+            atividade.setCep(rs.getString("cep"));
+            atividade.setEndereco(rs.getString("endereco"));
+            atividade.setEnderecoNumero(rs.getString("numero_endereco"));
+            atividade.setComplemento(rs.getString("complemento"));
+            atividade.setCidade(rs.getString("cidade"));
+            atividade.setUf(rs.getString("uf"));
+            atividade.setStatus(rs.getString("status"));
+            Projeto projeto = new Projeto();
+            projeto.setId(rs.getLong("projeto_id"));
+            atividade.setProjeto(projeto);
+            list.add(atividade);
+
+        }
+
+        return list;
+    }
 }
