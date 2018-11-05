@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/atividade")
@@ -190,15 +191,21 @@ public class AtividadeController {
 
 	}
 
-	@GetMapping("/analista/search/{status}/{dataInicial}/{dataFim}")
-	public ResponseEntity<ResponseMessage> buscaByStatusData(@PathVariable("status") String status, @PathVariable Date dataInicial,
-															 @PathVariable("dataFim") Date dataFim, Authentication authentication){
+	@GetMapping({"/analista/search/{status}/{dataInicial}/{dataFim}", "/analista/search/{status}"})
+	public ResponseEntity<ResponseMessage> buscaByStatusData(@PathVariable("status") String status, @PathVariable Optional<Date> dataInicial,
+															 @PathVariable("dataFim") Optional<Date> dataFim, Authentication authentication){
 		ResponseMessage response = responseMessage;
 
 		Usuario usuario = (Usuario) authentication.getPrincipal();
 
 		try {
-			response = atividadeService.buscaByStatusData(usuario.getId(), status, dataInicial, dataFim);
+			if(dataInicial.isPresent() && dataFim.isPresent()){
+				response = atividadeService.buscaByStatusData(usuario.getId(), status, dataInicial.get(), dataFim.get());
+			}else {
+				response = atividadeService.buscaByStatus(usuario.getId(), status);
+			}
+
+
 		} catch (Exception e){
 			e.printStackTrace();
 			response.setStatusCode("500");

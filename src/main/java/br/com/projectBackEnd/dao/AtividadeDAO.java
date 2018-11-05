@@ -240,4 +240,43 @@ public class AtividadeDAO extends GenericDAO{
 
         return list;
     }
+
+    public List<Atividade> buscaByStatus(Long idAnalista, String status) throws SQLException, IOException, ClassNotFoundException {
+
+        String sqlTodos = "select * from atividade atv join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1";
+        String sqlStatus = "select * from atividade atv join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1 and atv.status = ?";
+
+        ResultSet rs;
+        if(status.equals("todos")){
+            rs = executeResutSet(sqlTodos,idAnalista);
+        }else {
+            rs = executeResutSet(sqlStatus,idAnalista, status);
+        }
+
+        List<Atividade> list = new ArrayList<>();
+
+        while (rs.next()){
+            Atividade atividade = new Atividade();
+            atividade.setId(rs.getLong("id"));
+            atividade.setNome(rs.getString("nome"));
+            atividade.setDescricao(rs.getString("descricao"));
+            atividade.setComplexidade(rs.getInt("complexidade"));
+            atividade.setDataCriacao(rs.getTimestamp("data_criacao"));
+            atividade.setDataEntrega(rs.getDate("data_entrega"));
+            atividade.setCep(rs.getString("cep"));
+            atividade.setEndereco(rs.getString("endereco"));
+            atividade.setEnderecoNumero(rs.getString("numero_endereco"));
+            atividade.setComplemento(rs.getString("complemento"));
+            atividade.setCidade(rs.getString("cidade"));
+            atividade.setUf(rs.getString("uf"));
+            atividade.setStatus(rs.getString("status"));
+            Projeto projeto = new Projeto();
+            projeto.setId(rs.getLong("projeto_id"));
+            atividade.setProjeto(projeto);
+            list.add(atividade);
+
+        }
+
+        return list;
+    }
 }
