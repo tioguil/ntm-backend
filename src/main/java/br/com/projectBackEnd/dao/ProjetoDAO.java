@@ -136,4 +136,16 @@ public class ProjetoDAO extends GenericDAO{
         return projetos;
     }
 
+    public Projeto editarProjeto(Projeto projeto) throws SQLException, IOException, ClassNotFoundException {
+
+        String sql = "update projeto set numero_projeto = ?, nome = ?, descricao = ?, estimativa_esforco = ?," +
+                "inicio = ?, fim = ?, status = ?, cliente_id = ? where id = ?";
+
+        super.executeQuery(sql, projeto.getNumeroProjeto(), projeto.getNome(), projeto.getDescricao(),
+                projeto.getEstimativaEsforco(), projeto.getInicio(), projeto.getFim(),
+                projeto.getStatus(), projeto.getCliente().getId(), projeto.getId());
+
+        return projeto;
+    }
+
 }

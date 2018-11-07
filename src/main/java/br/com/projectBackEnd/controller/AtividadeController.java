@@ -214,8 +214,27 @@ public class AtividadeController {
 			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 
 	}
+
+	@PostMapping("/gestor/editarAtividade")
+	public ResponseEntity<ResponseMessage> editarAtividade(@RequestBody Atividade atividade, Authentication authentication){
+
+		ResponseMessage response = responseMessage;
+
+		try {
+			response = atividadeService.editarAtividade(atividade);
+		}catch (Exception e){
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
 }
 
