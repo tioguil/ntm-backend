@@ -203,4 +203,5 @@ public class AtividadeDAO extends GenericDAO{
         return atividades;
     }
 
+
 }
