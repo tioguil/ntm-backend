@@ -240,4 +240,18 @@ public class AtividadeDAO extends GenericDAO{
 
         return list;
     }
+
+    public Atividade editarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException{
+
+        String sql = "update atividade set nome = ?, descricao = ?, complexidade = ?, data_criacao = ?," +
+                "data_entrega = ?, cep = ?, endereco = ?, numero_endereco = ?, complemento = ?, cidade = ?," +
+                "uf = ?, status = ? where id = ?";
+
+        super.executeQuery(sql,atividade.getNome(), atividade.getDescricao(), atividade.getComplexidade(),
+                atividade.getDataCriacao(), atividade.getDataEntrega(), atividade.getCep(), atividade.getEndereco(),
+                atividade.getEnderecoNumero(), atividade.getComplemento(), atividade.getCidade(), atividade.getUf(), atividade.getStatus(), atividade.getId());
+
+
+        return atividade;
+    }
 }

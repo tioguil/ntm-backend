@@ -203,4 +203,18 @@ public class AtividadeService {
 
         return response;
     }
+
+    public ResponseMessage editarAtividade(Atividade atividade) throws SQLException, IOException, ClassNotFoundException{
+        ResponseMessage response = responseMessage;
+
+        atividade = atividadeDAO.editarAtividade(atividade);
+
+        response.setResponse(atividade);
+        response.setStatusCode("200");
+        response.setMessage("Atividade atualizada com sucesso");
+
+        return response;
+    }
+
+
 }

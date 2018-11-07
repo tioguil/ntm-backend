@@ -130,4 +130,22 @@ public class ProjetoController {
         }
         return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
     }
+
+    @PostMapping("/gestor/editarProjeto")
+    public ResponseEntity<ResponseMessage> editarProjeto(@RequestBody Projeto projeto, Authentication authentication){
+        ResponseMessage response = responseMessage;
+
+
+        try {
+            projeto.setId(projeto.getId());
+            response = projetoService.editarProjeto(projeto);
+        }catch (Exception e){
+            e.printStackTrace();
+            response.setStatusCode("500");
+            response.setMessage(e.getMessage());
+            response.setResponse(null);
+        }
+
+        return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+    }
 }
