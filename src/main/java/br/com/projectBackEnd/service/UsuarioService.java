@@ -3,12 +3,10 @@ package br.com.projectBackEnd.service;
 import br.com.projectBackEnd.Utili.Disco;
 import br.com.projectBackEnd.Utili.EnviarEmail;
 import br.com.projectBackEnd.Utili.TokenGenerator;
+import br.com.projectBackEnd.dao.AtividadeDAO;
 import br.com.projectBackEnd.dao.TokenDao;
 import br.com.projectBackEnd.dao.UsuarioDAO;
-import br.com.projectBackEnd.model.Habilidade;
-import br.com.projectBackEnd.model.ImagePerfil;
-import br.com.projectBackEnd.model.ResponseMessage;
-import br.com.projectBackEnd.model.Usuario;
+import br.com.projectBackEnd.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,6 +32,9 @@ public class UsuarioService {
     private TokenGenerator tokenGenerator;
     @Autowired
     private TokenDao tokenDao;
+
+    @Autowired
+    private AtividadeDAO atividadeDAO;
 
     @Autowired
     private HabilidadeService habilidadeService;
@@ -269,5 +270,22 @@ public class UsuarioService {
 
     }
 
+    public void notificarUsuario(Usuario usuario, Atividade atividade) throws SQLException, IOException, ClassNotFoundException, MessagingException {
+
+
+        usuario = usuarioDAO.getUsuarioById(usuario.getId());
+
+        atividade = atividadeDAO.detalheAtividade(atividade.getId());
+
+        EnviarEmail email = new EnviarEmail();
+
+        String corpoEmail = "<h2> Caro  " + usuario.getNome() +",</h2><br>" +
+                "<p>Uma nova atividade foi adicionada ao seu Dashboard, segue dados: <br>Titulo: " + atividade.getNome() + "<br>Descrição: " +
+                "" + atividade.getDescricao()+ "<br>Data de criação: " + atividade.getDataCriacao() + " <br>Data de Entrega: " + atividade.getDataEntrega()+ "</p>";
+
+        email.sendHtmlEmail(usuario.getEmail(), "Nova Atividade Vinculada", corpoEmail);
+
+
+    }
 
 }

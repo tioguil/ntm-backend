@@ -1,6 +1,7 @@
 package br.com.projectBackEnd.dao;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class AtividadeDAO extends GenericDAO{
 
 
         String sql = "select id, nome, descricao, complexidade, data_criacao, data_entrega, cep, endereco, numero_endereco, " +
-                "complemento, cidade, uf, status from atividade where projeto_id = ?";
+                "complemento, convert(cidade using UTF8) as cidade, uf, status from atividade where projeto_id = ?";
 
         List<Atividade> atividades = new ArrayList<>();
 
@@ -53,11 +54,14 @@ public class AtividadeDAO extends GenericDAO{
             atividade.setCidade(rs.getString("cidade"));
             atividade.setUf(rs.getString("uf"));
             atividade.setStatus(rs.getString("status"));
-
+            System.out.print(atividade.getCidade());
+            
+         
             atividades.add(atividade);
         }
 
        return  atividades;
+       
 
     }
 

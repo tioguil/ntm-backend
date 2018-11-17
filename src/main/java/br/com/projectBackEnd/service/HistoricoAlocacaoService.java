@@ -11,6 +11,7 @@ import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -41,7 +42,7 @@ public class HistoricoAlocacaoService {
         return alocacaoList;
     }
 
-    public ResponseMessage vincularAnalista(HistoricoAlocacao alocacao) throws SQLException, IOException, ClassNotFoundException {
+    public ResponseMessage vincularAnalista(HistoricoAlocacao alocacao) throws SQLException, IOException, ClassNotFoundException, MessagingException {
         ResponseMessage response = responseMessage;
         
         if(historicoAlocacaoDAO.consultaVinculado(alocacao)) {
@@ -55,7 +56,7 @@ public class HistoricoAlocacaoService {
             response.setStatusCode("200");
             response.setMessage("Usuario vinculado com sucesso!");
             response.setResponse(historicoAlocacaoDAO.listarHistoricoVinculo(alocacao.getAtividade().getId()));
-	
+	        usuarioService.notificarUsuario(alocacao.getUsuario(), alocacao.getAtividade());
             return response;
         }
         			
