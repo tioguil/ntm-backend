@@ -31,9 +31,9 @@ public class ProjetoDAO extends GenericDAO{
         String sql = "select pr.id, pr.nome, pr.numero_projeto, pr.descricao, pr.estimativa_esforco, pr.fim," +
                 " pr.inicio, pr.status, pr.cliente_id, cl.nome 'nomeCliente', cl.cpf_cnpj 'cpf_cnpjCliente', cl.telefone 'telefoneCliente', cl.email 'emailCliente', cl.observacao 'observacaoCliente' from projeto pr " +
                 "left join cliente cl on cl.id = pr.cliente_id where numero_projeto like ? " +
-                "or pr.nome like ? or cl.nome like ? or cl.cpf_cnpj like ? order by pr.id desc limit 20";
+                "or pr.nome like ? or pr.status like ? or cl.nome like ? or cl.cpf_cnpj like ? order by pr.id desc limit 20";
 
-        ResultSet rs = super.executeResutSet(sql, search, search, search, search);
+        ResultSet rs = super.executeResutSet(sql, search, search, search, search, search);
         List<Projeto> projetos = new ArrayList<>();
         while (rs.next()){
             Projeto projeto = new Projeto();

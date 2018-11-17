@@ -203,9 +203,8 @@ public class AtividadeDAO extends GenericDAO{
         return atividades;
     }
 
-<<<<<<< HEAD
 
-=======
+
     public List<Atividade> buscaByStatusData(Long idAnalista, String status, Date dataInicial, Date dataFim) throws SQLException, IOException, ClassNotFoundException {
         String sqlTodos = "select * from atividade atv join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1 and data_criacao between ? and ?";
         String sqlStatus = "select * from atividade atv join atividade_usuario on id = atividade_id where usuario_id = ? and atividade_usuario.status = 1 and data_criacao between ? and ? and atv.status = ?";
@@ -296,5 +295,5 @@ public class AtividadeDAO extends GenericDAO{
 
         return atividade;
     }
->>>>>>> 614f053dc09940817427de9d6844c5f0229d4058
+
 }
