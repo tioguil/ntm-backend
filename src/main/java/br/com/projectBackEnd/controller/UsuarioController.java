@@ -99,6 +99,8 @@ public class UsuarioController {
 		try{
 			usuario.setId(usuarioToken.getId());
 			response = usuarioService.atualizarSenha(usuario);
+			if (response.getStatusCode() == "400")
+				return new ResponseEntity<ResponseMessage>(response, HttpStatus.BAD_REQUEST);
 		}catch (Exception e ){
 			response.setStatusCode("500");
 			response.setMessage(e.getMessage());
