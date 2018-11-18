@@ -251,7 +251,7 @@ public class UsuarioDAO extends GenericDAO{
 
 	    String sql = "select telefone, celular, id, imagePath, nome, cpf_cnpj, rg, "
 	    		+ "sobrenome, perfil_acesso, cep, endereco, numero_endereco, complemento,"
-	    		+ "convert(cidade using utf8) as cidade, email, uf from usuario where usuario.id = ?";
+	    		+ "cidade, email, uf from usuario where usuario.id = ?";
 	    ResultSet rs = super.executeResutSet(sql, idUsuario);
 
 	    if(rs.next()){
