@@ -4,6 +4,8 @@ import br.com.projectBackEnd.dao.UsuarioDAO;
 import br.com.projectBackEnd.model.Token;
 import br.com.projectBackEnd.model.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Date;
 
 import static br.com.projectBackEnd.Utili.SecurityConstants.*;
@@ -59,18 +62,29 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Usuario usuario;
         String jsonUsuario = "";
         try {
+        	Gson gson = new Gson();
+        	
+        	
             usuario = new UsuarioDAO().findByEmail(username);
             usuario.setSenha("");
             Token token1 = new Token();
             token1.setNumero(TOKEN_PREFIX + token);
             token1.setExpiracao(EXPIRATION_TOKEN);
             usuario.setToken(token1);
-            jsonUsuario = new ObjectMapper().writeValueAsString(usuario);
+            
+            jsonUsuario = gson.toJson(usuario);
+            //jsonUsuario = new ObjectMapper().writeValueAsString(usuario);
+            
+            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        response.getWriter().write(jsonUsuario);
+        response.setContentType("application/json; charset=utf-8");
+        response.getWriter().write(jsonUsuario);        
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        
+        
+        
     }
 
 }

@@ -249,7 +249,9 @@ public class UsuarioDAO extends GenericDAO{
     
     public Usuario getUsuarioById(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
 
-	    String sql = "select * from usuario where usuario.id = ?";
+	    String sql = "select telefone, celular, id, imagePath, nome, cpf_cnpj, rg, "
+	    		+ "sobrenome, perfil_acesso, cep, endereco, numero_endereco, complemento,"
+	    		+ "cidade, email, uf from usuario where usuario.id = ?";
 	    ResultSet rs = super.executeResutSet(sql, idUsuario);
 
 	    if(rs.next()){

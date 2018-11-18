@@ -26,6 +26,8 @@ public class HistoricoAlocacaoController {
 
 		try {
 			response = alocacaoService.vincularAnalista(alocacao);
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.setStatusCode("500");

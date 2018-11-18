@@ -59,8 +59,8 @@ public class AnexoDAO extends  GenericDAO{
     }
 
     public void vincularGestor(Usuario usuario, Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "insert atividade_usuario value(?,?)";
-        super.executeQuery(sql, idAtividade, usuario.getId());
+        String sql = "insert atividade_usuario (atividade_id, usuario_id, status) values(?,?,?)";
+        super.executeQuery(sql, idAtividade, usuario.getId(), 1);
     }
 
     public void deleteAnexo(Anexo anexo) throws SQLException, IOException, ClassNotFoundException {
@@ -68,3 +68,5 @@ public class AnexoDAO extends  GenericDAO{
         super.executeQuery(sql, anexo.getAtividade().getId(), anexo.getId());
     }
 }
+
+
