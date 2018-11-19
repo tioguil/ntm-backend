@@ -8,6 +8,8 @@ import br.com.projectBackEnd.dao.TokenDao;
 import br.com.projectBackEnd.dao.UsuarioDAO;
 import br.com.projectBackEnd.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.LocalDateParser;
+import org.springframework.format.datetime.joda.LocalDateTimeParser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,8 +19,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -275,15 +280,20 @@ public class UsuarioService {
 
         usuario = usuarioDAO.getUsuarioById(usuario.getId());
 
+
         atividade = atividadeDAO.detalheAtividade(atividade.getId());
+
+        System.out.println(atividade.getId());
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         EnviarEmail email = new EnviarEmail();
 
         String corpoEmail = "<h3> Caro  " + usuario.getNome() + ",</h3>" +
                 "<p style='font-family: Arial, sans-serif; font-size: 14px;'> Uma nova atividade foi adicionada ao seu dashboard, segue dados:</p> " +
                 "<p>Titulo: " + atividade.getNome() + "<br>Descrição: " +  atividade.getDescricao() +
-                "<br>Data de criação: " + atividade.getDataCriacao() +
-                "<br>Data de Entrega: " + atividade.getDataEntrega()+ "</p>" + "" +
+                "<br>Data de criação: " + df.format(atividade.getDataCriacao()) +
+                "<br>Data de Entrega: " + df.format(atividade.getDataEntrega()) + "</p>" + "" +
                 "<i><p> Atensiosamente, <br> Equipe Nilone </p></i>" ;
 
         email.sendHtmlEmail(usuario.getEmail(), "Nova Atividade Vinculada", corpoEmail);
