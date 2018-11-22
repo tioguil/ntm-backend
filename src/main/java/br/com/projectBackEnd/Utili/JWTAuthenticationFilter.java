@@ -6,6 +6,7 @@ import br.com.projectBackEnd.model.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -63,6 +64,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String jsonUsuario = "";
         try {
         	Gson gson = new Gson();
+
         	
         	
             usuario = new UsuarioDAO().findByEmail(username);

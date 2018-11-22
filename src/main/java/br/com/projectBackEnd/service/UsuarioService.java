@@ -316,7 +316,7 @@ public class UsuarioService {
 
         String corpoEmail = "<h3> Caro  " + usuario.getNome() + ",</h3>" +
                 "<p style='font-family: Arial, sans-serif; font-size: 14px;'> Você foi retirado da atividade: " + atividade.getNome() +
-                ", no dia: " + df.format(alocacao.getDataAlteracao()) + "  </p> " +
+                ", no dia: " + df.format(new Date()) + "  </p> " +
                 "<br>Projeto: " + atividade.getProjeto().getNome()+
                 "<br>Descrição: " + atividade.getDescricao() +
                 "<br>Data de criação: " + df.format(atividade.getDataCriacao()) +
