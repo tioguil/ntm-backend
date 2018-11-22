@@ -98,8 +98,12 @@ public class AtividadeDAO extends GenericDAO{
 
     public Atividade detalheAtividade(Long idAtividade) throws SQLException, IOException, ClassNotFoundException {
 
-        String sql = "select * from atividade where id = ?";
-
+        //String sql = "select * from atividade where id = ?";
+        String sql = "select a.id, a.nome, a.descricao, a.complexidade, a.data_criacao, a.data_entrega,\n" +
+                        "a.cep, a.endereco, a.numero_endereco, a.complemento, a.cidade, a.uf, \n" +
+                        "a.status, a.projeto_id, p.nome from atividade a INNER JOIN projeto p \n" +
+                        "ON p.id = a.projeto_id \n" +
+                        "where a.id = ?";
         ResultSet rs = super.executeResutSet(sql, idAtividade);
 
         if(rs.next()){
@@ -119,6 +123,8 @@ public class AtividadeDAO extends GenericDAO{
             atividade.setStatus(rs.getString("status"));
             Projeto projeto = new Projeto();
             projeto.setId(rs.getLong("projeto_id"));
+            projeto.setNome(rs.getString("nome"));
+
             atividade.setProjeto(projeto);
             return atividade;
 

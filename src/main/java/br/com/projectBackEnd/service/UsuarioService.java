@@ -4,6 +4,7 @@ import br.com.projectBackEnd.Utili.Disco;
 import br.com.projectBackEnd.Utili.EnviarEmail;
 import br.com.projectBackEnd.Utili.TokenGenerator;
 import br.com.projectBackEnd.dao.AtividadeDAO;
+import br.com.projectBackEnd.dao.HistoricoAlocacaoDAO;
 import br.com.projectBackEnd.dao.TokenDao;
 import br.com.projectBackEnd.dao.UsuarioDAO;
 import br.com.projectBackEnd.model.*;
@@ -40,6 +41,9 @@ public class UsuarioService {
 
     @Autowired
     private AtividadeDAO atividadeDAO;
+
+    @Autowired
+    private HistoricoAlocacaoDAO historicoAlocacaoDAO;
 
     @Autowired
     private HabilidadeService habilidadeService;
@@ -277,26 +281,49 @@ public class UsuarioService {
 
     public void notificarUsuario(Usuario usuario, Atividade atividade) throws SQLException, IOException, ClassNotFoundException, MessagingException {
 
-
         usuario = usuarioDAO.getUsuarioById(usuario.getId());
 
 
         atividade = atividadeDAO.detalheAtividade(atividade.getId());
-
-        System.out.println(atividade.getId());
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         EnviarEmail email = new EnviarEmail();
 
         String corpoEmail = "<h3> Caro  " + usuario.getNome() + ",</h3>" +
-                "<p style='font-family: Arial, sans-serif; font-size: 14px;'> Uma nova atividade foi adicionada ao seu dashboard, segue dados:</p> " +
-                "<p>Titulo: " + atividade.getNome() + "<br>Descrição: " +  atividade.getDescricao() +
+                "<p style='font-family: Arial, sans-serif; font-size: 14px;'> Uma nova atividade foi adicionada ao projeto: " + atividade.getProjeto().getNome() + " , segue dados:</p> " +
+                "<p>Titulo da atividade: " + atividade.getNome() + "<br>Descrição: " +  atividade.getDescricao() +
                 "<br>Data de criação: " + df.format(atividade.getDataCriacao()) +
                 "<br>Data de Entrega: " + df.format(atividade.getDataEntrega()) + "</p>" + "" +
                 "<i><p> Atensiosamente, <br> Equipe Nilone </p></i>" ;
 
         email.sendHtmlEmail(usuario.getEmail(), "Nova Atividade Vinculada", corpoEmail);
+
+
+    }
+
+    public void notifiyWhenDesvinculado(Usuario usuario, Atividade atividade , HistoricoAlocacao alocacao) throws SQLException, IOException, ClassNotFoundException, MessagingException {
+
+        usuario = usuarioDAO.getUsuarioById(usuario.getId());
+
+        atividade = atividadeDAO.detalheAtividade(atividade.getId());
+
+        alocacao = historicoAlocacaoDAO.getAlocacaoByIdUserAndAtividade(usuario.getId(), atividade.getId());
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        EnviarEmail email = new EnviarEmail();
+
+        String corpoEmail = "<h3> Caro  " + usuario.getNome() + ",</h3>" +
+                "<p style='font-family: Arial, sans-serif; font-size: 14px;'> Você foi retirado da atividade: " + atividade.getNome() +
+                ", no dia: " + df.format(alocacao.getDataAlteracao()) + "  </p> " +
+                "<br>Projeto: " + atividade.getProjeto().getNome()+
+                "<br>Descrição: " + atividade.getDescricao() +
+                "<br>Data de criação: " + df.format(atividade.getDataCriacao()) +
+                "<br> Para maiores informações, contate seu gestor." +
+                "<i><p> Atensiosamente, <br> Equipe Nilone </p></i>";
+
+        email.sendHtmlEmail(usuario.getEmail(), "Comunicado: Remoção de atividade", corpoEmail);
 
 
     }

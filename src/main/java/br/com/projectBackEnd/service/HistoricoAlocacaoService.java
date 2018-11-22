@@ -98,11 +98,11 @@ public class HistoricoAlocacaoService {
     }
 
 
-    public ResponseMessage desvincularAanalista (HistoricoAlocacao historicoAlocacao) throws SQLException, IOException, ClassNotFoundException {
+    public ResponseMessage desvincularAanalista (HistoricoAlocacao historicoAlocacao) throws SQLException, IOException, ClassNotFoundException, MessagingException {
         ResponseMessage response = responseMessage;
 
         List<HistoricoAlocacao> alocacaos = historicoAlocacaoDAO.desvincularAanalista(historicoAlocacao);
-
+        usuarioService.notifiyWhenDesvinculado(historicoAlocacao.getUsuario(), historicoAlocacao.getAtividade(),historicoAlocacao);
         response.setStatusCode("200");
         response.setMessage("Usuario desvinculado com sucesso!");
         response.setResponse(alocacaos);
