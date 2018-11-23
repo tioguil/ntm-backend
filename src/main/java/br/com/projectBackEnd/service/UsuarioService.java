@@ -137,7 +137,7 @@ public class UsuarioService {
             //Criando e enviando Email
             EnviarEmail email = new EnviarEmail();
 
-            email.sendHtmlEmail(usuario.getEmail(), "Recupeção de senha", "<h2>Senha de acesso</h2>  <br/> Sua nova senha de acesso: " + senha + "<br><i>Atensiosamente, <br> Equipe Nilone</i>");
+            email.sendHtmlEmail(usuario.getEmail(), "Recuperação de senha", "<h2>Senha de acesso</h2>  <br/> Sua nova senha de acesso: " + senha + "<br><i>Atensiosamente, <br> Equipe Nilone</i>");
 
             usuario.setSenha("");
             response.setStatusCode("200");
