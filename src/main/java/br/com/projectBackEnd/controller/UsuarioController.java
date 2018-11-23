@@ -178,7 +178,7 @@ public class UsuarioController {
 
 	@GetMapping("/analista/getimage/{name}")
 	public ResponseEntity<ResponseMessage> getImagePerfil(@PathVariable String name){
-		ResponseMessage response = responseMessage;
+		ResponseMessage response = new ResponseMessage();
 
 		try{
 			response = usuarioService.getImagePerfil(name);
