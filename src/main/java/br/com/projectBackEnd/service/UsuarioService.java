@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import java.beans.Transient;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -234,6 +235,7 @@ public class UsuarioService {
     	return response;    	
     }
 
+    @Transient
     public ResponseMessage getImagePerfil(String name) throws IOException {
         ResponseMessage response = responseMessage;
         String image = disco.getImage(name);
