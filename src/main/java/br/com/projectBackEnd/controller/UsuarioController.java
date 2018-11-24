@@ -35,6 +35,25 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@ApiOperation(value="Cadastra Analista no sistema")
+	@PostMapping("/cadastrar/invite/{token}")
+	public ResponseEntity<ResponseMessage> cadastrarAnalistaInvite(@RequestBody Usuario usuario,@PathVariable("token") String token) throws SQLException, IOException, ClassNotFoundException {
+		ResponseMessage response = responseMessage;
+
+		try {
+			usuario.setPerfilAcesso("analista");
+			response = usuarioService.cadastrarAnalistaInvite(usuario, token);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatusCode("500");
+			response.setMessage(e.getMessage());
+			response.setResponse(null);
+			return new ResponseEntity<ResponseMessage>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
+	}
+
+	@ApiOperation(value="Cadastra Analista no sistema")
 	@PostMapping("/gestor/cadastrar")
 	public ResponseEntity<ResponseMessage> inserir(@RequestBody Usuario usuario) throws SQLException, IOException, ClassNotFoundException {
 		ResponseMessage response = responseMessage;

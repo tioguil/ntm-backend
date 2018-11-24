@@ -3,11 +3,9 @@ package br.com.projectBackEnd.service;
 import br.com.projectBackEnd.Utili.Disco;
 import br.com.projectBackEnd.Utili.EnviarEmail;
 import br.com.projectBackEnd.Utili.TokenGenerator;
-import br.com.projectBackEnd.dao.AtividadeDAO;
-import br.com.projectBackEnd.dao.HistoricoAlocacaoDAO;
-import br.com.projectBackEnd.dao.TokenDao;
-import br.com.projectBackEnd.dao.UsuarioDAO;
+import br.com.projectBackEnd.dao.*;
 import br.com.projectBackEnd.model.*;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.format.datetime.joda.LocalDateTimeParser;
@@ -27,6 +25,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import static br.com.projectBackEnd.Utili.SecurityConstants.SECRET_CONVITE;
+import static br.com.projectBackEnd.Utili.SecurityConstants.TOKEN_PREFIX;
 
 @Service
 public class UsuarioService {
@@ -50,6 +51,8 @@ public class UsuarioService {
     private HabilidadeService habilidadeService;
     @Autowired
     private Disco disco;
+    @Autowired
+    private ConviteDAO conviteDAO;
 
     /**
      *
@@ -330,4 +333,37 @@ public class UsuarioService {
 
     }
 
+    public ResponseMessage cadastrarAnalistaInvite(Usuario usuario, String token) throws SQLException, IOException, ClassNotFoundException {
+        ResponseMessage response = responseMessage;
+
+        String id = Jwts.parser().setSigningKey(SECRET_CONVITE).parseClaimsJws(token)
+                .getBody().getSubject();
+
+        Convite convite = conviteDAO.getConviteById(Long.parseLong(id));
+
+        if(convite.getUsado()){
+            response.setMessage("Convite invalido ou ja utilizado");
+            response.setStatusCode("400");
+            response.setResponse(null);
+            return response;
+        }
+
+        usuario.setCargo(new Cargo(convite.getCargo()));
+        //Encoder Senha
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+
+        usuario.setId(usuarioDAO.cadastrar(usuario));
+        usuario.setSenha("");
+
+
+        conviteDAO.atualizaConviteUsado(convite);
+
+        response.setMessage("Usuario criado com sucesso!");
+        response.setStatusCode("201");
+        response.setResponse(usuario);
+        return response;
+
+
+    }
 }

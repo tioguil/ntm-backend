@@ -10,4 +10,12 @@ public class Cargo {
     private Long id;
     private String cargo;
     private String descricao;
+
+    public Cargo(Long idCargo){
+        this.id = idCargo;
+    }
+
+    public Cargo(){
+
+    }
 }

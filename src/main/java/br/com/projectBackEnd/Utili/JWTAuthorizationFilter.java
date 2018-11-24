@@ -40,7 +40,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
             // verificação de URI liberação para documentação swagger
             if (request.getRequestURI().equals("/swagger-ui.html") || request.getRequestURI().matches(".*/swagger-resources.*") ||
-                request.getRequestURI().equals("/v2/api-docs") || request.getRequestURI().matches("/webjars/.*") || request.getRequestURI().equals("/usuario/recuperacao")){
+                request.getRequestURI().equals("/v2/api-docs") || request.getRequestURI().matches("/webjars/.*") || request.getRequestURI().equals("/usuario/recuperacao") ||
+                request.getRequestURI().matches("/usuario/cadastrar/invite/.*")){
                 chain.doFilter(request,response);
             }else {
                 throw new ServletException("Nenhum token informado");
