@@ -11,7 +11,7 @@ public class Convite {
 
     private Long id;
     private String email;
-    private String nome;
+    private String nivelAcesso;
     private Long cargo;
     private Boolean usado;
     private Date dataConvite;

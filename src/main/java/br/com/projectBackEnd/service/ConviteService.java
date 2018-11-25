@@ -42,9 +42,7 @@ public class ConviteService {
         //Criando e enviando Email
         EnviarEmail email = new EnviarEmail();
 
-        email.sendHtmlEmail(convite.getEmail(), "Convite para NTM-Project", "<h2>Bem Vindo ao NTM-Project </h2>  </p> <br/>"+ convite.getNome() +" você recebeu um convite para se cadastrar em nossa plataforma <br><p>Para efetivar seu cadastro <a href='http://35.198.9.57/"+ token +"'> clique aqui </a> </p><p><i>Atensiosamente, <br> Equipe Nilone</i></p>");
-
-
+        email.sendHtmlEmail(convite.getEmail(), "Convite para NTM-Project", "<h2>Bem Vindo ao NTM-Project </h2>  </p> <br/>Você recebeu um convite para se cadastrar em nossa plataforma <br><p>Para efetivar seu cadastro <a href='http://35.198.9.57/cadastro?token="+ token +"'> clique aqui </a> </p><p><i>Atensiosamente, <br> Equipe Nilone</i></p>");
 
         response.setStatusCode("200");
         response.setMessage("Convite enviado com sucesso!");

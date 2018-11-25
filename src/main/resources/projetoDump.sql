@@ -302,7 +302,7 @@ DEFAULT CHARACTER SET = utf8;
 create table convite(
 	id Integer primary key auto_increment not null,
     email varchar(100) not null,
-    nome varchar(100) not null,
+    nivel_acesso varchar(100) not null,
     cargo integer not null,
     usado boolean default false,
     data_convite timestamp default current_timestamp,

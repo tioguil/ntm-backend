@@ -40,7 +40,6 @@ public class UsuarioController {
 		ResponseMessage response = responseMessage;
 
 		try {
-			usuario.setPerfilAcesso("analista");
 			response = usuarioService.cadastrarAnalistaInvite(usuario, token);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -248,6 +247,5 @@ public class UsuarioController {
 
 		return new ResponseEntity<ResponseMessage>(response, HttpStatus.OK);
 	}
-
 
 }

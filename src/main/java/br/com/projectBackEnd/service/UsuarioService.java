@@ -347,7 +347,7 @@ public class UsuarioService {
             response.setResponse(null);
             return response;
         }
-
+        usuario.setPerfilAcesso(convite.getNivelAcesso());
         usuario.setCargo(new Cargo(convite.getCargo()));
         //Encoder Senha
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

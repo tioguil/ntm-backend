@@ -21,7 +21,7 @@ public class ConviteDAO extends GenericDAO{
             Convite convite = new Convite();
             convite.setId(id);
             convite.setEmail(rs.getString("email"));
-            convite.setNome(rs.getString("nome"));
+            convite.setNivelAcesso(rs.getString("nivel_acesso"));
             convite.setUsado(rs.getBoolean("usado"));
             convite.setUsuario(new Usuario(rs.getLong("id_usuario")));
             convite.setCargo(rs.getLong("cargo"));
@@ -32,9 +32,9 @@ public class ConviteDAO extends GenericDAO{
     }
 
     public Convite convidarAnalista(Convite convite) throws SQLException, IOException, ClassNotFoundException {
-        String sql = "insert convite(email, nome, id_usuario, cargo) values(?,?,?,?)";
+        String sql = "insert convite(email, nivel_acesso, id_usuario, cargo) values(?,?,?,?)";
 
-        Long id = super.executeQuery(sql, convite.getEmail(), convite.getNome(), convite.getUsuario().getId(), convite.getCargo());
+        Long id = super.executeQuery(sql, convite.getEmail(), convite.getNivelAcesso(), convite.getUsuario().getId(), convite.getCargo());
 
         Convite convit = getConviteById(id);
         convit.setUsuario(convite.getUsuario());
