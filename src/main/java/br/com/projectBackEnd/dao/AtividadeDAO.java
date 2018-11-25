@@ -123,7 +123,7 @@ public class AtividadeDAO extends GenericDAO{
             atividade.setStatus(rs.getString("status"));
             Projeto projeto = new Projeto();
             projeto.setId(rs.getLong("projeto_id"));
-            projeto.setNome(rs.getString("nome"));
+            projeto.setNome(rs.getString("p.nome"));
 
             atividade.setProjeto(projeto);
             return atividade;

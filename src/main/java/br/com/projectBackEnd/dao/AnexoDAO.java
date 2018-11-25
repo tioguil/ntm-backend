@@ -24,7 +24,7 @@ public class AnexoDAO extends  GenericDAO{
             anexo.setId(rs.getLong("id"));
             anexo.setLocalArmazenamento(rs.getString("local_armazenamento"));
             anexo.setNomeAquivo(rs.getString("nome_arquivo"));
-            anexo.setDescriocao(rs.getString("descricao"));
+            anexo.setDescricao(rs.getString("descricao"));
             anexo.setTamanho(rs.getLong("tamanho"));
             Usuario usuario = new Usuario();
             usuario.setId(rs.getLong("atividade_usuario_usuario_id"));
@@ -41,7 +41,7 @@ public class AnexoDAO extends  GenericDAO{
     public Anexo salvaNoBanco(Anexo anexo) throws SQLException, IOException, ClassNotFoundException {
         String sql = "INSERT anexo(local_armazenamento, nome_arquivo, descricao, tamanho, atividade_usuario_atividade_id, atividade_usuario_usuario_id) " +
                 "values(?,?,?,?,?,?)";
-        Long id = super.executeQuery(sql, anexo.getLocalArmazenamento(), anexo.getNomeAquivo(), anexo.getDescriocao(), anexo.getTamanho(), anexo.getAtividade().getId(), anexo.getUsuario().getId());
+        Long id = super.executeQuery(sql, anexo.getLocalArmazenamento(), anexo.getNomeAquivo(), anexo.getDescricao(), anexo.getTamanho(), anexo.getAtividade().getId(), anexo.getUsuario().getId());
         anexo.setId(id);
         return anexo;
     }

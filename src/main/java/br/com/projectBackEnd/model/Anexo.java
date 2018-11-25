@@ -13,7 +13,7 @@ public class Anexo {
     private Long id;
     private String localArmazenamento;
     private String nomeAquivo;
-    private String descriocao;
+    private String descricao;
     private String extencao;
     private Date dataInsercao;
     private Long tamanho;

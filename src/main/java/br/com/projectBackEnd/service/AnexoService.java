@@ -61,7 +61,7 @@ public class AnexoService {
         anexo.setFile(file);
         anexo.setTamanho(file.getSize());
         anexo.setNomeAquivo(file.getOriginalFilename());
-        anexo.setDescriocao("Padrao");
+        anexo.setDescricao("Padrao");
 
         //Salvar Arquivo no diretorio
         anexo = disco.salvarAnexo(anexo);
