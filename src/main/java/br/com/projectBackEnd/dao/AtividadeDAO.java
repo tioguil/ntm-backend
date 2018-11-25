@@ -101,7 +101,7 @@ public class AtividadeDAO extends GenericDAO{
         //String sql = "select * from atividade where id = ?";
         String sql = "select a.id, a.nome, a.descricao, a.complexidade, a.data_criacao, a.data_entrega,\n" +
                         "a.cep, a.endereco, a.numero_endereco, a.complemento, a.cidade, a.uf, \n" +
-                        "a.status, a.projeto_id, p.nome from atividade a INNER JOIN projeto p \n" +
+                        "a.status, a.projeto_id, p.nome, p.numero_projeto from atividade a INNER JOIN projeto p \n" +
                         "ON p.id = a.projeto_id \n" +
                         "where a.id = ?";
         ResultSet rs = super.executeResutSet(sql, idAtividade);
@@ -124,6 +124,7 @@ public class AtividadeDAO extends GenericDAO{
             Projeto projeto = new Projeto();
             projeto.setId(rs.getLong("projeto_id"));
             projeto.setNome(rs.getString("p.nome"));
+            projeto.setNumeroProjeto(rs.getString("p.numero_projeto"));
 
             atividade.setProjeto(projeto);
             return atividade;
