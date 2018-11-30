@@ -47,8 +47,8 @@ public class UsuarioService {
     @Autowired
     private HistoricoAlocacaoDAO historicoAlocacaoDAO;
 
-    @Autowired
-    private HabilidadeService habilidadeService;
+//    @Autowired
+//    private HabilidadeService habilidadeService;
     @Autowired
     private Disco disco;
     @Autowired
@@ -207,7 +207,7 @@ public class UsuarioService {
     public Usuario getUsuarioID(Long idUsuario) throws SQLException, IOException, ClassNotFoundException {
 
         Usuario usuario = usuarioDAO.getUsuarioID(idUsuario);
-        usuario.setHabilidades(habilidadeService.listHabilidadesByUsuario(usuario.getId()));
+        //usuario.setHabilidades(habilidadeService.listHabilidadesByUsuario(usuario.getId()));
 
         return usuario;
 
