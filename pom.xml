@@ -7,7 +7,7 @@
 	<groupId>br.com</groupId>
 	<artifactId>projectBackEnd</artifactId>
 	<version>0.0.1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>projectBackEnd</name>
 	<description>Demo project for Spring Boot</description>
@@ -26,16 +26,16 @@
 	</properties>
 
 	<dependencies>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-web</artifactId>-->
-		<!--</dependency>-->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>javax.servlet</groupId>-->
+			<!--<artifactId>javax.servlet-api</artifactId>-->
+			<!--<version>3.1.0</version>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -102,16 +102,16 @@
 
 	<build>
 		<plugins>
-			<!--<plugin>-->
-				<!--<groupId>org.springframework.boot</groupId>-->
-				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-			<!--</plugin>-->
-			<!-- add appengine-maven-plugin -->
 			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.3.1</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			 <!--add appengine-maven-plugin-->
+			<!--<plugin>-->
+				<!--<groupId>com.google.cloud.tools</groupId>-->
+				<!--<artifactId>appengine-maven-plugin</artifactId>-->
+				<!--<version>1.3.1</version>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 
