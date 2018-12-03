@@ -157,7 +157,7 @@ public class AtividadeDAO extends GenericDAO{
                 "ON a.id = ati.atividade_id \n" +
                 "JOIN usuario u\n" +
                 "ON u.id = ati.usuario_id\n" +
-                "WHERE a.data_criacao BETWEEN ? AND ? AND u.id = ?;";
+                "WHERE a.data_criacao BETWEEN ? AND ? AND u.id = ? and ati.status = 1;";
 
         ResultSet rs = super.executeResutSet( sql, dt_inicio,dt_fim, usuario_id);
         List<Atividade> list = new ArrayList<>();
