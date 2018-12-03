@@ -91,9 +91,9 @@ public class HistoricoAlocacaoDAO extends GenericDAO{
 
 	public Boolean consultaConflitoAtividade(Atividade atividade, HistoricoAlocacao alocacao) throws ClassNotFoundException, SQLException, IOException {
 		String sql = "select id from atividade atv join atividade_usuario au on atv.id = au.atividade_id where au.usuario_id = ? and atv.status <> 'finalizada' and atv.status <> 'cancelada' and atv.data_criacao <= ? and atv.data_entrega >= ?";
-		ResultSet rs = super.executeResutSet(sql, alocacao.getUsuario().getId(), atividade.getDataCriacao(),  atividade.getDataCriacao());
-		
-		if(rs.next()) {
+		ResultSet rs = super.executeResutSet(sql, alocacao.getUsuario().getId(), atividade.getDataCriacao("yyyy-MM-dd HH:mm:ss"),  atividade.getDataEntrega("yyyy-MM-dd") + " 23:59:00");
+
+        if(rs.next()) {
 			return true;
 		}else {
 			return false;
