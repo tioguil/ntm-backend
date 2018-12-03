@@ -141,7 +141,7 @@ public class UsuarioService {
             //Criando e enviando Email
             EnviarEmail email = new EnviarEmail();
 
-            email.sendHtmlEmail(usuario.getEmail(), "Recuperação de senha", "<h2>Senha de acesso</h2>  <br/> Sua nova senha de acesso: " + senha + "<br><i>Atensiosamente, <br> Equipe Nilone</i>");
+            email.sendHtmlEmail(usuario.getEmail(), "Recuperação de senha", "<h2>Senha de acesso</h2>  <br/> Foi gerada uma nova senha de acesso: <b>" + senha + "</b><br>Para alterar a sua senha, acesse o sistema com a nova senha gerada, clique no <b>nome do seu usuário</b>, depois em <b>Configurações</b> e clique em <b>Editar senha</b>.<p>Atenciosamente, <br> <i>Equipe Nilone</i></p>");
 
             usuario.setSenha("");
             response.setStatusCode("200");
@@ -151,8 +151,8 @@ public class UsuarioService {
             return response;
         }else{
             usuario.setSenha("");
-            response.setStatusCode("200");
-            response.setMessage("conta não cadastrada.");
+            response.setStatusCode("400");
+            response.setMessage("Conta não cadastrada.");
             response.setResponse(null);
 
             return response;
